@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Soul Sand Records</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Soul Sand Records is an independent, project-driven music label releasing immersive and concept-driven work across all genres." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Soul Sand Records is an independent label releasing immersive, conceptual and experience-driven music projects across all genres.">
 
 <style>
+
 :root{
-  --bg1:#0b1020;
-  --bg2:#020617;
-  --accent:#f2d28b;
-  --muted:#94a3b8;
-  --card:rgba(2,6,23,.65);
-  --border:#1e293b;
+  --bg:#f6f9ff;
+  --ink:#0b1b3a;
+  --muted:#5c6f99;
+  --blue:#245cff;
+  --blue-soft:#e7efff;
+  --line:#dbe5ff;
+  --card:#ffffff;
+  --accent:#2a6bff;
 }
 
 *{box-sizing:border-box}
 
 html,body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
-  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  color:var(--ink);
   background:
-    radial-gradient(900px 500px at 10% -10%, #1e293b 0%, transparent 60%),
-    radial-gradient(800px 500px at 90% 10%, #312e81 0%, transparent 60%),
-    linear-gradient(180deg,var(--bg1),var(--bg2));
+    radial-gradient(900px 500px at 85% -10%, #dfe9ff 0%, transparent 60%),
+    radial-gradient(700px 500px at 0% 30%, #eef3ff 0%, transparent 60%),
+    var(--bg);
 }
 
+a{color:var(--blue);text-decoration:none}
+
 .wrapper{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
-  padding:56px 24px 90px;
+  padding:64px 26px 120px;
 }
+
+/* ---------------- Header ---------------- */
 
 header{
   display:flex;
@@ -41,144 +49,190 @@ header{
   margin-bottom:90px;
 }
 
-.brand{
-  letter-spacing:.18em;
-  font-size:20px;
-  font-weight:500;
+.logo{
+  font-size:14px;
+  letter-spacing:.28em;
+  font-weight:700;
+  color:var(--blue);
 }
 
-.tag{
-  color:var(--muted);
-  font-size:13px;
-}
+/* ---------------- Hero ---------------- */
 
 .hero{
-  max-width:820px;
-  margin-bottom:90px;
+  max-width:900px;
+  margin-bottom:110px;
 }
 
 .hero h1{
-  font-size:clamp(34px,5vw,56px);
-  line-height:1.05;
-  font-weight:500;
-  margin:0 0 26px;
+  font-size:clamp(48px,7vw,84px);
+  line-height:0.98;
+  letter-spacing:-.02em;
+  margin:0 0 24px 0;
+  font-weight:800;
+}
+
+.hero h1 span{
+  color:var(--blue);
 }
 
 .hero p{
-  font-size:18px;
-  line-height:1.6;
-  color:#cbd5f5;
+  font-size:20px;
   max-width:700px;
+  color:var(--muted);
+  line-height:1.65;
 }
 
-.section-title{
-  font-size:13px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:26px;
-}
+/* ---------------- Philosophy ---------------- */
 
 .philosophy{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
-  margin-bottom:90px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:26px 26px 30px;
-}
-
-.card h3{
-  margin:0 0 10px;
-  font-weight:500;
-  color:var(--accent);
-}
-
-.card p{
-  margin:0;
-  color:#cbd5f5;
-  line-height:1.55;
-  font-size:15px;
-}
-
-.projects{
-  display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
+  gap:28px;
+  margin-bottom:120px;
 }
 
-.project{
+.panel{
   background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:26px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:36px 34px;
+}
+
+.panel h3{
+  margin:0 0 10px;
+  font-size:22px;
+  font-weight:700;
+}
+
+.panel p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:16px;
+}
+
+/* ---------------- Section titles ---------------- */
+
+.section{
+  margin-bottom:120px;
+}
+
+.section h2{
+  font-size:42px;
+  margin:0 0 10px;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+
+.section p.lead{
+  margin:0 0 50px;
+  color:var(--muted);
+  font-size:18px;
+}
+
+/* ---------------- Artists grid ---------------- */
+
+.artists{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:34px;
+}
+
+.artist{
+  background:linear-gradient(180deg,#ffffff,#f4f7ff);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:38px 34px 40px;
   position:relative;
   overflow:hidden;
 }
 
-.project::after{
+.artist:after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.04),transparent);
+  background:linear-gradient(120deg,transparent,rgba(36,92,255,.06),transparent);
   pointer-events:none;
 }
 
-.project span{
+.artist small{
   display:block;
-  font-size:12px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-
-.project h4{
-  margin:0 0 12px;
-  font-weight:500;
-  font-size:20px;
-}
-
-.project p{
-  margin:0;
-  color:#cbd5f5;
-  line-height:1.5;
-  font-size:15px;
-}
-
-.badge{
-  display:inline-block;
-  margin-top:16px;
-  padding:6px 12px;
-  border-radius:999px;
+  letter-spacing:.22em;
+  font-weight:700;
   font-size:11px;
+  color:var(--blue);
+  margin-bottom:10px;
+}
+
+.artist h3{
+  margin:0 0 14px;
+  font-size:28px;
+  font-weight:800;
+}
+
+.artist p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:16px;
+}
+
+.tag{
+  display:inline-block;
+  margin-top:22px;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
   letter-spacing:.12em;
   text-transform:uppercase;
-  background:#020617;
-  border:1px solid var(--border);
-  color:var(--accent);
+  background:var(--blue-soft);
+  color:var(--blue);
 }
 
+/* ---------------- Future / roster ---------------- */
+
+.future{
+  background:linear-gradient(180deg,#f7faff,#ffffff);
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:60px 50px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.future h3{
+  margin:0 0 12px;
+  font-size:34px;
+  font-weight:800;
+}
+
+.future p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:17px;
+}
+
+@media(max-width:900px){
+  .future{grid-template-columns:1fr}
+}
+
+/* ---------------- Footer ---------------- */
+
 footer{
-  margin-top:120px;
+  margin-top:160px;
   padding-top:40px;
-  border-top:1px solid var(--border);
+  border-top:1px solid var(--line);
   display:flex;
   flex-wrap:wrap;
   gap:14px;
   justify-content:space-between;
-  align-items:center;
+  color:var(--muted);
+  font-size:14px;
 }
 
-footer small{
-  color:var(--muted);
-  font-size:13px;
-}
 </style>
 </head>
 <body>
@@ -186,94 +240,120 @@ footer small{
 <div class="wrapper">
 
 <header>
-  <div class="brand">SOUL SAND RECORDS</div>
-  <div class="tag">Independent label</div>
+  <div class="logo">SOUL SAND RECORDS</div>
 </header>
 
 <section class="hero">
   <h1>
-    A home for immersive and<br>
-    concept-driven music projects.
+    Soul Sand<br>
+    <span>Records</span>
   </h1>
 
   <p>
-    Soul Sand Records is an independent, project-driven label releasing work across all genres.
-    We curate creative worlds — not categories — and support artists whose projects are built
-    around intention, experience, and identity.
+    Soul Sand Records is an independent label built around immersive, conceptual
+    and experience-driven music projects. We release creative worlds — not market
+    categories — and support artists whose work is designed to be lived inside,
+    not simply consumed.
   </p>
 </section>
 
-<section>
-  <div class="section-title">Our philosophy</div>
+<section class="philosophy">
 
-  <div class="philosophy">
-
-    <div class="card">
-      <h3>Projects, not genres</h3>
-      <p>
-        We sign creative projects and artistic worlds — not styles, trends, or market categories.
-        Every release stands on its own concept and purpose.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>All music is welcome</h3>
-      <p>
-        Hip-hop, country, pop, jazz, folk, Americana, ambient, experimental, cinematic and beyond —
-        Soul Sand Records is intentionally genre-agnostic.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Experience comes first</h3>
-      <p>
-        Each project is developed as an experience — whether emotional, functional, narrative,
-        immersive, or exploratory.
-      </p>
-    </div>
-
+  <div class="panel">
+    <h3>Projects over genres</h3>
+    <p>
+      We focus on complete artistic projects and creative worlds.
+      Sound, concept, identity and experience are developed together.
+    </p>
   </div>
+
+  <div class="panel">
+    <h3>All genres belong here</h3>
+    <p>
+      Ambient, cinematic, experimental, folk, pop, hip-hop, jazz, country and
+      everything in between are welcome under the same philosophy.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>Designed experiences</h3>
+    <p>
+      Some projects are emotional. Some are functional. Some are narrative.
+      All releases are built as intentional listening environments.
+    </p>
+  </div>
+
 </section>
 
-<section>
-  <div class="section-title">Initial projects</div>
+<section class="section">
 
-  <div class="projects">
+  <h2>Current artists</h2>
+  <p class="lead">
+    The first projects launching under the Soul Sand Records label.
+  </p>
 
-    <div class="project">
-      <span>Project</span>
-      <h4>Deep Night Static</h4>
+  <div class="artists">
+
+    <div class="artist">
+      <small>Artist</small>
+      <h3>Deep Night Static</h3>
       <p>
-        A functional and sensory sound project designed for sleep, calm, and environmental listening.
+        Immersive sleep and environmental sound projects focused on
+        nighttime listening, calm, and sensory atmosphere.
       </p>
-      <div class="badge">Launching soon</div>
+      <div class="tag">Sleep • Ambient • Environment</div>
     </div>
 
-    <div class="project">
-      <span>Artist / Project</span>
-      <h4>Aron Leigh — Special Projects</h4>
+    <div class="artist">
+      <small>Artist</small>
+      <h3>Still Room Signals</h3>
       <p>
-        Concept-driven releases and collaborations developed under the Soul Sand Records label.
+        Minimal, reflective sound environments designed for focus,
+        slow attention and emotional quiet.
       </p>
-      <div class="badge">Launching soon</div>
+      <div class="tag">Minimal • Calm • Focus</div>
     </div>
 
-    <div class="project">
-      <span>Future artists</span>
-      <h4>Open roster</h4>
+    <div class="artist">
+      <small>Artist</small>
+      <h3>Night Room Drones</h3>
       <p>
-        Soul Sand Records will support independent artists and creative projects across all genres
-        and disciplines.
+        Low-frequency, spatial and drone-based compositions built for
+        deep listening and immersive room-scale environments.
       </p>
-      <div class="badge">Now forming</div>
+      <div class="tag">Drone • Space • Immersion</div>
     </div>
 
   </div>
+
+</section>
+
+<section class="section">
+
+  <div class="future">
+    <div>
+      <h3>Open label philosophy</h3>
+      <p>
+        Soul Sand Records is intentionally designed to support artists and projects
+        across every genre and creative discipline.
+        The label is structured around long-term creative identity, not short-term release cycles.
+      </p>
+    </div>
+
+    <div>
+      <h3>Future roster</h3>
+      <p>
+        New artists, collaborations and concept projects will be introduced
+        over time as part of a growing multi-genre creative ecosystem.
+      </p>
+    </div>
+  </div>
+
 </section>
 
 <footer>
-  <small>© <span id="year"></span> Soul Sand Records</small>
-  <small>Independent label</small>
+  <div>© <span id="year"></span> Soul Sand Records</div>
+  <div>Independent label</div>
 </footer>
 
 </div>
