@@ -2,106 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
   <title>Soul Sand Records</title>
-  <meta name="description" content="Soul Sand Records — a calm, premium label landing page featuring our artists and contact." />
+  <meta name="description" content="Soul Sand Records — premium label landing page featuring artists and contact." />
 
-  <!-- Typography (fast + premium) -->
+  <!-- Fonts: keep minimal, load efficiently -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
+    /* ===========================
+       Performance switches
+       =========================== */
     :root{
-      /* Night-mode Swiss / cinematic */
-      --bg0:#070A10;
-      --bg1:#090E18;
-      --ink:#EAF1FF;
-      --muted:#B8C7E6;
-      --faint:#7D8FB7;
-      --line:rgba(234,241,255,.10);
-      --line2:rgba(234,241,255,.07);
+      --effects: 1; /* 1 = on, 0 = ultra-fast mode */
+    }
+    @media (prefers-reduced-motion: reduce){
+      :root{ --effects: 0; }
+    }
 
-      --blue:#6EA6FF;
-      --blue2:#9CD4FF;
+    /* ===========================
+       Palette: lighter blues, premium night
+       =========================== */
+    :root{
+      --bg0:#070A12;
+      --bg1:#081227;
+      --bg2:#0A1833;
 
-      --card:rgba(11,18,32,.62);
-      --card2:rgba(11,18,32,.38);
+      --ink:#F3F7FF;
+      --muted:#C8D6F1;
+      --faint:#8DA7D4;
 
-      --shadow: 0 18px 60px rgba(0,0,0,.40);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --line:rgba(243,247,255,.12);
+      --line2:rgba(243,247,255,.08);
+
+      /* lighter blues */
+      --blue:#86B6FF;
+      --blue2:#B9E3FF;
+      --blue3:#D7F1FF;
+
+      --card:rgba(12,24,46,.62);
+      --card2:rgba(12,24,46,.38);
+
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
+      --shadow2: 0 10px 30px rgba(0,0,0,.30);
 
       --radius: 18px;
       --radius2: 26px;
 
       --max: 1120px;
-      --g: 22px;
 
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
-    }
-
     html{ scroll-behavior:smooth; }
+    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
     body{
       margin:0;
       font-family:var(--sans);
       color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(110,166,255,.22) 0%, rgba(110,166,255,0) 55%),
-        radial-gradient(900px 600px at 85% 10%, rgba(156,212,255,.16) 0%, rgba(156,212,255,0) 55%),
-        radial-gradient(900px 700px at 50% 110%, rgba(110,166,255,.10) 0%, rgba(110,166,255,0) 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+        radial-gradient(1100px 680px at 18% -10%, rgba(134,182,255,.28) 0%, rgba(134,182,255,0) 60%),
+        radial-gradient(920px 620px at 86% 6%, rgba(185,227,255,.20) 0%, rgba(185,227,255,0) 58%),
+        radial-gradient(980px 720px at 50% 112%, rgba(215,241,255,.12) 0%, rgba(215,241,255,0) 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
       overflow-x:hidden;
     }
 
-    /* Subtle premium film-grain texture */
+    /* Very subtle static texture (cheap) */
     body::before{
       content:"";
       position:fixed; inset:0;
       pointer-events:none;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/22px 22px,
-        radial-gradient(circle at 70% 30%, rgba(255,255,255,.035) 0 1px, transparent 2px) 0 0/28px 28px;
-      mix-blend-mode:overlay;
-      opacity:.35;
+      opacity: calc(.18 * var(--effects));
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,.10) 1px, transparent 0);
+      background-size: 26px 26px;
+      mix-blend-mode: overlay;
     }
 
-    /* Soft “sand” light sweep */
-    .sweep{
-      position:fixed; inset:-20%;
-      pointer-events:none;
-      background: conic-gradient(from 200deg at 50% 50%,
-        transparent 0 20%,
-        rgba(110,166,255,.10) 35%,
-        transparent 55%,
-        rgba(156,212,255,.08) 70%,
-        transparent 100%);
-      filter: blur(60px);
-      opacity:.45;
-      transform: translate3d(0,0,0);
-      animation: drift 18s ease-in-out infinite alternate;
-    }
-    @keyframes drift{
-      from{ transform: translate3d(-2%, -1%, 0) rotate(-6deg); }
-      to{ transform: translate3d(2%, 1%, 0) rotate(6deg); }
-    }
-
-    .wrap{ position:relative; }
     .container{
       width:min(var(--max), calc(100% - 48px));
       margin:0 auto;
     }
 
-    /* Top nav */
+    /* ===========================
+       Nav (NO backdrop blur = faster)
+       =========================== */
     .nav{
       position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,10,16,.72), rgba(7,10,16,.35));
+      background: rgba(7,10,18,.78);
       border-bottom: 1px solid var(--line2);
     }
     .nav .inner{
@@ -109,29 +103,30 @@
       padding: 14px 0;
       gap: 18px;
     }
+
     .brand{
       display:flex; align-items:baseline; gap:12px;
       text-decoration:none; color:var(--ink);
-      letter-spacing: .02em;
       min-width: 240px;
+    }
+    .brand .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--blue3), var(--blue));
+      box-shadow: 0 0 0 6px rgba(134,182,255,.14);
+      transform: translateY(-1px);
     }
     .brand .name{
       font-weight: 600;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: .14em;
-      opacity:.92;
+      opacity:.95;
+      white-space:nowrap;
     }
-    .brand .dot{
-      width:7px; height:7px; border-radius:99px;
-      background: radial-gradient(circle at 30% 30%, var(--blue2), var(--blue));
-      box-shadow: 0 0 0 6px rgba(110,166,255,.12);
-      transform: translateY(-1px);
-    }
+
     .navlinks{
       display:flex; align-items:center; gap: 18px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      flex-wrap:wrap; justify-content:flex-end;
     }
     .navlinks a{
       color:var(--muted);
@@ -141,21 +136,22 @@
       text-transform: uppercase;
       padding: 10px 10px;
       border-radius: 12px;
-      transition: color .18s ease, background .18s ease, transform .18s ease;
+      transition: color .16s ease, background .16s ease, transform .16s ease;
     }
     .navlinks a:hover{
       color: var(--ink);
-      background: rgba(234,241,255,.06);
+      background: rgba(243,247,255,.06);
       transform: translateY(-1px);
     }
 
-    /* Hero */
-    .hero{
-      padding: clamp(56px, 8vw, 96px) 0 34px;
-    }
+    /* ===========================
+       Hero
+       =========================== */
+    .hero{ padding: clamp(56px, 8vw, 96px) 0 34px; }
+
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.18fr .82fr;
       gap: clamp(18px, 3vw, 38px);
       align-items:end;
     }
@@ -166,7 +162,7 @@
 
     .kicker{
       font-family:var(--mono);
-      color: rgba(156,212,255,.92);
+      color: rgba(185,227,255,.95);
       font-size: 12px;
       letter-spacing: .16em;
       text-transform: uppercase;
@@ -175,7 +171,7 @@
     }
     .kicker .rule{
       height:1px; width: 44px;
-      background: linear-gradient(90deg, rgba(156,212,255,.65), transparent);
+      background: linear-gradient(90deg, rgba(185,227,255,.75), transparent);
     }
 
     h1{
@@ -202,12 +198,14 @@
       overflow:hidden;
       position:relative;
     }
+    /* Static highlight (no animated sweep) */
     .heroCard::before{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(600px 280px at 20% 0%, rgba(110,166,255,.18), transparent 60%),
-                  radial-gradient(520px 260px at 80% 10%, rgba(156,212,255,.14), transparent 62%);
-      opacity:.85;
+      background:
+        radial-gradient(560px 260px at 18% 0%, rgba(134,182,255,.24), transparent 60%),
+        radial-gradient(520px 260px at 85% 10%, rgba(185,227,255,.18), transparent 62%);
+      opacity:.92;
       pointer-events:none;
     }
     .heroCard > *{ position:relative; }
@@ -221,15 +219,15 @@
     .stat{
       padding: 12px 12px;
       border-radius: 16px;
-      border: 1px solid rgba(234,241,255,.10);
-      background: rgba(7,10,16,.35);
+      border: 1px solid rgba(243,247,255,.11);
+      background: rgba(7,10,18,.32);
     }
     .stat .label{
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(184,199,230,.85);
+      color: rgba(200,214,241,.86);
     }
     .stat .value{
       margin-top: 7px;
@@ -240,15 +238,14 @@
     }
 
     .ctaRow{
-      display:flex;
-      flex-wrap:wrap;
+      display:flex; flex-wrap:wrap;
       gap: 10px;
       margin-top: 18px;
     }
     .btn{
       appearance:none;
-      border:1px solid rgba(234,241,255,.12);
-      background: rgba(234,241,255,.06);
+      border:1px solid rgba(243,247,255,.12);
+      background: rgba(243,247,255,.06);
       color: var(--ink);
       padding: 10px 14px;
       border-radius: 14px;
@@ -256,59 +253,56 @@
       letter-spacing:.08em;
       text-transform: uppercase;
       text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      display:inline-flex; align-items:center; gap: 10px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
     }
     .btn:hover{
       transform: translateY(-1px);
-      background: rgba(234,241,255,.09);
-      border-color: rgba(156,212,255,.28);
+      background: rgba(243,247,255,.09);
+      border-color: rgba(185,227,255,.30);
     }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(110,166,255,.26), rgba(156,212,255,.18));
-      border-color: rgba(156,212,255,.32);
+      background: linear-gradient(135deg, rgba(134,182,255,.30), rgba(215,241,255,.18));
+      border-color: rgba(185,227,255,.38);
       box-shadow: var(--shadow2);
     }
     .btn .arrow{
       width: 18px; height:18px;
       display:inline-grid; place-items:center;
       border-radius: 999px;
-      background: rgba(234,241,255,.08);
-      border: 1px solid rgba(234,241,255,.10);
+      background: rgba(243,247,255,.08);
+      border: 1px solid rgba(243,247,255,.10);
       font-family: var(--mono);
       font-size: 12px;
     }
 
-    /* Sections */
-    section{
-      padding: 44px 0;
-      border-top: 1px solid var(--line2);
-    }
+    /* ===========================
+       Sections
+       =========================== */
+    section{ padding: 44px 0; border-top: 1px solid var(--line2); }
+
     .sectionHead{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 16px;
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap: 12px; margin-bottom: 16px;
     }
     .sectionTitle{
       margin:0;
       font-size: 14px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(234,241,255,.92);
+      color: rgba(243,247,255,.94);
     }
     .sectionNote{
       margin:0;
-      color: rgba(184,199,230,.80);
+      color: rgba(200,214,241,.82);
       font-size: 13px;
       line-height: 1.5;
       max-width: 60ch;
     }
 
-    /* Artists */
+    /* ===========================
+       Artist cards
+       =========================== */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -323,32 +317,31 @@
       text-decoration:none;
       color: var(--ink);
       border-radius: var(--radius2);
-      border: 1px solid rgba(234,241,255,.11);
-      background: linear-gradient(180deg, rgba(11,18,32,.56), rgba(11,18,32,.36));
-      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+      border: 1px solid rgba(243,247,255,.12);
+      background: linear-gradient(180deg, rgba(12,24,46,.58), rgba(12,24,46,.34));
+      box-shadow: 0 10px 28px rgba(0,0,0,.26);
       overflow:hidden;
-      transition: transform .20s ease, border-color .20s ease, background .20s ease;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
       min-height: 170px;
     }
     .card:hover{
       transform: translateY(-3px);
-      border-color: rgba(156,212,255,.35);
-      background: linear-gradient(180deg, rgba(11,18,32,.66), rgba(11,18,32,.40));
+      border-color: rgba(185,227,255,.40);
+      background: linear-gradient(180deg, rgba(12,24,46,.66), rgba(12,24,46,.38));
     }
     .card::before{
       content:"";
       position:absolute; inset:-1px;
       background:
-        radial-gradient(520px 210px at 20% 20%, rgba(110,166,255,.20), transparent 60%),
-        radial-gradient(420px 240px at 80% 30%, rgba(156,212,255,.16), transparent 60%);
-      opacity:.85;
+        radial-gradient(520px 210px at 20% 20%, rgba(134,182,255,.22), transparent 60%),
+        radial-gradient(420px 240px at 85% 30%, rgba(215,241,255,.16), transparent 62%);
+      opacity:.90;
       pointer-events:none;
     }
     .cardInner{
       position:relative;
       padding: 18px 18px 16px;
-      display:flex;
-      flex-direction:column;
+      display:flex; flex-direction:column;
       gap: 10px;
       height:100%;
     }
@@ -360,9 +353,9 @@
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(184,199,230,.88);
-      border: 1px solid rgba(234,241,255,.10);
-      background: rgba(7,10,16,.32);
+      color: rgba(200,214,241,.90);
+      border: 1px solid rgba(243,247,255,.10);
+      background: rgba(7,10,18,.30);
       padding: 7px 10px;
       border-radius: 999px;
       width:max-content;
@@ -372,9 +365,9 @@
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(156,212,255,.95);
-      border: 1px solid rgba(156,212,255,.26);
-      background: rgba(110,166,255,.10);
+      color: rgba(215,241,255,.98);
+      border: 1px solid rgba(185,227,255,.28);
+      background: rgba(134,182,255,.10);
       padding: 7px 10px;
       border-radius: 999px;
       white-space:nowrap;
@@ -387,45 +380,44 @@
     }
     .artistDesc{
       margin: 0;
-      color: rgba(184,199,230,.92);
+      color: rgba(200,214,241,.92);
       font-size: 14px;
       line-height: 1.6;
       max-width: 52ch;
     }
     .cardFoot{
       margin-top:auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
+      display:flex; align-items:center; justify-content:space-between; gap: 10px;
       padding-top: 10px;
-      border-top: 1px solid rgba(234,241,255,.08);
+      border-top: 1px solid rgba(243,247,255,.08);
     }
     .cardLink{
       font-family: var(--mono);
       font-size: 12px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(234,241,255,.86);
+      color: rgba(243,247,255,.86);
       display:flex; align-items:center; gap:10px;
     }
     .cardLink span{
       width: 20px; height:20px;
       display:inline-grid; place-items:center;
       border-radius: 999px;
-      border: 1px solid rgba(234,241,255,.12);
-      background: rgba(234,241,255,.06);
+      border: 1px solid rgba(243,247,255,.12);
+      background: rgba(243,247,255,.06);
     }
     .hint{
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(184,199,230,.70);
+      color: rgba(200,214,241,.72);
       white-space:nowrap;
     }
 
-    /* Contact */
+    /* ===========================
+       Contact panels
+       =========================== */
     .contactGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -437,11 +429,22 @@
     }
     .panel{
       border-radius: var(--radius2);
-      border: 1px solid rgba(234,241,255,.11);
-      background: linear-gradient(180deg, rgba(11,18,32,.56), rgba(11,18,32,.34));
-      box-shadow: 0 10px 28px rgba(0,0,0,.26);
+      border: 1px solid rgba(243,247,255,.12);
+      background: linear-gradient(180deg, rgba(12,24,46,.56), rgba(12,24,46,.30));
+      box-shadow: 0 10px 28px rgba(0,0,0,.24);
       padding: 18px;
+      position:relative;
+      overflow:hidden;
     }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-1px;
+      opacity:.70;
+      background: radial-gradient(520px 220px at 10% 0%, rgba(134,182,255,.18), transparent 62%);
+      pointer-events:none;
+    }
+    .panel > *{ position:relative; }
+
     .panel h3{
       margin: 0 0 8px;
       font-size: 16px;
@@ -449,53 +452,52 @@
     }
     .panel p{
       margin:0;
-      color: rgba(184,199,230,.90);
+      color: rgba(200,214,241,.90);
       font-size: 14px;
       line-height: 1.65;
     }
     .contactLine{
       margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
+      display:flex; flex-wrap:wrap;
       gap: 10px;
     }
 
-    /* Footer */
     footer{
       border-top: 1px solid var(--line2);
       padding: 22px 0 40px;
-      color: rgba(184,199,230,.75);
+      color: rgba(200,214,241,.76);
       font-size: 13px;
     }
     .footRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px; flex-wrap:wrap;
     }
     .mono{
       font-family: var(--mono);
       letter-spacing:.12em;
       text-transform: uppercase;
       font-size: 11px;
-      color: rgba(184,199,230,.70);
+      color: rgba(200,214,241,.72);
     }
 
-    /* Reveal animation */
+    /* ===========================
+       Reveal (lightweight)
+       =========================== */
     .reveal{
       opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
+      transform: translateY(10px);
+      transition: opacity .45s ease, transform .45s ease;
+      will-change: opacity, transform;
     }
     .reveal.is-in{
       opacity: 1;
       transform: translateY(0);
     }
+    /* If effects off, show immediately */
+    .fx-off .reveal{ opacity:1; transform:none; transition:none; }
 
-    /* Focus ring */
     :focus-visible{
-      outline: 2px solid rgba(156,212,255,.55);
+      outline: 2px solid rgba(185,227,255,.62);
       outline-offset: 3px;
       border-radius: 12px;
     }
@@ -503,266 +505,264 @@
 </head>
 
 <body>
-  <div class="sweep" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="container">
+      <div class="inner">
+        <a class="brand" href="#top" aria-label="Soul Sand Records home">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="name">Soul Sand Records</span>
+        </a>
 
-  <div class="wrap">
-    <header class="nav">
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="#artists">Artists</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
       <div class="container">
-        <div class="inner">
-          <a class="brand" href="#top" aria-label="Soul Sand Records home">
-            <span class="dot" aria-hidden="true"></span>
-            <span class="name">Soul Sand Records</span>
+        <div class="grid">
+          <div class="reveal">
+            <div class="kicker"><span class="rule" aria-hidden="true"></span> Label</div>
+            <h1>Soul Sand Records</h1>
+            <p class="sub">
+              Swiss-modern clarity with a cinematic night finish — calm, luxury, and artist-forward.
+              Clean layout. Subtle motion. Strong typography.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="#artists">
+                Explore Artists <span class="arrow" aria-hidden="true">↘</span>
+              </a>
+              <a class="btn" href="#contact">
+                Contact <span class="arrow" aria-hidden="true">✦</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="heroCard reveal" aria-label="Label summary">
+            <div class="kicker" style="margin-bottom:10px;">
+              <span class="rule" aria-hidden="true"></span> Overview
+            </div>
+
+            <div class="stats" role="list">
+              <div class="stat" role="listitem">
+                <div class="label">Aesthetic</div>
+                <div class="value">Swiss / Cinematic</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="label">Palette</div>
+                <div class="value">Light Blue / Night</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="label">Structure</div>
+                <div class="value">Artist Pages</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="label">Intent</div>
+                <div class="value">Landing Site</div>
+              </div>
+            </div>
+
+            <div class="ctaRow" style="margin-top:16px;">
+              <a class="btn" href="artists/deep-night-static.html">
+                Deep Night Static <span class="arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn" href="artists/still-room-signals.html">
+                Still Room Signals <span class="arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn" href="artists/night-room-drones.html">
+                Night Room Drones <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTISTS -->
+    <section id="artists" aria-label="Artists">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="sectionTitle">Artists</h2>
+          <p class="sectionNote">
+            Each artist is a dedicated HTML page in <span class="mono">/artists/</span> (no nested folders).
+            Links below point directly to the live paths.
+          </p>
+        </div>
+
+        <div class="cards">
+          <a class="card reveal" href="artists/deep-night-static.html">
+            <div class="cardInner">
+              <div class="cardTop">
+                <div class="tag">Artist</div>
+                <div class="pill">Long-form</div>
+              </div>
+              <h3 class="artistName">Deep Night Static</h3>
+              <p class="artistDesc">
+                Dense nocturnal ambience with gentle edge — slow motion detail, minimal distraction.
+              </p>
+              <div class="cardFoot">
+                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
+                <div class="hint">/artists/</div>
+              </div>
+            </div>
           </a>
 
-          <nav class="navlinks" aria-label="Primary navigation">
-            <a href="#artists">Artists</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
+          <a class="card reveal" href="artists/still-room-signals.html">
+            <div class="cardInner">
+              <div class="cardTop">
+                <div class="tag">Artist</div>
+                <div class="pill">Minimal</div>
+              </div>
+              <h3 class="artistName">Still Room Signals</h3>
+              <p class="artistDesc">
+                Quiet-room clarity — sparse textures, clean harmonics, and signal-like tones.
+              </p>
+              <div class="cardFoot">
+                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
+                <div class="hint">/artists/</div>
+              </div>
+            </div>
+          </a>
+
+          <a class="card reveal" href="artists/night-room-drones.html">
+            <div class="cardInner">
+              <div class="cardTop">
+                <div class="tag">Artist</div>
+                <div class="pill">Drone</div>
+              </div>
+              <h3 class="artistName">Night Room Drones</h3>
+              <p class="artistDesc">
+                Slow-pressure drones and deep atmosphere — steady, immersive, elegantly restrained.
+              </p>
+              <div class="cardFoot">
+                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
+                <div class="hint">/artists/</div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main id="top">
-      <!-- HERO -->
-      <section class="hero" aria-label="Hero">
-        <div class="container">
-          <div class="grid">
-            <div class="reveal">
-              <div class="kicker"><span class="rule" aria-hidden="true"></span> Label</div>
-              <h1>Soul Sand Records</h1>
-              <p class="sub">
-                A calm, cinematic label space — Swiss-modern restraint with a night-mode finish.
-                Minimal surface. Strong typography. Artists presented with clarity.
-              </p>
-
-              <div class="ctaRow">
-                <a class="btn primary" href="#artists">
-                  Explore Artists <span class="arrow" aria-hidden="true">↘</span>
-                </a>
-                <a class="btn" href="#contact">
-                  Contact <span class="arrow" aria-hidden="true">✦</span>
-                </a>
-              </div>
-            </div>
-
-            <aside class="heroCard reveal" aria-label="Label summary">
-              <div class="kicker" style="margin-bottom:10px;">
-                <span class="rule" aria-hidden="true"></span> Overview
-              </div>
-
-              <div class="stats" role="list">
-                <div class="stat" role="listitem">
-                  <div class="label">Aesthetic</div>
-                  <div class="value">Swiss / Cinematic</div>
-                </div>
-                <div class="stat" role="listitem">
-                  <div class="label">Mode</div>
-                  <div class="value">Night / Blue</div>
-                </div>
-                <div class="stat" role="listitem">
-                  <div class="label">Focus</div>
-                  <div class="value">Artist Pages</div>
-                </div>
-                <div class="stat" role="listitem">
-                  <div class="label">Intent</div>
-                  <div class="value">Landing Site</div>
-                </div>
-              </div>
-
-              <div class="ctaRow" style="margin-top:16px;">
-                <a class="btn" href="artists/deep-night-static.html">
-                  Deep Night Static <span class="arrow" aria-hidden="true">→</span>
-                </a>
-                <a class="btn" href="artists/still-room-signals.html">
-                  Still Room Signals <span class="arrow" aria-hidden="true">→</span>
-                </a>
-                <a class="btn" href="artists/night-room-drones.html">
-                  Night Room Drones <span class="arrow" aria-hidden="true">→</span>
-                </a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- ARTISTS -->
-      <section id="artists" aria-label="Artists">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <h2 class="sectionTitle">Artists</h2>
-            <p class="sectionNote">
-              Each artist is presented as a dedicated page inside <span class="mono">/artists/</span>.
-              No nested folders. Clean, consistent navigation.
-            </p>
-          </div>
-
-          <div class="cards">
-            <a class="card reveal" href="artists/deep-night-static.html">
-              <div class="cardInner">
-                <div class="cardTop">
-                  <div class="tag">Artist</div>
-                  <div class="pill">Long-form</div>
-                </div>
-                <h3 class="artistName">Deep Night Static</h3>
-                <p class="artistDesc">
-                  Dense, nocturnal ambience with a gentle edge — slow motion, high detail, low noise.
-                </p>
-                <div class="cardFoot">
-                  <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                  <div class="hint">/artists/</div>
-                </div>
-              </div>
-            </a>
-
-            <a class="card reveal" href="artists/still-room-signals.html">
-              <div class="cardInner">
-                <div class="cardTop">
-                  <div class="tag">Artist</div>
-                  <div class="pill">Minimal</div>
-                </div>
-                <h3 class="artistName">Still Room Signals</h3>
-                <p class="artistDesc">
-                  Quiet-room clarity — sparse textures, clean harmonics, and signal-like tones.
-                </p>
-                <div class="cardFoot">
-                  <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                  <div class="hint">/artists/</div>
-                </div>
-              </div>
-            </a>
-
-            <a class="card reveal" href="artists/night-room-drones.html">
-              <div class="cardInner">
-                <div class="cardTop">
-                  <div class="tag">Artist</div>
-                  <div class="pill">Drone</div>
-                </div>
-                <h3 class="artistName">Night Room Drones</h3>
-                <p class="artistDesc">
-                  Slow-pressure drones and deep atmosphere — steady, immersive, and elegantly restrained.
-                </p>
-                <div class="cardFoot">
-                  <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                  <div class="hint">/artists/</div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" aria-label="About">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <h2 class="sectionTitle">About Soul Sand Records</h2>
-            <p class="sectionNote">
-              A label space built for focus: typography-forward, calm motion, and a Swiss grid that stays out of the way.
-            </p>
-          </div>
-
-          <div class="contactGrid">
-            <div class="panel reveal">
-              <h3>Design Language</h3>
-              <p>
-                Night-mode foundation with clean blue highlights, subtle texture, and precise spacing.
-                The goal is premium and quiet — never busy — so the artists remain the center of gravity.
-              </p>
-            </div>
-            <div class="panel reveal">
-              <h3>Structure</h3>
-              <p>
-                <span class="mono">/index.html</span> links directly to each artist page:
-                <span class="mono">/artists/deep-night-static.html</span>,
-                <span class="mono">/artists/still-room-signals.html</span>,
-                <span class="mono">/artists/night-room-drones.html</span>.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" aria-label="Contact">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <h2 class="sectionTitle">Contact</h2>
-            <p class="sectionNote">
-              Simple on purpose. Replace the email below with your preferred address.
-            </p>
-          </div>
-
-          <div class="contactGrid">
-            <div class="panel reveal">
-              <h3>Inquiries</h3>
-              <p>
-                For releases, licensing, collaborations, or press: reach out and include a short description + links.
-              </p>
-              <div class="contactLine">
-                <a class="btn primary" href="mailto:contact@soulsandrecords.com?subject=Soul%20Sand%20Records%20Inquiry">
-                  Email Soul Sand Records <span class="arrow" aria-hidden="true">✉</span>
-                </a>
-                <a class="btn" href="#top">
-                  Back to Top <span class="arrow" aria-hidden="true">↑</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="panel reveal">
-              <h3>Artist Pages</h3>
-              <p>
-                Quick access:
-              </p>
-              <div class="contactLine">
-                <a class="btn" href="artists/deep-night-static.html">Deep Night Static <span class="arrow" aria-hidden="true">→</span></a>
-                <a class="btn" href="artists/still-room-signals.html">Still Room Signals <span class="arrow" aria-hidden="true">→</span></a>
-                <a class="btn" href="artists/night-room-drones.html">Night Room Drones <span class="arrow" aria-hidden="true">→</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
+    <!-- ABOUT -->
+    <section id="about" aria-label="About">
       <div class="container">
-        <div class="footRow">
-          <div>
-            <div style="font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Soul Sand Records</div>
-            <div class="mono" style="margin-top:6px;">© <span id="y"></span> • All rights reserved</div>
+        <div class="sectionHead reveal">
+          <h2 class="sectionTitle">About Soul Sand Records</h2>
+          <p class="sectionNote">
+            Premium restraint: clear hierarchy, Swiss spacing, and a night palette lifted by lighter blues.
+          </p>
+        </div>
+
+        <div class="contactGrid">
+          <div class="panel reveal">
+            <h3>Design Principles</h3>
+            <p>
+              Calm surfaces, strong typography, and intentional negative space — built to feel luxury without feeling busy.
+              Motion stays subtle and optional for performance.
+            </p>
           </div>
-          <div class="mono">Swiss Modern • Cinematic Night</div>
+          <div class="panel reveal">
+            <h3>Site Map</h3>
+            <p>
+              <span class="mono">/index.html</span> → links to:
+              <span class="mono">/artists/deep-night-static.html</span>,
+              <span class="mono">/artists/still-room-signals.html</span>,
+              <span class="mono">/artists/night-room-drones.html</span>.
+            </p>
+          </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="sectionTitle">Contact</h2>
+          <p class="sectionNote">
+            Simple and direct. Replace the email with your preferred address.
+          </p>
+        </div>
+
+        <div class="contactGrid">
+          <div class="panel reveal">
+            <h3>Inquiries</h3>
+            <p>
+              Releases, licensing, collaborations, press — send a short message and include links if relevant.
+            </p>
+            <div class="contactLine">
+              <a class="btn primary" href="mailto:contact@soulsandrecords.com?subject=Soul%20Sand%20Records%20Inquiry">
+                Email Soul Sand Records <span class="arrow" aria-hidden="true">✉</span>
+              </a>
+              <a class="btn" href="#top">
+                Back to Top <span class="arrow" aria-hidden="true">↑</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <h3>Artist Pages</h3>
+            <p>Quick access:</p>
+            <div class="contactLine">
+              <a class="btn" href="artists/deep-night-static.html">Deep Night Static <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn" href="artists/still-room-signals.html">Still Room Signals <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn" href="artists/night-room-drones.html">Night Room Drones <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footRow">
+        <div>
+          <div style="font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Soul Sand Records</div>
+          <div class="mono" style="margin-top:6px;">© <span id="y"></span> • All rights reserved</div>
+        </div>
+        <div class="mono">Swiss Modern • Lighter Blue Night</div>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Current year
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Reveal on scroll (subtle, premium)
-    const els = Array.from(document.querySelectorAll(".reveal"));
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries){
-        if (e.isIntersecting){
-          e.target.classList.add("is-in");
-          io.unobserve(e.target);
+    // If effects disabled, skip observers + show all
+    const effectsOn = getComputedStyle(document.documentElement).getPropertyValue("--effects").trim() !== "0";
+    if (!effectsOn) document.documentElement.classList.add("fx-off");
+
+    // Reveal on scroll (lightweight)
+    if (effectsOn) {
+      const els = Array.from(document.querySelectorAll(".reveal"));
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries){
+          if (e.isIntersecting){
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
         }
-      }
-    }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
+      }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
+      els.forEach(el => io.observe(el));
+    }
 
-    els.forEach(el => io.observe(el));
-
-    // Optional: smooth-scroll offset for sticky nav (when clicking internal anchors)
-    // Keeps the section title from hiding under the sticky header.
+    // Sticky header offset for anchor jumps
     function scrollToHash(hash){
       const id = hash.replace("#","");
       const el = document.getElementById(id);
       if (!el) return;
       const y = el.getBoundingClientRect().top + window.scrollY - 76;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: effectsOn ? "smooth" : "auto" });
     }
 
     document.addEventListener("click", (ev) => {
