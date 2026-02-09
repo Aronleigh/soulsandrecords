@@ -1,776 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Soul Sand Records</title>
-<meta name="description" content="Soul Sand Records is an independent, project-driven label releasing immersive and concept-led music across all genres." />
-
-<style>
-/* -------------------------
-   Premium Blue/White Theme
-   ------------------------- */
-
-:root{
-  --bg:#f7faff;
-  --ink:#07152f;
-  --muted:#51648b;
-  --blue:#1f5bff;
-  --blue2:#00b3ff;
-  --line:#dbe6ff;
-  --card:#ffffffcc;
-  --card2:#ffffff;
-  --glass:rgba(255,255,255,.68);
-  --shadow:0 24px 60px rgba(7,21,47,.10);
-  --shadow2:0 14px 40px rgba(7,21,47,.10);
-  --radius:26px;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  color:var(--ink);
-  background:
-    radial-gradient(1200px 700px at 75% -10%, rgba(31,91,255,.18), transparent 60%),
-    radial-gradient(900px 600px at 8% 20%, rgba(0,179,255,.14), transparent 55%),
-    radial-gradient(800px 500px at 70% 80%, rgba(31,91,255,.10), transparent 55%),
-    linear-gradient(180deg, #fbfdff 0%, #f4f8ff 60%, #f7faff 100%);
-  overflow-x:hidden;
-}
-
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-
-.wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:38px 22px 90px;
-}
-
-/* -------------------------
-   Subtle animated aura
-   ------------------------- */
-
-.aura{
-  position:fixed;
-  inset:-30vh -30vw auto auto;
-  width:1200px;
-  height:1200px;
-  background: radial-gradient(circle at 30% 30%, rgba(31,91,255,.20), transparent 60%),
-              radial-gradient(circle at 70% 70%, rgba(0,179,255,.16), transparent 60%);
-  filter: blur(30px);
-  opacity:.85;
-  pointer-events:none;
-  transform: translate3d(0,0,0);
-  animation: floaty 14s ease-in-out infinite;
-}
-
-.aura2{
-  position:fixed;
-  inset:auto auto -40vh -35vw;
-  width:1100px;
-  height:1100px;
-  background: radial-gradient(circle at 40% 30%, rgba(0,179,255,.16), transparent 60%),
-              radial-gradient(circle at 70% 70%, rgba(31,91,255,.12), transparent 62%);
-  filter: blur(34px);
-  opacity:.7;
-  pointer-events:none;
-  animation: floaty2 16s ease-in-out infinite;
-}
-
-@keyframes floaty{
-  0%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(-30px,26px) scale(1.03)}
-  100%{transform:translate(0,0) scale(1)}
-}
-@keyframes floaty2{
-  0%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(34px,-28px) scale(1.04)}
-  100%{transform:translate(0,0) scale(1)}
-}
-
-/* -------------------------
-   Header
-   ------------------------- */
-
-.top{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:26px;
-}
-
-.plaque{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  background:var(--glass);
-  border-radius:999px;
-  box-shadow: var(--shadow2);
-  backdrop-filter: blur(10px);
-}
-
-.mark{
-  width:38px;height:38px;border-radius:14px;
-  background:
-    radial-gradient(circle at 25% 25%, rgba(255,255,255,.9), transparent 40%),
-    linear-gradient(135deg, rgba(31,91,255,1), rgba(0,179,255,1));
-  box-shadow:0 10px 24px rgba(31,91,255,.24);
-}
-
-.plaque .name{
-  display:flex;flex-direction:column;line-height:1.05;
-}
-.plaque .name b{
-  letter-spacing:.18em;
-  font-size:12px;
-  text-transform:uppercase;
-}
-.plaque .name span{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.pill{
-  padding:10px 14px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.55);
-  border-radius:999px;
-  color:var(--muted);
-  font-size:13px;
-  backdrop-filter: blur(10px);
-}
-.pill strong{color:var(--ink); font-weight:700}
-
-/* -------------------------
-   Hero
-   ------------------------- */
-
-.hero{
-  position:relative;
-  border:1px solid var(--line);
-  background:
-    radial-gradient(900px 500px at 20% 20%, rgba(31,91,255,.12), transparent 60%),
-    radial-gradient(700px 420px at 80% 20%, rgba(0,179,255,.11), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.60));
-  border-radius: var(--radius);
-  padding:46px 44px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  overflow:hidden;
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background: linear-gradient(120deg, rgba(31,91,255,.30), rgba(0,179,255,.18), rgba(255,255,255,0));
-  opacity:.28;
-  filter: blur(18px);
-  pointer-events:none;
-}
-
-.kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:rgba(31,91,255,.08);
-  border:1px solid rgba(31,91,255,.18);
-  color:var(--muted);
-  font-weight:600;
-  font-size:13px;
-}
-
-.dot{
-  width:10px;height:10px;border-radius:999px;
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  box-shadow:0 0 0 6px rgba(31,91,255,.12);
-}
-
-.hero h1{
-  margin:18px 0 14px;
-  font-size: clamp(42px, 6.2vw, 78px);
-  line-height: .95;
-  letter-spacing: -0.03em;
-  font-weight: 900;
-}
-
-.hero h1 .accent{
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  margin:0;
-  max-width:740px;
-  font-size:18px;
-  line-height:1.7;
-  color:var(--muted);
-}
-
-.ctaRow{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:26px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 16px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.7);
-  box-shadow: 0 10px 24px rgba(7,21,47,.08);
-  cursor:pointer;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  user-select:none;
-}
-.btn:hover{
-  transform: translateY(-2px);
-  border-color: rgba(31,91,255,.35);
-  box-shadow: 0 16px 34px rgba(7,21,47,.10);
-}
-.btnPrimary{
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color:white;
-  border-color: rgba(31,91,255,.35);
-}
-.btnPrimary:hover{
-  box-shadow: 0 18px 40px rgba(31,91,255,.22);
-}
-
-.icon{
-  width:18px;height:18px;display:inline-block;
-}
-
-/* -------------------------
-   Sections
-   ------------------------- */
-
-.section{
-  margin-top:44px;
-}
-
-.grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:18px;
-}
-@media (max-width:980px){
-  .grid3{grid-template-columns:1fr}
-  .hero{padding:34px 22px}
-}
-
-.card{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.72);
-  border-radius:22px;
-  padding:22px 22px 24px;
-  box-shadow: 0 18px 50px rgba(7,21,47,.07);
-  backdrop-filter: blur(10px);
-  transition: transform .15s ease, border-color .15s ease;
-}
-.card:hover{
-  transform: translateY(-3px);
-  border-color: rgba(31,91,255,.32);
-}
-.card h3{
-  margin:0 0 8px;
-  font-size:18px;
-  letter-spacing:-.01em;
-}
-.card p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.65;
-  font-size:15px;
-}
-
-/* -------------------------
-   Artists
-   ------------------------- */
-
-.sectionTitle{
-  margin-top:54px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:18px;
-  flex-wrap:wrap;
-}
-.sectionTitle h2{
-  margin:0;
-  font-size:34px;
-  letter-spacing:-.02em;
-  font-weight:900;
-}
-.sectionTitle p{
-  margin:0;
-  color:var(--muted);
-  max-width:620px;
-  line-height:1.6;
-}
-
-.artGrid{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-@media (max-width:1060px){
-  .artGrid{grid-template-columns:1fr}
-}
-
-.artist{
-  position:relative;
-  border-radius:26px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.72);
-  box-shadow: var(--shadow2);
-  overflow:hidden;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-  backdrop-filter: blur(10px);
-}
-.artist:hover{
-  transform: translateY(-4px);
-  border-color: rgba(31,91,255,.34);
-  box-shadow: 0 22px 56px rgba(7,21,47,.12);
-}
-
-.artist .topline{
-  padding:18px 20px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.label{
-  font-size:11px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  font-weight:900;
-  color: rgba(31,91,255,.95);
-}
-
-.badge{
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(31,91,255,.18);
-  background: rgba(31,91,255,.08);
-  color: var(--muted);
-}
-
-.artist .content{
-  padding:10px 20px 18px;
-}
-
-.artist h3{
-  margin:8px 0 8px;
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:-.02em;
-}
-
-.artist p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.65;
-  font-size:15px;
-}
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:14px;
-}
-
-.chip{
-  font-size:12px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.75);
-  color: var(--muted);
-  font-weight:700;
-}
-
-.artist .actions{
-  padding:0 20px 20px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.smallBtn{
-  flex:1;
-  min-width:160px;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  padding:12px 12px;
-  border-radius:16px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.80);
-  cursor:pointer;
-  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-}
-.smallBtn:hover{
-  transform: translateY(-2px);
-  border-color: rgba(31,91,255,.33);
-  box-shadow: 0 14px 30px rgba(7,21,47,.10);
-}
-.smallBtn[disabled]{
-  opacity:.65;
-  cursor:not-allowed;
-  transform:none !important;
-  box-shadow:none !important;
-}
-
-/* -------------------------
-   Modal (email capture placeholder)
-   ------------------------- */
-.modalBack{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background: rgba(7,21,47,.45);
-  backdrop-filter: blur(8px);
-  z-index:50;
-}
-.modal{
-  width:min(620px, 100%);
-  background: rgba(255,255,255,.92);
-  border:1px solid var(--line);
-  border-radius:26px;
-  box-shadow: 0 30px 80px rgba(7,21,47,.20);
-  padding:22px;
-}
-.modal header{
-  margin:0 0 10px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.modal h3{
-  margin:0;
-  font-size:18px;
-  font-weight:900;
-}
-.modal p{
-  margin:0 0 14px;
-  color:var(--muted);
-  line-height:1.6;
-}
-.close{
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.75);
-  border-radius:14px;
-  padding:10px 12px;
-  cursor:pointer;
-}
-.fieldRow{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.input{
-  flex:1;
-  min-width:220px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:12px 14px;
-  background:white;
-  outline:none;
-  font-size:15px;
-}
-.note{
-  margin-top:10px;
-  font-size:12px;
-  color:var(--muted);
-}
-
-hr.sep{
-  border:none;
-  border-top:1px solid var(--line);
-  margin:34px 0 0;
-}
-
-/* -------------------------
-   Footer
-   ------------------------- */
-footer{
-  margin-top:46px;
-  padding-top:22px;
-  color:var(--muted);
-  font-size:13px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:space-between;
-  align-items:center;
-}
-</style>
-</head>
-<body>
-
-<div class="aura"></div>
-<div class="aura2"></div>
-
-<div class="wrap">
-
-  <div class="top">
-    <div class="plaque" aria-label="Soul Sand Records">
-      <div class="mark"></div>
-      <div class="name">
-        <b>SOUL SAND RECORDS</b>
-        <span>Independent label • Project-driven • All genres welcome</span>
-      </div>
-    </div>
-
-    <div class="nav">
-      <div class="pill"><strong>Status:</strong> Building</div>
-      <div class="pill"><strong>Roster:</strong> 3 projects</div>
-      <div class="pill"><strong>Launch:</strong> soon</div>
-    </div>
-  </div>
-
-  <section class="hero">
-    <div class="kicker"><span class="dot"></span> A label for creative worlds — not categories</div>
-
-    <h1>
-      <span class="accent">Soul Sand</span><br>
-      Records
-    </h1>
-
-    <p>
-      Soul Sand Records is an independent, project-driven label built around immersive,
-      concept-led releases across every genre. We develop each project as a listening environment —
-      emotional, functional, narrative, cinematic, or experimental — unified by intention and identity.
-    </p>
-
-    <div class="ctaRow">
-      <button class="btn btnPrimary" id="openModal">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 8l8 5 8-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4 8v10h16V8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Get launch updates
-      </button>
-
-      <a class="btn" href="#artists">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 5v14" stroke="#07152f" stroke-width="2" stroke-linecap="round"/>
-          <path d="M6 13l6 6 6-6" stroke="#07152f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        View current roster
-      </a>
-
-      <button class="btn" id="copyLink">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M10 14a5 5 0 0 0 7.07 0l1.41-1.41a5 5 0 0 0-7.07-7.07L10 5" stroke="#07152f" stroke-width="2" stroke-linecap="round"/>
-          <path d="M14 10a5 5 0 0 0-7.07 0L5.52 11.4a5 5 0 0 0 7.07 7.07L14 19" stroke="#07152f" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Copy site link
-      </button>
-    </div>
-
-    <div class="section">
-      <div class="grid3">
-        <div class="card">
-          <h3>Projects over genres</h3>
-          <p>We release complete artistic worlds. Genre can change — intention stays consistent.</p>
-        </div>
-        <div class="card">
-          <h3>Immersive by design</h3>
-          <p>Each release is built as an experience: sleep, focus, story, atmosphere, or emotion.</p>
-        </div>
-        <div class="card">
-          <h3>Built to grow</h3>
-          <p>Future artists can be rap, pop, jazz, country, folk, ambient — all under one philosophy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sectionTitle" id="artists">
-    <div>
-      <h2>Current roster</h2>
-      <p>These are the first three projects launching under Soul Sand Records. (Founder not listed.)</p>
-    </div>
-    <p><strong>Note:</strong> Artist pages and releases will be linked as they go public.</p>
-  </div>
-
-  <div class="artGrid">
-
-    <article class="artist">
-      <div class="topline">
-        <div class="label">Artist</div>
-        <div class="badge">Launch series</div>
-      </div>
-      <div class="content">
-        <h3>Deep Night Static</h3>
-        <p>Sleep-forward environments and nighttime listening experiences designed for calm, stillness, and sensory atmosphere.</p>
-        <div class="tags">
-          <span class="chip">Sleep</span><span class="chip">Ambient</span><span class="chip">Environment</span>
-        </div>
-      </div>
-      <div class="actions">
-        <button class="smallBtn" disabled title="Coming soon">Enter world (soon)</button>
-        <button class="smallBtn" disabled title="Coming soon">Releases (soon)</button>
-      </div>
-    </article>
-
-    <article class="artist">
-      <div class="topline">
-        <div class="label">Artist</div>
-        <div class="badge">Launch series</div>
-      </div>
-      <div class="content">
-        <h3>Still Room Signals</h3>
-        <p>Minimal, reflective sound spaces for focus and slow attention — quiet music that feels like a room with the lights down.</p>
-        <div class="tags">
-          <span class="chip">Minimal</span><span class="chip">Focus</span><span class="chip">Calm</span>
-        </div>
-      </div>
-      <div class="actions">
-        <button class="smallBtn" disabled title="Coming soon">Enter world (soon)</button>
-        <button class="smallBtn" disabled title="Coming soon">Releases (soon)</button>
-      </div>
-    </article>
-
-    <article class="artist">
-      <div class="topline">
-        <div class="label">Artist</div>
-        <div class="badge">Launch series</div>
-      </div>
-      <div class="content">
-        <h3>Night Room Drones</h3>
-        <p>Low-frequency, spatial drone compositions built for deep listening and immersive, room-scale atmosphere.</p>
-        <div class="tags">
-          <span class="chip">Drone</span><span class="chip">Space</span><span class="chip">Immersion</span>
-        </div>
-      </div>
-      <div class="actions">
-        <button class="smallBtn" disabled title="Coming soon">Enter world (soon)</button>
-        <button class="smallBtn" disabled title="Coming soon">Releases (soon)</button>
-      </div>
-    </article>
-
-  </div>
-
-  <hr class="sep">
-
-  <footer>
-    <div>© <span id="year"></span> Soul Sand Records</div>
-    <div>Independent label • Project-driven • All genres welcome</div>
-  </footer>
-
-</div>
-
-<!-- Modal -->
-<div class="modalBack" id="modalBack" role="dialog" aria-modal="true" aria-label="Launch updates">
-  <div class="modal">
-    <header>
-      <h3>Get launch updates</h3>
-      <button class="close" id="closeModal">Close</button>
-    </header>
-    <p>
-      This is a placeholder for now. When you’re ready, we’ll connect this to a real email list
-      (Mailchimp, ConvertKit, etc.). For today, you can copy your email into a note and we’ll add it later.
-    </p>
-    <div class="fieldRow">
-      <input class="input" id="email" type="email" placeholder="you@example.com" />
-      <button class="btn btnPrimary" id="fakeSubmit">Save (placeholder)</button>
-    </div>
-    <div class="note" id="note">
-      Nothing is stored yet — this is just the premium UI shell.
-    </div>
-  </div>
-</div>
-
-<script>
-  // Year
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Modal behavior (UI only)
-  const modalBack = document.getElementById("modalBack");
-  const openModal = document.getElementById("openModal");
-  const closeModal = document.getElementById("closeModal");
-  const fakeSubmit = document.getElementById("fakeSubmit");
-  const note = document.getElementById("note");
-
-  openModal.addEventListener("click", () => {
-    modalBack.style.display = "flex";
-    setTimeout(()=> document.getElementById("email").focus(), 50);
-  });
-
-  closeModal.addEventListener("click", () => {
-    modalBack.style.display = "none";
-  });
-
-  modalBack.addEventListener("click", (e) => {
-    if (e.target === modalBack) modalBack.style.display = "none";
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") modalBack.style.display = "none";
-  });
-
-  fakeSubmit.addEventListener("click", () => {
-    const val = (document.getElementById("email").value || "").trim();
-    if (!val) {
-      note.textContent = "Type an email first (this is still just placeholder UI).";
-      return;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Soul Sand Records</title>
+  <meta name="description" content="Soul Sand Records — a calm, cinematic label home for artist projects built for deep listening." />
+
+  <style>
+    :root{
+      --bg0:#f6fbff;
+      --bg1:#eef6ff;
+      --ink:#091a2a;
+      --muted:#4a6078;
+      --line:rgba(9,26,42,.12);
+      --glass:rgba(255,255,255,.62);
+      --glass2:rgba(255,255,255,.48);
+      --shadow: 0 22px 70px rgba(9,26,42,.12);
+      --shadow2: 0 14px 40px rgba(9,26,42,.10);
+      --blue:#2b6cb0;
+      --blue2:#1e4f86;
+      --radius:22px;
+      --radius2:26px;
+      --max:1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-    note.textContent = "Saved (UI only). When you’re ready, we’ll connect this to a real email list.";
-  });
 
-  // Copy link
-  document.getElementById("copyLink").addEventListener("click", async () => {
-    const url = window.location.href;
-    try{
-      await navigator.clipboard.writeText(url);
-      const btn = document.getElementById("copyLink");
-      const old = btn.innerHTML;
-      btn.innerHTML = "✅ Copied!";
-      setTimeout(()=> btn.innerHTML = old, 1200);
-    }catch(e){
-      alert("Copy failed. You can manually copy the URL from the address bar.");
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 760px at 12% -10%, rgba(43,108,176,.24), transparent 60%),
+        radial-gradient(900px 700px at 92% 0%, rgba(30,79,134,.16), transparent 52%),
+        radial-gradient(900px 900px at 50% 105%, rgba(43,108,176,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
-  });
-</script>
 
-</body>
-</html>
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.92}
+    ::selection{background:rgba(43,108,176,.18)}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 20px 70px}
+
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding:10px 0 18px;
+    }
+    .mark{
+      display:flex; flex-direction:column; gap:3px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:12px;
+      color:var(--muted);
+      user-select:none;
+    }
+    .mark b{
+      color:var(--ink);
+      letter-spacing:.22em;
+      font-size:12px;
+    }
+    .navlinks{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
+    }
+    .chiplink{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.55);
+      backdrop-filter: blur(12px);
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+    }
+    .chiplink strong{color:var(--ink)}
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background:linear-gradient(180deg, var(--blue), var(--blue2));
+      box-shadow: 0 0 0 6px rgba(43,108,176,.10);
+      flex:0 0 auto;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      background:linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.46));
+      backdrop-filter: blur(14px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(700px 420px at 18% 18%, rgba(43,108,176,.26), transparent 62%),
+        radial-gradient(560px 360px at 82% 22%, rgba(30,79,134,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 105%, rgba(43,108,176,.12), transparent 60%);
+      pointer-events:none;
+      filter:saturate(1.05);
+    }
+    .hero-inner{
