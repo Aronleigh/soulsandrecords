@@ -4,81 +4,70 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Soul Sand Records</title>
-  <meta name="description" content="Soul Sand Records — a calm, cinematic label home for artist projects built for deep listening." />
+  <meta name="description" content="Soul Sand Records — calm, cinematic artist projects built for deep listening." />
 
   <style>
     :root{
-      --bg0:#f6fbff;
-      --bg1:#eef6ff;
-      --ink:#091a2a;
-      --muted:#4a6078;
-      --line:rgba(9,26,42,.12);
-      --glass:rgba(255,255,255,.62);
-      --glass2:rgba(255,255,255,.48);
-      --shadow: 0 22px 70px rgba(9,26,42,.12);
-      --shadow2: 0 14px 40px rgba(9,26,42,.10);
+      --bgA:#f7fbff;
+      --bgB:#eef6ff;
+      --ink:#071a2b;
+      --muted:#4b6076;
+      --line:rgba(7,26,43,.12);
+      --glass:rgba(255,255,255,.70);
+      --glass2:rgba(255,255,255,.55);
+      --shadow: 0 22px 70px rgba(7,26,43,.12);
+      --shadow2: 0 14px 40px rgba(7,26,43,.10);
       --blue:#2b6cb0;
       --blue2:#1e4f86;
-      --radius:22px;
-      --radius2:26px;
+      --radius:24px;
       --max:1120px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:var(--font);
       color:var(--ink);
       background:
-        radial-gradient(1200px 760px at 12% -10%, rgba(43,108,176,.24), transparent 60%),
-        radial-gradient(900px 700px at 92% 0%, rgba(30,79,134,.16), transparent 52%),
-        radial-gradient(900px 900px at 50% 105%, rgba(43,108,176,.12), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+        radial-gradient(1200px 760px at 12% -10%, rgba(43,108,176,.22), transparent 60%),
+        radial-gradient(900px 700px at 92% 0%, rgba(30,79,134,.14), transparent 52%),
+        radial-gradient(1000px 700px at 50% 105%, rgba(43,108,176,.12), transparent 58%),
+        linear-gradient(180deg, var(--bgA), var(--bgB));
+      min-height:100vh;
       overflow-x:hidden;
     }
 
     a{color:inherit; text-decoration:none}
     a:hover{opacity:.92}
-    ::selection{background:rgba(43,108,176,.18)}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 20px 72px}
 
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 20px 70px}
-
-    /* Top nav */
-    .nav{
+    /* Header */
+    header{
       display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      padding:10px 0 18px;
+      gap:16px; padding:10px 0 18px;
     }
-    .mark{
-      display:flex; flex-direction:column; gap:3px;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:12px;
-      color:var(--muted);
+    .brand{
+      display:flex; flex-direction:column; gap:4px;
+      letter-spacing:.16em; text-transform:uppercase;
+      font-size:12px; color:var(--muted);
       user-select:none;
     }
-    .mark b{
-      color:var(--ink);
-      letter-spacing:.22em;
-      font-size:12px;
+    .brand b{color:var(--ink); letter-spacing:.22em}
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
     }
-    .navlinks{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
-    }
-    .chiplink{
+    .nav a{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 12px;
-      border:1px solid var(--line);
       border-radius:999px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.55);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       color:var(--muted);
-      font-weight:600;
+      font-weight:800;
       font-size:13px;
     }
-    .chiplink strong{color:var(--ink)}
     .dot{
       width:8px; height:8px; border-radius:50%;
       background:linear-gradient(180deg, var(--blue), var(--blue2));
@@ -88,22 +77,371 @@
 
     /* Hero */
     .hero{
-      position:relative;
       border:1px solid var(--line);
-      border-radius:var(--radius2);
-      background:linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.46));
-      backdrop-filter: blur(14px);
+      border-radius:calc(var(--radius) + 4px);
+      background:linear-gradient(135deg, rgba(255,255,255,.74), rgba(255,255,255,.50));
       box-shadow:var(--shadow);
       overflow:hidden;
+      position:relative;
     }
     .hero::before{
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(700px 420px at 18% 18%, rgba(43,108,176,.26), transparent 62%),
-        radial-gradient(560px 360px at 82% 22%, rgba(30,79,134,.18), transparent 60%),
-        radial-gradient(900px 520px at 50% 105%, rgba(43,108,176,.12), transparent 60%);
+        radial-gradient(760px 420px at 16% 16%, rgba(43,108,176,.26), transparent 62%),
+        radial-gradient(560px 360px at 84% 18%, rgba(30,79,134,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 110%, rgba(43,108,176,.10), transparent 60%);
       pointer-events:none;
-      filter:saturate(1.05);
     }
     .hero-inner{
+      position:relative;
+      padding:34px 28px 24px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:end;
+    }
+    @media (max-width: 920px){ .hero-inner{grid-template-columns:1fr} }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:12px;
+      letter-spacing:.14em; text-transform:uppercase;
+      font-size:12px; color:var(--muted);
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:54px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+    @media (max-width:560px){ h1{font-size:42px} }
+
+    .lede{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.65;
+      max-width:70ch;
+    }
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.60);
+      backdrop-filter: blur(10px);
+      font-weight:900;
+      font-size:14px;
+    }
+    .btn.primary{
+      border-color: rgba(43,108,176,.34);
+      background:linear-gradient(180deg, rgba(43,108,176,.14), rgba(30,79,134,.10));
+    }
+
+    .side{
+      display:grid; gap:12px; align-content:end;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.56);
+      box-shadow:var(--shadow2);
+      padding:14px 14px 12px;
+    }
+    .mini h3{
+      margin:0 0 8px;
+      letter-spacing:.14em; text-transform:uppercase;
+      font-size:13px; color:var(--muted);
+    }
+    .mini p{margin:0; font-size:14px; line-height:1.6}
+    .mini .sub{margin-top:8px; color:var(--muted); font-size:13px}
+
+    /* Sections */
+    .panel{
+      margin-top:16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--glass);
+      backdrop-filter: blur(12px);
+      box-shadow:var(--shadow2);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(760px 280px at 10% 0%, rgba(43,108,176,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .panel > *{position:relative}
+
+    .panel-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .panel-title{
+      margin:0;
+      letter-spacing:.14em; text-transform:uppercase;
+      font-size:14px; color:var(--muted);
+    }
+    .panel-note{color:var(--muted); font-size:13px; font-weight:700}
+
+    /* Roster cards */
+    .roster{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 980px){ .roster{grid-template-columns:1fr} }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.74), rgba(255,255,255,.52));
+      box-shadow: 0 18px 55px rgba(7,26,43,.10);
+      padding:16px 16px 14px;
+      display:flex; flex-direction:column; gap:12px;
+      min-height: 190px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(520px 240px at 18% 8%, rgba(43,108,176,.16), transparent 60%),
+        radial-gradient(420px 220px at 92% 18%, rgba(30,79,134,.10), transparent 58%);
+      pointer-events:none;
+    }
+    .card > *{position:relative}
+    .card:hover{transform: translateY(-2px); box-shadow: 0 24px 70px rgba(7,26,43,.14)}
+
+    .toprow{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .name{margin:0; font-size:22px; letter-spacing:-.02em; line-height:1.2}
+    .badge{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.56);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+      font-weight:900;
+    }
+    .desc{margin:0; color:var(--muted); line-height:1.65; font-size:14px}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto}
+    .tag{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.54);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:900;
+    }
+    .ctaRow{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      border-top:1px solid rgba(7,26,43,.08);
+      padding-top:12px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:900;
+    }
+    .enter{color:var(--ink)}
+
+    .grid2{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .grid2{grid-template-columns:1fr} }
+
+    .quote{
+      margin:0;
+      font-size:16px;
+      line-height:1.7;
+    }
+    .quote span{color:var(--muted); font-weight:800}
+
+    footer{
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      font-size:13px;
+      font-weight:700;
+    }
+    footer a{
+      color:var(--muted);
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="brand">
+        <b>Soul Sand Records</b>
+        <span>Independent label • Project-driven • Deep listening</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#roster"><span class="dot"></span>Roster</a>
+        <a href="#about"><span class="dot"></span>About</a>
+        <a href="#contact"><span class="dot"></span>Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker"><span class="dot"></span> Calm, cinematic artist projects</div>
+          <h1>Soul Sand Records</h1>
+          <p class="lede">
+            A quiet home for immersive sound worlds — minimal, premium, and built to last.
+            This is a label landing site: simple, intentional, and focused on the artists.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#roster">Explore the roster</a>
+            <a class="btn" href="#about">Read the label statement</a>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Highlights">
+          <div class="mini">
+            <h3>Now live</h3>
+            <p>Three artist pages with a unified premium layout.</p>
+            <div class="sub">Next: add release cards + streaming buttons.</div>
+          </div>
+          <div class="mini">
+            <h3>Aesthetic</h3>
+            <p>Blue / white / calm. Modern label feel. Simple elegance.</p>
+            <div class="sub">Not a tech site — a label home.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel" id="roster" aria-label="Roster">
+      <div class="panel-head">
+        <h2 class="panel-title">Roster</h2>
+        <div class="panel-note">Three projects • one cohesive identity</div>
+      </div>
+
+      <div class="roster">
+        <a class="card" href="./artists/deep-night-static.html" aria-label="Open Deep Night Static">
+          <div class="toprow">
+            <h3 class="name">Deep Night Static</h3>
+            <span class="badge">Nocturnal</span>
+          </div>
+          <p class="desc">Static beds and distant shimmer for deep night hours — calm ambience designed to sit behind life.</p>
+          <div class="tags">
+            <span class="tag">Ambient</span>
+            <span class="tag">Static</span>
+            <span class="tag">Sleep</span>
+          </div>
+          <div class="ctaRow">
+            <span>Artist page</span>
+            <span class="enter">Enter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="./artists/still-room-signals.html" aria-label="Open Still Room Signals">
+          <div class="toprow">
+            <h3 class="name">Still Room Signals</h3>
+            <span class="badge">Minimal</span>
+          </div>
+          <p class="desc">Quiet ambient signal tones with soft motion — built for focus, late-night clarity, and gentle momentum.</p>
+          <div class="tags">
+            <span class="tag">Ambient</span>
+            <span class="tag">Signals</span>
+            <span class="tag">Focus</span>
+          </div>
+          <div class="ctaRow">
+            <span>Artist page</span>
+            <span class="enter">Enter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="./artists/night-room-drones.html" aria-label="Open Night Room Drones">
+          <div class="toprow">
+            <h3 class="name">Night Room Drones</h3>
+            <span class="badge">Spatial</span>
+          </div>
+          <p class="desc">Low-frequency, room-scale drone architecture — immersive, dimensional, and designed for deep listening.</p>
+          <div class="tags">
+            <span class="tag">Drone</span>
+            <span class="tag">Space</span>
+            <span class="tag">Immersion</span>
+          </div>
+          <div class="ctaRow">
+            <span>Artist page</span>
+            <span class="enter">Enter →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div class="grid2">
+      <section class="panel" id="about" aria-label="About">
+        <div class="panel-head">
+          <h2 class="panel-title">Label statement</h2>
+          <div class="panel-note">Projects over categories</div>
+        </div>
+        <p class="quote">
+          Soul Sand Records is built around <b>worlds</b> — artist projects with a clear tone, a consistent identity,
+          and the patience to grow. We value stillness, space, and music that feels like a place.
+          <br><br>
+          <span>Calm doesn’t mean empty — it means intentional.</span>
+        </p>
+      </section>
+
+      <section class="panel" id="contact" aria-label="Contact">
+        <div class="panel-head">
+          <h2 class="panel-title">Contact</h2>
+          <div class="panel-note">Placements • Sync • Partnerships</div>
+        </div>
+        <p class="quote">
+          For now, this is a clean landing home. Next we’ll add:
+          <br>• release cards with cover art
+          <br>• streaming buttons per artist
+          <br>• a minimal updates strip
+          <br><br>
+          Email: <b>contact@soulsandrecords.com</b> <span>(placeholder)</span>
+        </p>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="mailto:contact@soulsandrecords.com">Email the label</a>
+          <a class="btn" href="#roster">Back to roster</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div>© <span id="y"></span> Soul Sand Records</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#roster">Roster</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
