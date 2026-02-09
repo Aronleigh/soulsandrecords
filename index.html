@@ -1,503 +1,699 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!--
+    Soul Sand Records — Premium Swiss / Cinematic Landing Page (FAST + LUXURY)
+
+    Performance goals:
+    - No backdrop-filter blur (common source of “glitchy” scroll on some browsers)
+    - No giant animated blurred layers
+    - Subtle motion only (transform/opacity) + respects prefers-reduced-motion
+    - One file, no build tools, GitHub Pages friendly
+
+    Structure targets:
+    /index.html
+    /artists/deep-night-static.html
+    /artists/still-room-signals.html
+    /artists/night-room-drones.html
+  -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
   <title>Soul Sand Records</title>
-  <meta name="description" content="Soul Sand Records — premium label landing page featuring artists and contact." />
+  <meta name="description" content="Soul Sand Records — an ultra-premium label landing page. Swiss modern. Cinematic night. Calm luxury." />
+  <meta name="theme-color" content="#070A14" />
 
-  <!-- Fonts: keep minimal, load efficiently -->
+  <!-- Premium, restrained typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ===========================
-       Performance switches
-       =========================== */
+    /* =========================================================
+       DESIGN SYSTEM
+       ========================================================= */
     :root{
-      --effects: 1; /* 1 = on, 0 = ultra-fast mode */
-    }
-    @media (prefers-reduced-motion: reduce){
-      :root{ --effects: 0; }
-    }
+      --bg-0:#070A14;
+      --bg-1:#081328;
+      --bg-2:#0A1A36;
 
-    /* ===========================
-       Palette: lighter blues, premium night
-       =========================== */
-    :root{
-      --bg0:#070A12;
-      --bg1:#081227;
-      --bg2:#0A1833;
+      --ink:#F4F7FF;
+      --muted:#C8D5F1;
+      --faint:#8EA6D4;
 
-      --ink:#F3F7FF;
-      --muted:#C8D6F1;
-      --faint:#8DA7D4;
+      /* Lighter premium blues */
+      --blue-1:#7FB2FF;
+      --blue-2:#B7E1FF;
+      --blue-3:#DDF5FF;
 
-      --line:rgba(243,247,255,.12);
-      --line2:rgba(243,247,255,.08);
+      --line: rgba(244,247,255,.12);
+      --line-2: rgba(244,247,255,.08);
 
-      /* lighter blues */
-      --blue:#86B6FF;
-      --blue2:#B9E3FF;
-      --blue3:#D7F1FF;
+      --card-a: rgba(10,22,44,.62);
+      --card-b: rgba(10,22,44,.34);
 
-      --card:rgba(12,24,46,.62);
-      --card2:rgba(12,24,46,.38);
+      --shadow-xl: 0 26px 70px rgba(0,0,0,.42);
+      --shadow-lg: 0 14px 40px rgba(0,0,0,.34);
+      --shadow-md: 0 10px 26px rgba(0,0,0,.26);
 
-      --shadow: 0 18px 60px rgba(0,0,0,.38);
-      --shadow2: 0 10px 30px rgba(0,0,0,.30);
+      --r-lg: 24px;
+      --r-md: 18px;
+      --r-sm: 14px;
 
-      --radius: 18px;
-      --radius2: 26px;
-
-      --max: 1120px;
+      --max: 1140px;
 
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
-    html{ scroll-behavior:smooth; }
-    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--ink);
-      background:
-        radial-gradient(1100px 680px at 18% -10%, rgba(134,182,255,.28) 0%, rgba(134,182,255,0) 60%),
-        radial-gradient(920px 620px at 86% 6%, rgba(185,227,255,.20) 0%, rgba(185,227,255,0) 58%),
-        radial-gradient(980px 720px at 50% 112%, rgba(215,241,255,.12) 0%, rgba(215,241,255,0) 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
-      overflow-x:hidden;
+    /* Motion policy */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
     }
 
-    /* Very subtle static texture (cheap) */
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(1100px 700px at 14% -10%, rgba(127,178,255,.28) 0%, rgba(127,178,255,0) 60%),
+        radial-gradient(980px 680px at 88% 6%, rgba(183,225,255,.18) 0%, rgba(183,225,255,0) 58%),
+        radial-gradient(900px 700px at 50% 110%, rgba(221,245,255,.10) 0%, rgba(221,245,255,0) 60%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1) 56%, var(--bg-2));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Subtle premium texture (static, lightweight) */
     body::before{
       content:"";
-      position:fixed; inset:0;
+      position:fixed;
+      inset:0;
       pointer-events:none;
-      opacity: calc(.18 * var(--effects));
+      opacity:.18;
       background-image:
         radial-gradient(circle at 1px 1px, rgba(255,255,255,.10) 1px, transparent 0);
-      background-size: 26px 26px;
+      background-size: 28px 28px;
       mix-blend-mode: overlay;
     }
 
     .container{
       width:min(var(--max), calc(100% - 48px));
-      margin:0 auto;
+      margin: 0 auto;
+      position:relative;
+      z-index:1;
     }
 
-    /* ===========================
-       Nav (NO backdrop blur = faster)
-       =========================== */
-    .nav{
-      position:sticky; top:0; z-index:50;
-      background: rgba(7,10,18,.78);
-      border-bottom: 1px solid var(--line2);
+    /* =========================================================
+       TOP BAR / NAV
+       (No backdrop-filter blur; we keep it crisp & fast)
+       ========================================================= */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(7,10,20,.82);
+      border-bottom: 1px solid var(--line-2);
     }
-    .nav .inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       gap: 18px;
+      padding: 14px 0;
     }
 
     .brand{
-      display:flex; align-items:baseline; gap:12px;
-      text-decoration:none; color:var(--ink);
-      min-width: 240px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--ink);
+      min-width: 280px;
     }
-    .brand .dot{
-      width:8px; height:8px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, var(--blue3), var(--blue));
-      box-shadow: 0 0 0 6px rgba(134,182,255,.14);
-      transform: translateY(-1px);
+    .brandMark{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, var(--blue-3), var(--blue-1));
+      box-shadow: 0 0 0 7px rgba(127,178,255,.14);
+      flex: 0 0 auto;
     }
-    .brand .name{
-      font-weight: 600;
-      font-size: 14px;
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+      gap: 2px;
+    }
+    .brandName{
+      font-size: 13px;
+      letter-spacing:.16em;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      opacity:.95;
+      font-weight: 600;
+      opacity: .96;
+      white-space:nowrap;
+    }
+    .brandSub{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color: rgba(200,213,241,.78);
       white-space:nowrap;
     }
 
-    .navlinks{
-      display:flex; align-items:center; gap: 18px;
-      flex-wrap:wrap; justify-content:flex-end;
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
-    .navlinks a{
-      color:var(--muted);
+    .navLink{
       text-decoration:none;
-      font-size: 13px;
-      letter-spacing:.08em;
+      color: rgba(200,213,241,.90);
+      font-size: 12px;
+      letter-spacing:.12em;
       text-transform: uppercase;
-      padding: 10px 10px;
+      padding: 10px 12px;
       border-radius: 12px;
-      transition: color .16s ease, background .16s ease, transform .16s ease;
+      border: 1px solid transparent;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
     }
-    .navlinks a:hover{
+    .navLink:hover{
       color: var(--ink);
-      background: rgba(243,247,255,.06);
+      background: rgba(244,247,255,.06);
+      border-color: rgba(244,247,255,.08);
       transform: translateY(-1px);
     }
 
-    /* ===========================
-       Hero
-       =========================== */
-    .hero{ padding: clamp(56px, 8vw, 96px) 0 34px; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap: clamp(18px, 3vw, 38px);
-      align-items:end;
+    /* Right-side “utility” pill */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(183,225,255,.22);
+      background: linear-gradient(180deg, rgba(127,178,255,.12), rgba(221,245,255,.05));
+      box-shadow: var(--shadow-md);
+      text-decoration:none;
+      color: var(--ink);
+      font-size: 12px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      white-space:nowrap;
     }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(183,225,255,.34);
+      background: linear-gradient(180deg, rgba(127,178,255,.16), rgba(221,245,255,.06));
+    }
+    .pillDot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, var(--blue-3), var(--blue-2));
+      box-shadow: 0 0 0 6px rgba(183,225,255,.10);
+    }
+
     @media (max-width: 920px){
-      .grid{ grid-template-columns:1fr; }
       .brand{ min-width:auto; }
+      .pill{ display:none; }
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero{
+      padding: clamp(56px, 7.8vw, 92px) 0 28px;
+    }
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: clamp(18px, 3vw, 40px);
+      align-items: end;
+    }
+
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
     }
 
     .kicker{
-      font-family:var(--mono);
-      color: rgba(185,227,255,.95);
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      font-family: var(--mono);
       font-size: 12px;
-      letter-spacing: .16em;
+      letter-spacing:.16em;
       text-transform: uppercase;
-      display:flex; align-items:center; gap:10px;
-      margin-bottom: 14px;
+      color: rgba(183,225,255,.95);
+      margin-bottom: 16px;
     }
-    .kicker .rule{
-      height:1px; width: 44px;
-      background: linear-gradient(90deg, rgba(185,227,255,.75), transparent);
+    .kLine{
+      height:1px;
+      width: 52px;
+      background: linear-gradient(90deg, rgba(183,225,255,.75), transparent);
     }
 
     h1{
       margin:0;
-      font-weight: 600;
+      font-size: clamp(46px, 6.1vw, 78px);
       letter-spacing: -0.02em;
       line-height: 1.02;
-      font-size: clamp(44px, 6.2vw, 74px);
+      font-weight: 600;
     }
-    .sub{
+
+    .lead{
       margin: 18px 0 0;
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: clamp(15px, 1.5vw, 17px);
-      line-height: 1.65;
-    }
-
-    .heroCard{
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      box-shadow: var(--shadow);
-      padding: 20px;
-      overflow:hidden;
-      position:relative;
-    }
-    /* Static highlight (no animated sweep) */
-    .heroCard::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(560px 260px at 18% 0%, rgba(134,182,255,.24), transparent 60%),
-        radial-gradient(520px 260px at 85% 10%, rgba(185,227,255,.18), transparent 62%);
-      opacity:.92;
-      pointer-events:none;
-    }
-    .heroCard > *{ position:relative; }
-
-    .stats{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    .stat{
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(243,247,255,.11);
-      background: rgba(7,10,18,.32);
-    }
-    .stat .label{
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      color: rgba(200,214,241,.86);
-    }
-    .stat .value{
-      margin-top: 7px;
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: .02em;
-      color: var(--ink);
+      max-width: 64ch;
+      color: rgba(200,213,241,.92);
+      font-size: clamp(15px, 1.55vw, 17px);
+      line-height: 1.70;
     }
 
     .ctaRow{
-      display:flex; flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 18px;
+      margin-top: 22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      align-items:center;
     }
+
     .btn{
-      appearance:none;
-      border:1px solid rgba(243,247,255,.12);
-      background: rgba(243,247,255,.06);
-      color: var(--ink);
-      padding: 10px 14px;
+      display:inline-flex;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 14px;
       border-radius: 14px;
-      font-size: 13px;
-      letter-spacing:.08em;
-      text-transform: uppercase;
+      border: 1px solid rgba(244,247,255,.12);
+      background: rgba(244,247,255,.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
       text-decoration:none;
-      display:inline-flex; align-items:center; gap: 10px;
-      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      color: var(--ink);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space:nowrap;
     }
     .btn:hover{
       transform: translateY(-1px);
-      background: rgba(243,247,255,.09);
-      border-color: rgba(185,227,255,.30);
+      background: rgba(244,247,255,.09);
+      border-color: rgba(183,225,255,.30);
     }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(134,182,255,.30), rgba(215,241,255,.18));
-      border-color: rgba(185,227,255,.38);
-      box-shadow: var(--shadow2);
+    .btnPrimary{
+      border-color: rgba(183,225,255,.36);
+      background: linear-gradient(135deg, rgba(127,178,255,.28), rgba(221,245,255,.12));
+      box-shadow: var(--shadow-lg);
     }
-    .btn .arrow{
-      width: 18px; height:18px;
-      display:inline-grid; place-items:center;
+    .iconCircle{
+      width: 22px;
+      height: 22px;
       border-radius: 999px;
-      background: rgba(243,247,255,.08);
-      border: 1px solid rgba(243,247,255,.10);
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(244,247,255,.12);
+      background: rgba(244,247,255,.06);
       font-family: var(--mono);
       font-size: 12px;
+      color: rgba(244,247,255,.92);
+      flex: 0 0 auto;
     }
 
-    /* ===========================
-       Sections
-       =========================== */
-    section{ padding: 44px 0; border-top: 1px solid var(--line2); }
+    /* Right-side hero “spec” card */
+    .specCard{
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(244,247,255,.12);
+      background: linear-gradient(180deg, var(--card-a), var(--card-b));
+      box-shadow: var(--shadow-xl);
+      overflow:hidden;
+      position:relative;
+    }
+    .specCard::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(620px 280px at 18% 0%, rgba(127,178,255,.24), transparent 60%),
+        radial-gradient(520px 280px at 86% 12%, rgba(183,225,255,.18), transparent 62%);
+      pointer-events:none;
+      opacity:.95;
+    }
+    .specInner{
+      position:relative;
+      padding: 20px;
+    }
+
+    .specTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .specTitle{
+      font-size: 13px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity:.94;
+      margin:0;
+    }
+    .specStamp{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color: rgba(200,213,241,.76);
+      border: 1px solid rgba(244,247,255,.10);
+      background: rgba(7,10,20,.28);
+      padding: 8px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+
+    .specGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .specItem{
+      border: 1px solid rgba(244,247,255,.10);
+      background: rgba(7,10,20,.28);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .specLabel{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color: rgba(200,213,241,.80);
+    }
+    .specValue{
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing:.01em;
+      color: rgba(244,247,255,.96);
+    }
+
+    .specLinks{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .miniLink{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,247,255,.10);
+      background: rgba(244,247,255,.05);
+      color: rgba(244,247,255,.92);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      white-space:nowrap;
+    }
+    .miniLink:hover{
+      transform: translateY(-1px);
+      border-color: rgba(183,225,255,.30);
+      background: rgba(244,247,255,.08);
+    }
+
+    /* =========================================================
+       SECTIONS (Swiss rhythm)
+       ========================================================= */
+    section{
+      padding: 46px 0;
+      border-top: 1px solid var(--line-2);
+    }
 
     .sectionHead{
-      display:flex; align-items:baseline; justify-content:space-between;
-      gap: 12px; margin-bottom: 16px;
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 18px;
     }
     .sectionTitle{
       margin:0;
-      font-size: 14px;
-      letter-spacing:.14em;
+      font-size: 13px;
+      letter-spacing:.16em;
       text-transform: uppercase;
-      color: rgba(243,247,255,.94);
+      font-weight: 600;
+      color: rgba(244,247,255,.94);
     }
     .sectionNote{
       margin:0;
-      color: rgba(200,214,241,.82);
+      max-width: 66ch;
+      color: rgba(200,213,241,.82);
       font-size: 13px;
-      line-height: 1.5;
-      max-width: 60ch;
+      line-height: 1.6;
     }
 
-    /* ===========================
-       Artist cards
-       =========================== */
+    /* =========================================================
+       ARTIST CARDS — “million-dollar” grid
+       ========================================================= */
     .cards{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(12, 1fr);
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
-    @media (max-width: 980px){
-      .cards{ grid-template-columns: 1fr; }
+
+    /* Asymmetric Swiss layout: 6/3/3 on desktop */
+    .cardA{ grid-column: span 6; }
+    .cardB{ grid-column: span 3; }
+    .cardC{ grid-column: span 3; }
+
+    @media (max-width: 1060px){
+      .cardA, .cardB, .cardC{ grid-column: span 12; }
     }
+
     .card{
       position:relative;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(244,247,255,.12);
+      background: linear-gradient(180deg, rgba(10,22,44,.58), rgba(10,22,44,.30));
+      box-shadow: var(--shadow-lg);
+      overflow:hidden;
       text-decoration:none;
       color: var(--ink);
-      border-radius: var(--radius2);
-      border: 1px solid rgba(243,247,255,.12);
-      background: linear-gradient(180deg, rgba(12,24,46,.58), rgba(12,24,46,.34));
-      box-shadow: 0 10px 28px rgba(0,0,0,.26);
-      overflow:hidden;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 170px;
-    }
-    .card:hover{
-      transform: translateY(-3px);
-      border-color: rgba(185,227,255,.40);
-      background: linear-gradient(180deg, rgba(12,24,46,.66), rgba(12,24,46,.38));
+      min-height: 190px;
     }
     .card::before{
       content:"";
-      position:absolute; inset:-1px;
+      position:absolute;
+      inset:-1px;
       background:
-        radial-gradient(520px 210px at 20% 20%, rgba(134,182,255,.22), transparent 60%),
-        radial-gradient(420px 240px at 85% 30%, rgba(215,241,255,.16), transparent 62%);
-      opacity:.90;
+        radial-gradient(640px 260px at 16% 22%, rgba(127,178,255,.22), transparent 62%),
+        radial-gradient(520px 280px at 86% 30%, rgba(221,245,255,.14), transparent 62%);
+      opacity:.95;
       pointer-events:none;
     }
+    .card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(183,225,255,.34);
+      background: linear-gradient(180deg, rgba(10,22,44,.66), rgba(10,22,44,.34));
+    }
+
     .cardInner{
       position:relative;
       padding: 18px 18px 16px;
-      display:flex; flex-direction:column;
-      gap: 10px;
       height:100%;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
     }
+
     .cardTop{
-      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
     }
-    .tag{
+    .badge{
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(200,214,241,.90);
-      border: 1px solid rgba(243,247,255,.10);
-      background: rgba(7,10,18,.30);
-      padding: 7px 10px;
+      padding: 8px 10px;
       border-radius: 999px;
-      width:max-content;
-    }
-    .pill{
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      color: rgba(215,241,255,.98);
-      border: 1px solid rgba(185,227,255,.28);
-      background: rgba(134,182,255,.10);
-      padding: 7px 10px;
-      border-radius: 999px;
+      border: 1px solid rgba(244,247,255,.10);
+      background: rgba(7,10,20,.28);
+      color: rgba(200,213,241,.86);
       white-space:nowrap;
     }
-    .artistName{
-      margin: 2px 0 0;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .badgeAccent{
+      border-color: rgba(183,225,255,.24);
+      background: rgba(127,178,255,.10);
+      color: rgba(221,245,255,.95);
     }
-    .artistDesc{
+
+    .cardTitle{
       margin: 0;
-      color: rgba(200,214,241,.92);
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 52ch;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      line-height: 1.15;
     }
+    .cardDesc{
+      margin: 0;
+      color: rgba(200,213,241,.92);
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+
     .cardFoot{
       margin-top:auto;
-      display:flex; align-items:center; justify-content:space-between; gap: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(243,247,255,.08);
+      padding-top: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(244,247,255,.08);
     }
-    .cardLink{
+    .openLabel{
+      display:flex;
+      align-items:center;
+      gap: 10px;
       font-family: var(--mono);
       font-size: 12px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(243,247,255,.86);
-      display:flex; align-items:center; gap:10px;
+      color: rgba(244,247,255,.90);
+      white-space:nowrap;
     }
-    .cardLink span{
-      width: 20px; height:20px;
-      display:inline-grid; place-items:center;
+    .openIcon{
+      width: 22px;
+      height: 22px;
       border-radius: 999px;
-      border: 1px solid rgba(243,247,255,.12);
-      background: rgba(243,247,255,.06);
+      border: 1px solid rgba(244,247,255,.12);
+      background: rgba(244,247,255,.06);
+      display:grid;
+      place-items:center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(244,247,255,.90);
     }
-    .hint{
+    .pathHint{
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing:.14em;
       text-transform: uppercase;
-      color: rgba(200,214,241,.72);
+      color: rgba(200,213,241,.72);
       white-space:nowrap;
     }
 
-    /* ===========================
-       Contact panels
-       =========================== */
-    .contactGrid{
+    /* =========================================================
+       ABOUT / CONTACT PANELS
+       ========================================================= */
+    .twoCol{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
     @media (max-width: 920px){
-      .contactGrid{ grid-template-columns:1fr; }
+      .twoCol{ grid-template-columns: 1fr; }
     }
+
     .panel{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(243,247,255,.12);
-      background: linear-gradient(180deg, rgba(12,24,46,.56), rgba(12,24,46,.30));
-      box-shadow: 0 10px 28px rgba(0,0,0,.24);
-      padding: 18px;
       position:relative;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(244,247,255,.12);
+      background: linear-gradient(180deg, rgba(10,22,44,.56), rgba(10,22,44,.28));
+      box-shadow: var(--shadow-md);
+      padding: 18px;
       overflow:hidden;
     }
     .panel::before{
       content:"";
-      position:absolute; inset:-1px;
-      opacity:.70;
-      background: radial-gradient(520px 220px at 10% 0%, rgba(134,182,255,.18), transparent 62%);
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(620px 240px at 14% 0%, rgba(127,178,255,.18), transparent 62%);
+      opacity:.9;
       pointer-events:none;
     }
     .panel > *{ position:relative; }
 
     .panel h3{
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-size: 16px;
-      letter-spacing: .02em;
+      letter-spacing:.01em;
+      font-weight: 600;
     }
     .panel p{
-      margin:0;
-      color: rgba(200,214,241,.90);
+      margin: 0;
+      color: rgba(200,213,241,.90);
       font-size: 14px;
-      line-height: 1.65;
-    }
-    .contactLine{
-      margin-top: 14px;
-      display:flex; flex-wrap:wrap;
-      gap: 10px;
+      line-height: 1.7;
     }
 
+    .contactRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      align-items:center;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
     footer{
-      border-top: 1px solid var(--line2);
+      border-top: 1px solid var(--line-2);
       padding: 22px 0 40px;
-      color: rgba(200,214,241,.76);
+      color: rgba(200,213,241,.76);
       font-size: 13px;
     }
-    .footRow{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 12px; flex-wrap:wrap;
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
     }
     .mono{
       font-family: var(--mono);
-      letter-spacing:.12em;
-      text-transform: uppercase;
       font-size: 11px;
-      color: rgba(200,214,241,.72);
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color: rgba(200,213,241,.72);
     }
 
-    /* ===========================
-       Reveal (lightweight)
-       =========================== */
+    /* =========================================================
+       REVEAL (subtle, transform-only, fast)
+       ========================================================= */
     .reveal{
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity .45s ease, transform .45s ease;
+      transform: translateY(12px);
+      transition: opacity .50s ease, transform .50s ease;
       will-change: opacity, transform;
     }
-    .reveal.is-in{
+    .reveal.in{
       opacity: 1;
       transform: translateY(0);
     }
-    /* If effects off, show immediately */
-    .fx-off .reveal{ opacity:1; transform:none; transition:none; }
 
+    /* Focus ring */
     :focus-visible{
-      outline: 2px solid rgba(185,227,255,.62);
+      outline: 2px solid rgba(183,225,255,.62);
       outline-offset: 3px;
       border-radius: 12px;
     }
@@ -505,145 +701,166 @@
 </head>
 
 <body>
-  <header class="nav">
+  <header>
     <div class="container">
-      <div class="inner">
+      <div class="nav">
         <a class="brand" href="#top" aria-label="Soul Sand Records home">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="name">Soul Sand Records</span>
+          <span class="brandMark" aria-hidden="true"></span>
+          <span class="brandText">
+            <span class="brandName">Soul Sand Records</span>
+            <span class="brandSub">Swiss Modern • Cinematic Night</span>
+          </span>
         </a>
 
-        <nav class="navlinks" aria-label="Primary navigation">
-          <a href="#artists">Artists</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+        <nav aria-label="Primary navigation">
+          <a class="navLink" href="#artists">Artists</a>
+          <a class="navLink" href="#about">About</a>
+          <a class="navLink" href="#contact">Contact</a>
         </nav>
+
+        <a class="pill" href="#contact" aria-label="Contact Soul Sand Records">
+          <span class="pillDot" aria-hidden="true"></span>
+          <span>Inquiries</span>
+        </a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
     <section class="hero" aria-label="Hero">
       <div class="container">
-        <div class="grid">
+        <div class="heroGrid">
           <div class="reveal">
-            <div class="kicker"><span class="rule" aria-hidden="true"></span> Label</div>
+            <div class="kicker"><span class="kLine" aria-hidden="true"></span> Label</div>
             <h1>Soul Sand Records</h1>
-            <p class="sub">
-              Swiss-modern clarity with a cinematic night finish — calm, luxury, and artist-forward.
-              Clean layout. Subtle motion. Strong typography.
+            <p class="lead">
+              A calm, luxury label landing space — Swiss-modern clarity with a cinematic night finish.
+              Minimal surface, strong typography, and artist pages presented with precision.
             </p>
 
             <div class="ctaRow">
-              <a class="btn primary" href="#artists">
-                Explore Artists <span class="arrow" aria-hidden="true">↘</span>
+              <a class="btn btnPrimary" href="#artists">
+                <span class="iconCircle" aria-hidden="true">↘</span>
+                Explore Artists
               </a>
               <a class="btn" href="#contact">
-                Contact <span class="arrow" aria-hidden="true">✦</span>
+                <span class="iconCircle" aria-hidden="true">✦</span>
+                Contact
+              </a>
+              <a class="btn" href="artists/deep-night-static.html">
+                <span class="iconCircle" aria-hidden="true">↗</span>
+                Featured Artist
               </a>
             </div>
           </div>
 
-          <aside class="heroCard reveal" aria-label="Label summary">
-            <div class="kicker" style="margin-bottom:10px;">
-              <span class="rule" aria-hidden="true"></span> Overview
-            </div>
+          <aside class="specCard reveal" aria-label="Label overview">
+            <div class="specInner">
+              <div class="specTop">
+                <h2 class="specTitle">Overview</h2>
+                <div class="specStamp">Landing Site</div>
+              </div>
 
-            <div class="stats" role="list">
-              <div class="stat" role="listitem">
-                <div class="label">Aesthetic</div>
-                <div class="value">Swiss / Cinematic</div>
+              <div class="specGrid" role="list">
+                <div class="specItem" role="listitem">
+                  <div class="specLabel">Aesthetic</div>
+                  <div class="specValue">Swiss / Cinematic</div>
+                </div>
+                <div class="specItem" role="listitem">
+                  <div class="specLabel">Palette</div>
+                  <div class="specValue">Light Blue Night</div>
+                </div>
+                <div class="specItem" role="listitem">
+                  <div class="specLabel">Focus</div>
+                  <div class="specValue">Artists + Clarity</div>
+                </div>
+                <div class="specItem" role="listitem">
+                  <div class="specLabel">Structure</div>
+                  <div class="specValue">/artists/*.html</div>
+                </div>
               </div>
-              <div class="stat" role="listitem">
-                <div class="label">Palette</div>
-                <div class="value">Light Blue / Night</div>
-              </div>
-              <div class="stat" role="listitem">
-                <div class="label">Structure</div>
-                <div class="value">Artist Pages</div>
-              </div>
-              <div class="stat" role="listitem">
-                <div class="label">Intent</div>
-                <div class="value">Landing Site</div>
-              </div>
-            </div>
 
-            <div class="ctaRow" style="margin-top:16px;">
-              <a class="btn" href="artists/deep-night-static.html">
-                Deep Night Static <span class="arrow" aria-hidden="true">→</span>
-              </a>
-              <a class="btn" href="artists/still-room-signals.html">
-                Still Room Signals <span class="arrow" aria-hidden="true">→</span>
-              </a>
-              <a class="btn" href="artists/night-room-drones.html">
-                Night Room Drones <span class="arrow" aria-hidden="true">→</span>
-              </a>
+              <div class="specLinks" aria-label="Quick artist links">
+                <a class="miniLink" href="artists/deep-night-static.html">Deep Night Static</a>
+                <a class="miniLink" href="artists/still-room-signals.html">Still Room Signals</a>
+                <a class="miniLink" href="artists/night-room-drones.html">Night Room Drones</a>
+              </div>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- ARTISTS -->
+    <!-- =======================================================
+         ARTISTS
+         ======================================================= -->
     <section id="artists" aria-label="Artists">
       <div class="container">
         <div class="sectionHead reveal">
           <h2 class="sectionTitle">Artists</h2>
           <p class="sectionNote">
-            Each artist is a dedicated HTML page in <span class="mono">/artists/</span> (no nested folders).
-            Links below point directly to the live paths.
+            Each artist is a dedicated page inside <span class="mono">/artists/</span>.
+            No nested folders. Clean, consistent navigation and premium presentation.
           </p>
         </div>
 
-        <div class="cards">
-          <a class="card reveal" href="artists/deep-night-static.html">
+        <div class="cards" aria-label="Artist cards">
+          <!-- Featured wide card -->
+          <a class="card cardA reveal" href="artists/deep-night-static.html">
             <div class="cardInner">
               <div class="cardTop">
-                <div class="tag">Artist</div>
-                <div class="pill">Long-form</div>
+                <span class="badge">Artist</span>
+                <span class="badge badgeAccent">Featured • Long-form</span>
               </div>
-              <h3 class="artistName">Deep Night Static</h3>
-              <p class="artistDesc">
-                Dense nocturnal ambience with gentle edge — slow motion detail, minimal distraction.
+              <h3 class="cardTitle">Deep Night Static</h3>
+              <p class="cardDesc">
+                Dense nocturnal ambience with a gentle edge — slow-motion detail, calm energy,
+                and a premium, immersive atmosphere designed for deep focus.
               </p>
               <div class="cardFoot">
-                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                <div class="hint">/artists/</div>
+                <div class="openLabel"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
+                <div class="pathHint">/artists/deep-night-static.html</div>
               </div>
             </div>
           </a>
 
-          <a class="card reveal" href="artists/still-room-signals.html">
+          <!-- Tall compact card -->
+          <a class="card cardB reveal" href="artists/still-room-signals.html">
             <div class="cardInner">
               <div class="cardTop">
-                <div class="tag">Artist</div>
-                <div class="pill">Minimal</div>
+                <span class="badge">Artist</span>
+                <span class="badge badgeAccent">Minimal</span>
               </div>
-              <h3 class="artistName">Still Room Signals</h3>
-              <p class="artistDesc">
-                Quiet-room clarity — sparse textures, clean harmonics, and signal-like tones.
+              <h3 class="cardTitle">Still Room Signals</h3>
+              <p class="cardDesc">
+                Quiet-room clarity — sparse textures, clean harmonics, and signal-like tones
+                that stay refined and never busy.
               </p>
               <div class="cardFoot">
-                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                <div class="hint">/artists/</div>
+                <div class="openLabel"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
+                <div class="pathHint">/artists/still-room-signals.html</div>
               </div>
             </div>
           </a>
 
-          <a class="card reveal" href="artists/night-room-drones.html">
+          <!-- Tall compact card -->
+          <a class="card cardC reveal" href="artists/night-room-drones.html">
             <div class="cardInner">
               <div class="cardTop">
-                <div class="tag">Artist</div>
-                <div class="pill">Drone</div>
+                <span class="badge">Artist</span>
+                <span class="badge badgeAccent">Drone</span>
               </div>
-              <h3 class="artistName">Night Room Drones</h3>
-              <p class="artistDesc">
-                Slow-pressure drones and deep atmosphere — steady, immersive, elegantly restrained.
+              <h3 class="cardTitle">Night Room Drones</h3>
+              <p class="cardDesc">
+                Slow-pressure drones and deep atmosphere — steady, immersive, and elegantly restrained,
+                built for long listening.
               </p>
               <div class="cardFoot">
-                <div class="cardLink"><span aria-hidden="true">↗</span> Open Page</div>
-                <div class="hint">/artists/</div>
+                <div class="openLabel"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
+                <div class="pathHint">/artists/night-room-drones.html</div>
               </div>
             </div>
           </a>
@@ -651,59 +868,68 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" aria-label="About">
+    <!-- =======================================================
+         ABOUT
+         ======================================================= -->
+    <section id="about" aria-label="About Soul Sand Records">
       <div class="container">
         <div class="sectionHead reveal">
           <h2 class="sectionTitle">About Soul Sand Records</h2>
           <p class="sectionNote">
-            Premium restraint: clear hierarchy, Swiss spacing, and a night palette lifted by lighter blues.
+            Swiss rhythm, luxury restraint, and cinematic night color — designed to feel expensive without feeling loud.
           </p>
         </div>
 
-        <div class="contactGrid">
+        <div class="twoCol">
           <div class="panel reveal">
-            <h3>Design Principles</h3>
+            <h3>Design Direction</h3>
             <p>
-              Calm surfaces, strong typography, and intentional negative space — built to feel luxury without feeling busy.
-              Motion stays subtle and optional for performance.
+              The layout is grid-driven and typography-forward: strong hierarchy, intentional negative space,
+              and subtle blue highlights. Motion is minimal and transform-only for smooth performance.
             </p>
           </div>
+
           <div class="panel reveal">
-            <h3>Site Map</h3>
+            <h3>Site Structure</h3>
             <p>
-              <span class="mono">/index.html</span> → links to:
-              <span class="mono">/artists/deep-night-static.html</span>,
-              <span class="mono">/artists/still-room-signals.html</span>,
-              <span class="mono">/artists/night-room-drones.html</span>.
+              This site is intentionally simple and scalable:
+              <span class="mono">/index.html</span> plus separate artist pages in
+              <span class="mono">/artists/</span>:
+              <span class="mono">deep-night-static.html</span>,
+              <span class="mono">still-room-signals.html</span>,
+              <span class="mono">night-room-drones.html</span>.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- =======================================================
+         CONTACT
+         ======================================================= -->
     <section id="contact" aria-label="Contact">
       <div class="container">
         <div class="sectionHead reveal">
           <h2 class="sectionTitle">Contact</h2>
           <p class="sectionNote">
-            Simple and direct. Replace the email with your preferred address.
+            Simple on purpose. Replace the email with your preferred inbox when ready.
           </p>
         </div>
 
-        <div class="contactGrid">
+        <div class="twoCol">
           <div class="panel reveal">
             <h3>Inquiries</h3>
             <p>
-              Releases, licensing, collaborations, press — send a short message and include links if relevant.
+              Releases, licensing, collaborations, and press — send a short message and include links if relevant.
             </p>
-            <div class="contactLine">
-              <a class="btn primary" href="mailto:contact@soulsandrecords.com?subject=Soul%20Sand%20Records%20Inquiry">
-                Email Soul Sand Records <span class="arrow" aria-hidden="true">✉</span>
+            <div class="contactRow">
+              <a class="btn btnPrimary" href="mailto:contact@soulsandrecords.com?subject=Soul%20Sand%20Records%20Inquiry">
+                <span class="iconCircle" aria-hidden="true">✉</span>
+                Email Soul Sand Records
               </a>
               <a class="btn" href="#top">
-                Back to Top <span class="arrow" aria-hidden="true">↑</span>
+                <span class="iconCircle" aria-hidden="true">↑</span>
+                Back to Top
               </a>
             </div>
           </div>
@@ -711,71 +937,74 @@
           <div class="panel reveal">
             <h3>Artist Pages</h3>
             <p>Quick access:</p>
-            <div class="contactLine">
-              <a class="btn" href="artists/deep-night-static.html">Deep Night Static <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn" href="artists/still-room-signals.html">Still Room Signals <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn" href="artists/night-room-drones.html">Night Room Drones <span class="arrow" aria-hidden="true">→</span></a>
+            <div class="contactRow">
+              <a class="btn" href="artists/deep-night-static.html"><span class="iconCircle" aria-hidden="true">→</span> Deep Night Static</a>
+              <a class="btn" href="artists/still-room-signals.html"><span class="iconCircle" aria-hidden="true">→</span> Still Room Signals</a>
+              <a class="btn" href="artists/night-room-drones.html"><span class="iconCircle" aria-hidden="true">→</span> Night Room Drones</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="container">
-      <div class="footRow">
-        <div>
-          <div style="font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Soul Sand Records</div>
-          <div class="mono" style="margin-top:6px;">© <span id="y"></span> • All rights reserved</div>
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <div style="font-weight:600; letter-spacing:.12em; text-transform:uppercase;">Soul Sand Records</div>
+            <div class="mono" style="margin-top:8px;">© <span id="year"></span> • All rights reserved</div>
+          </div>
+          <div class="mono">Swiss Grid • Cinematic Night • Light Blue</div>
         </div>
-        <div class="mono">Swiss Modern • Lighter Blue Night</div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </main>
 
   <script>
     // Year
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // If effects disabled, skip observers + show all
-    const effectsOn = getComputedStyle(document.documentElement).getPropertyValue("--effects").trim() !== "0";
-    if (!effectsOn) document.documentElement.classList.add("fx-off");
-
-    // Reveal on scroll (lightweight)
-    if (effectsOn) {
+    // Intersection reveal (transform/opacity only = smooth)
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce) {
       const els = Array.from(document.querySelectorAll(".reveal"));
       const io = new IntersectionObserver((entries) => {
-        for (const e of entries){
-          if (e.isIntersecting){
-            e.target.classList.add("is-in");
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
             io.unobserve(e.target);
           }
         }
       }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
       els.forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
     }
 
-    // Sticky header offset for anchor jumps
-    function scrollToHash(hash){
-      const id = hash.replace("#","");
+    // Anchor offset for sticky header (keeps section titles visible)
+    function scrollToId(id){
       const el = document.getElementById(id);
       if (!el) return;
-      const y = el.getBoundingClientRect().top + window.scrollY - 76;
-      window.scrollTo({ top: y, behavior: effectsOn ? "smooth" : "auto" });
+      const headerOffset = 78;
+      const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
     }
 
     document.addEventListener("click", (ev) => {
       const a = ev.target.closest('a[href^="#"]');
       if (!a) return;
       const hash = a.getAttribute("href");
-      if (hash.length <= 1) return;
+      if (!hash || hash.length <= 1) return;
       ev.preventDefault();
+      const id = hash.slice(1);
       history.pushState(null, "", hash);
-      scrollToHash(hash);
+      scrollToId(id);
     });
 
-    window.addEventListener("hashchange", () => scrollToHash(location.hash));
+    window.addEventListener("hashchange", () => {
+      const id = location.hash.replace("#","");
+      if (id) scrollToId(id);
+    });
   </script>
 </body>
 </html>
