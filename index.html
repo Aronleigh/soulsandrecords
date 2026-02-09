@@ -3,165 +3,214 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Soul Sand Records — a modern label for immersive music across every genre." />
+  <meta name="description" content="Soul Sand Records — a premium independent label for immersive music across every genre." />
   <title>Soul Sand Records</title>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Soul Sand Records" />
-  <meta property="og:description" content="A modern label for immersive music across every genre." />
+  <meta property="og:description" content="A premium independent label for immersive music across every genre." />
   <meta property="og:type" content="website" />
 
+  <!-- Simple icon (optional) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='.9'/%3E%3Cstop offset='1' stop-color='%230b3cff' stop-opacity='.9'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect rx='22' width='96' height='96' fill='url(%23g)'/%3E%3Cpath d='M26 55c10 10 34 10 44 0' fill='none' stroke='%23ffffff' stroke-opacity='.9' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
   <style>
+    /* ==========
+       20/10 Premium: Editorial + Luxury + Calm
+       ========== */
+
     :root{
-      --bg0:#f7fbff;
-      --bg1:#eef6ff;
-      --ink:#06152f;
-      --muted:#4a5f85;
-      --card:#ffffffcc;
-      --stroke:rgba(10,35,80,.10);
-      --shadow: 0 26px 80px rgba(5,20,45,.10);
-      --shadow2: 0 18px 50px rgba(5,20,45,.08);
-      --blue:#1d57ff;
-      --blue2:#4aa7ff;
-      --glass: rgba(255,255,255,.68);
-      --radius: 22px;
-      --radius2: 16px;
-      --max: 1120px;
+      --bg0:#f8fbff;
+      --bg1:#eef5ff;
+      --paper: rgba(255,255,255,.72);
+      --paper2: rgba(255,255,255,.58);
+
+      --ink:#06142a;
+      --muted:#4a5f84;
+      --muted2:#6e86ad;
+
+      --line: rgba(7,25,55,.12);
+      --line2: rgba(7,25,55,.08);
+
+      --blue:#0b3cff;
+      --cyan:#31b8ff;
+      --navy:#06142a;
+
+      --shadow: 0 34px 110px rgba(5,20,45,.12);
+      --shadow2: 0 18px 60px rgba(5,20,45,.09);
+
+      --r1: 28px;
+      --r2: 18px;
+      --max: 1160px;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Helvetica, Arial, sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(74,167,255,.22), transparent 55%),
-        radial-gradient(900px 600px at 110% 20%, rgba(29,87,255,.16), transparent 55%),
+        radial-gradient(1200px 700px at 20% -10%, rgba(49,184,255,.20), transparent 58%),
+        radial-gradient(900px 600px at 115% 15%, rgba(11,60,255,.14), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    /* Subtle animated aura */
-    .aura{
-      position:fixed; inset:-20vh -20vw auto -20vw;
-      height:60vh;
-      background: radial-gradient(circle at 30% 60%, rgba(74,167,255,.20), transparent 60%),
-                  radial-gradient(circle at 70% 30%, rgba(29,87,255,.14), transparent 60%);
-      filter: blur(22px);
+    /* Ultra-subtle film grain (premium texture) */
+    .grain{
+      position:fixed; inset:-20%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+      opacity:.07;
+      mix-blend-mode: multiply;
+      pointer-events:none;
+      z-index:-1;
+      transform: translateZ(0);
+    }
+
+    /* Ambient aurora (luxury motion, not busy) */
+    .aurora{
+      position:fixed; inset:-30vh -20vw auto -20vw;
+      height:70vh;
+      background:
+        radial-gradient(circle at 22% 55%, rgba(49,184,255,.20), transparent 62%),
+        radial-gradient(circle at 72% 35%, rgba(11,60,255,.14), transparent 60%),
+        radial-gradient(circle at 55% 80%, rgba(49,184,255,.10), transparent 62%);
+      filter: blur(26px);
       opacity:.9;
       animation: drift 12s ease-in-out infinite alternate;
       pointer-events:none;
-      z-index:-1;
+      z-index:-2;
     }
     @keyframes drift{
-      from{ transform: translate3d(-2%, -2%, 0) scale(1); }
-      to  { transform: translate3d( 2%,  2%, 0) scale(1.05); }
+      from{ transform: translate3d(-1.2%, -1.2%, 0) scale(1); }
+      to{ transform: translate3d(1.2%, 1.2%, 0) scale(1.04); }
     }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px 18px 90px;}
+    @media (prefers-reduced-motion: reduce){
+      .aurora{ animation:none; }
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 18px 18px 96px;
+    }
+
+    /* Top bar (quiet luxury) */
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:10px 6px; margin:4px 0 18px;
+      gap:16px;
+      padding: 10px 6px;
+      margin: 6px 0 22px;
     }
     .brand{
       display:flex; align-items:center; gap:12px; min-width:0;
     }
     .mark{
-      width:42px; height:42px; border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.2)),
-                  linear-gradient(135deg, rgba(29,87,255,.9), rgba(74,167,255,.7));
-      box-shadow: 0 16px 45px rgba(29,87,255,.18);
-      border:1px solid rgba(255,255,255,.55);
+      width:44px; height:44px; border-radius:16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.15)),
+        linear-gradient(135deg, rgba(11,60,255,.95), rgba(49,184,255,.70));
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow: 0 18px 60px rgba(11,60,255,.18);
     }
-    .brand h1{
-      font-size:15px; letter-spacing:.16em; text-transform:uppercase;
-      margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    .brandTitle{
+      display:flex; flex-direction:column; min-width:0;
     }
-    .brand p{
-      margin:2px 0 0; font-size:12.5px; color:var(--muted);
+    .brandTitle strong{
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .brandTitle span{
+      font-size: 12.5px;
+      color: var(--muted);
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     .nav{
       display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
     }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      background: var(--glass);
-      border:1px solid var(--stroke);
-      box-shadow: 0 10px 26px rgba(5,20,45,.06);
-      color:var(--ink);
-      font-weight:700;
-      font-size:13px;
+    .nav a{
       text-decoration:none;
+      color: rgba(6,20,42,.88);
+      font-weight: 850;
+      font-size: 13px;
+      letter-spacing: .02em;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line2);
+      box-shadow: 0 12px 34px rgba(5,20,45,.06);
       transition: transform .18s ease, box-shadow .18s ease;
     }
-    .chip:hover{ transform: translateY(-1px); box-shadow: 0 14px 34px rgba(5,20,45,.10); }
+    .nav a:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 44px rgba(5,20,45,.10);
+    }
 
-    /* HERO */
+    /* Hero: editorial with breathing space */
     .hero{
-      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.56));
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      border-radius: calc(var(--radius) + 6px);
-      padding: 42px 34px;
       position:relative;
+      border-radius: calc(var(--r1) + 8px);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper), var(--paper2));
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
     .hero::before{
       content:"";
-      position:absolute; inset:-60px -60px auto -60px;
-      height:220px;
-      background: radial-gradient(circle at 18% 55%, rgba(74,167,255,.32), transparent 65%),
-                  radial-gradient(circle at 72% 35%, rgba(29,87,255,.18), transparent 60%);
+      position:absolute; inset:-80px -80px auto -80px;
+      height: 260px;
+      background:
+        radial-gradient(circle at 18% 55%, rgba(49,184,255,.22), transparent 64%),
+        radial-gradient(circle at 72% 35%, rgba(11,60,255,.14), transparent 62%);
       filter: blur(18px);
-      opacity:.8;
+      opacity:.9;
       pointer-events:none;
     }
-
-    .heroGrid{
+    .heroInner{
+      position:relative;
+      padding: 56px 44px;
       display:grid;
       grid-template-columns: 1.25fr .75fr;
-      gap: 26px;
+      gap: 34px;
       align-items:end;
-      position:relative;
     }
 
     .kicker{
-      display:inline-flex;
-      gap:10px; align-items:center;
-      padding:8px 12px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
       border-radius:999px;
-      background: rgba(29,87,255,.08);
-      border:1px solid rgba(29,87,255,.14);
-      color: rgba(29,87,255,.95);
-      font-weight:900;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      font-size:12px;
+      background: rgba(11,60,255,.07);
+      border: 1px solid rgba(11,60,255,.14);
+      color: rgba(11,60,255,.92);
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
       width:max-content;
     }
 
-    .title{
-      margin:16px 0 10px;
-      font-size: clamp(38px, 4.2vw, 62px);
-      letter-spacing: -0.03em;
-      line-height:1.04;
+    .headline{
+      margin: 16px 0 12px;
+      font-size: clamp(44px, 5vw, 74px);
+      letter-spacing: -0.04em;
+      line-height: 1.02;
     }
-    .sub{
+    .lead{
       margin:0;
+      max-width: 62ch;
       color: var(--muted);
       font-size: 18px;
-      line-height:1.65;
-      max-width: 56ch;
+      line-height: 1.75;
     }
 
     .ctaRow{
-      display:flex; flex-wrap:wrap; gap:12px;
-      margin-top: 18px;
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 20px;
       align-items:center;
     }
     .btn{
@@ -172,456 +221,521 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      font-weight:900;
+      font-weight: 900;
       padding: 12px 14px;
       border-radius: 999px;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease;
       user-select:none;
-      font-size:14px;
-    }
-    .btnPrimary{
-      color:white;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow: 0 18px 50px rgba(29,87,255,.22);
-    }
-    .btnPrimary:hover{ transform: translateY(-1px); box-shadow: 0 22px 60px rgba(29,87,255,.28); }
-    .btnGhost{
-      background: rgba(255,255,255,.70);
-      border:1px solid var(--stroke);
-      color: var(--ink);
-      box-shadow: 0 12px 30px rgba(5,20,45,.06);
-    }
-    .btnGhost:hover{ transform: translateY(-1px); box-shadow: 0 16px 40px rgba(5,20,45,.10); }
-
-    .pillGrid{
-      display:grid;
-      gap:10px;
-      align-items:stretch;
-    }
-    .miniCard{
-      padding:14px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.62);
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow2);
-    }
-    .miniTop{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:12px;
-      margin-bottom:6px;
-    }
-    .miniTop strong{ font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
-    .miniTop span{
-      font-size:12px;
-      font-weight:800;
-      color: rgba(29,87,255,.95);
-      background: rgba(29,87,255,.10);
-      border:1px solid rgba(29,87,255,.16);
-      padding:6px 10px;
-      border-radius:999px;
+      font-size: 14px;
       white-space:nowrap;
     }
-    .miniCard p{
+    .btnPrimary{
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 18px 60px rgba(11,60,255,.22);
+    }
+    .btnPrimary:hover{ transform: translateY(-1px); box-shadow: 0 24px 80px rgba(11,60,255,.28); }
+    .btnGhost{
+      color: rgba(6,20,42,.92);
+      background: rgba(255,255,255,.68);
+      border: 1px solid var(--line2);
+      box-shadow: 0 12px 38px rgba(5,20,45,.06);
+    }
+    .btnGhost:hover{ transform: translateY(-1px); box-shadow: 0 18px 52px rgba(5,20,45,.10); }
+
+    /* Quiet luxury stats */
+    .side{
+      display:grid;
+      gap:12px;
+    }
+    .tile{
+      border-radius: 22px;
+      background: rgba(255,255,255,.66);
+      border: 1px solid var(--line2);
+      box-shadow: var(--shadow2);
+      padding: 16px 16px;
+    }
+    .tileTop{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 6px;
+    }
+    .tileTop strong{
+      font-size: 12.5px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 6px 10px;
+      border-radius:999px;
+      background: rgba(11,60,255,.08);
+      border: 1px solid rgba(11,60,255,.14);
+      color: rgba(11,60,255,.92);
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .tile p{
       margin:0;
-      font-size:14px;
       color: var(--muted);
-      line-height:1.55;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    /* SECTION */
+    /* Section headings */
     .section{
-      margin-top: 26px;
-      padding: 0;
+      margin-top: 30px;
     }
     .sectionHead{
       display:flex; align-items:flex-end; justify-content:space-between;
-      gap:12px; margin: 28px 6px 12px;
+      gap:12px;
+      margin: 26px 6px 12px;
     }
     .sectionHead h2{
       margin:0;
-      font-size: 22px;
-      letter-spacing:-.01em;
+      font-size: 20px;
+      letter-spacing: -0.01em;
     }
     .sectionHead p{
       margin:0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
-    .grid{
+    /* Artist editorial cards */
+    .roster{
       display:grid;
+      grid-template-columns: repeat(12, 1fr);
       gap: 14px;
-      grid-template-columns: repeat(3, 1fr);
     }
-
-    .card{
-      background: rgba(255,255,255,.72);
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow2);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      transition: transform .18s ease, box-shadow .18s ease;
+    .artist{
+      grid-column: span 4;
       position:relative;
+      border-radius: var(--r1);
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.68);
+      box-shadow: var(--shadow2);
+      padding: 18px 18px 18px;
       overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+      min-height: 190px;
     }
-    .card:hover{ transform: translateY(-2px); box-shadow: 0 22px 70px rgba(5,20,45,.12); }
-
-    .card::after{
+    .artist:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 80px rgba(5,20,45,.12);
+    }
+    .artist::before{
       content:"";
       position:absolute; inset:-40px -40px auto -40px;
-      height:120px;
-      background: radial-gradient(circle at 22% 55%, rgba(74,167,255,.25), transparent 62%),
-                  radial-gradient(circle at 75% 35%, rgba(29,87,255,.14), transparent 62%);
+      height:140px;
+      background:
+        radial-gradient(circle at 22% 55%, rgba(49,184,255,.18), transparent 62%),
+        radial-gradient(circle at 75% 35%, rgba(11,60,255,.12), transparent 60%);
       filter: blur(14px);
-      opacity:.45;
+      opacity:.65;
       pointer-events:none;
     }
-
-    .cardTop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; position:relative;
+    .artistTop{
+      position:relative;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
     }
-    .name{
+    .artist h3{
       margin:0;
-      font-size:18px;
-      letter-spacing:-.01em;
+      font-size: 18px;
+      letter-spacing: -0.01em;
     }
-    .tag{
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(29,87,255,.95);
-      background: rgba(29,87,255,.10);
-      border:1px solid rgba(29,87,255,.16);
-      padding:6px 10px;
-      border-radius:999px;
+    .label{
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(11,60,255,.92);
+      background: rgba(11,60,255,.08);
+      border: 1px solid rgba(11,60,255,.14);
+      padding: 6px 10px;
+      border-radius: 999px;
       white-space:nowrap;
     }
-    .desc{
+    .artist p{
       position:relative;
       margin: 10px 0 14px;
       color: var(--muted);
-      font-size:14px;
-      line-height:1.6;
-      min-height: 42px;
+      font-size: 14px;
+      line-height: 1.65;
     }
-
-    .row{
+    .artistActions{
       position:relative;
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
     }
-    .smallBtn{
+    .miniBtn{
       text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 12px;
-      border-radius: 999px;
-      font-weight:900;
-      font-size:13px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.72);
-      color: var(--ink);
-      transition: transform .18s ease, box-shadow .18s ease;
-      box-shadow: 0 12px 28px rgba(5,20,45,.06);
-    }
-    .smallBtn:hover{ transform: translateY(-1px); box-shadow: 0 16px 40px rgba(5,20,45,.10); }
-    .smallBtn.primary{
-      color:white;
-      border:0;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow: 0 18px 50px rgba(29,87,255,.22);
-    }
-    .smallBtn.primary:hover{ box-shadow: 0 22px 60px rgba(29,87,255,.28); }
-
-    .mutedNote{
-      color: var(--muted);
+      padding: 10px 12px;
+      border-radius:999px;
+      font-weight: 950;
       font-size: 13px;
-      margin: 0 6px;
+      letter-spacing: .01em;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.74);
+      color: rgba(6,20,42,.92);
+      box-shadow: 0 12px 34px rgba(5,20,45,.06);
+      transition: transform .18s ease, box-shadow .18s ease;
+      white-space:nowrap;
+    }
+    .miniBtn:hover{ transform: translateY(-1px); box-shadow: 0 16px 44px rgba(5,20,45,.10); }
+    .miniBtn.primary{
+      color:#fff;
+      border: 0;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 18px 60px rgba(11,60,255,.20);
+    }
+    .miniBtn.primary:hover{ box-shadow: 0 24px 80px rgba(11,60,255,.26); }
+
+    /* A premium “manifesto” band */
+    .band{
+      margin-top: 14px;
+      border-radius: calc(var(--r1) + 8px);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.56));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .band::before{
+      content:"";
+      position:absolute; inset:-60px -60px auto -60px;
+      height:220px;
+      background:
+        radial-gradient(circle at 26% 55%, rgba(49,184,255,.16), transparent 64%),
+        radial-gradient(circle at 74% 35%, rgba(11,60,255,.11), transparent 62%);
+      filter: blur(18px);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .bandInner{
+      position:relative;
+      padding: 26px 24px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .bandInner h4{
+      margin:0 0 8px;
+      font-size: 16px;
+      letter-spacing: -.01em;
+    }
+    .bandInner p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.75;
+      font-size: 14px;
+    }
+    .quote{
+      margin:0;
+      color: rgba(6,20,42,.94);
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 750;
+      letter-spacing: -.01em;
+    }
+    .quote span{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      display:block;
+      margin-top: 8px;
+      letter-spacing:.02em;
     }
 
-    /* Signup */
-    .signup{
-      margin-top: 18px;
-      background: rgba(255,255,255,.72);
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow2);
-      border-radius: calc(var(--radius) + 6px);
-      padding: 22px;
+    /* Contact block */
+    .contact{
       display:flex;
+      gap:14px;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      flex-wrap:wrap;
+      padding: 20px 18px;
+      border-radius: calc(var(--r1) + 8px);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+      box-shadow: var(--shadow2);
     }
-    .signup h3{ margin:0; font-size:18px; letter-spacing:-.01em;}
-    .signup p{ margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.6; }
-    .form{
+    .contact strong{
+      display:block;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size: 12px;
+    }
+    .contact p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 14px;
+      max-width: 72ch;
+    }
+    .contact .right{
       display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-      min-width: 260px;
+      align-items:center;
     }
-    input{
+    .input{
       appearance:none;
-      padding:12px 12px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
+      border:1px solid var(--line2);
       background: rgba(255,255,255,.78);
-      font-size:14px;
+      border-radius: 999px;
+      padding: 12px 12px;
+      font-size: 14px;
       min-width: 240px;
       outline:none;
     }
-    input:focus{
-      border-color: rgba(29,87,255,.35);
-      box-shadow: 0 0 0 4px rgba(29,87,255,.10);
+    .input:focus{
+      border-color: rgba(11,60,255,.30);
+      box-shadow: 0 0 0 4px rgba(11,60,255,.10);
     }
 
+    /* Footer */
     footer{
-      margin-top: 46px;
-      padding: 20px 6px 0;
-      border-top: 1px solid rgba(10,35,80,.10);
-      display:flex; gap:12px; flex-wrap:wrap;
-      align-items:center; justify-content:space-between;
+      margin-top: 44px;
+      padding: 18px 6px 0;
+      border-top: 1px solid var(--line2);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
       color: var(--muted);
       font-size: 13px;
     }
-    .links{display:flex; gap:12px; flex-wrap:wrap}
-    .links a{color:var(--muted); text-decoration:none; font-weight:800}
-    .links a:hover{color:var(--ink)}
+    .footLinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+    }
+    .footLinks a{
+      color: var(--muted);
+      text-decoration:none;
+      font-weight: 900;
+    }
+    .footLinks a:hover{ color: var(--ink); }
 
     /* Responsive */
     @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
-      .signup{ flex-direction:column; align-items:stretch; }
-      .form{ justify-content:flex-start; }
-      input{ min-width: 0; flex: 1; }
+      .heroInner{ grid-template-columns: 1fr; padding: 44px 22px; }
+      .roster{ grid-template-columns: 1fr; }
+      .artist{ grid-column: 1 / -1; }
+      .bandInner{ grid-template-columns: 1fr; }
+      .input{ min-width: 0; flex: 1; }
     }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .aura{animation:none}
-      .card,.btn,.chip,.smallBtn{transition:none}
+    /* Accessible focus */
+    a:focus-visible, button:focus-visible, input:focus-visible{
+      outline: 3px solid rgba(11,60,255,.35);
+      outline-offset: 3px;
     }
   </style>
 </head>
 
 <body>
-  <div class="aura" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="brand" aria-label="Soul Sand Records">
         <div class="mark" aria-hidden="true"></div>
-        <div style="min-width:0">
-          <h1>Soul Sand Records</h1>
-          <p>A modern label for immersive music — any genre, no limits.</p>
+        <div class="brandTitle">
+          <strong>Soul Sand Records</strong>
+          <span>Premium independent label • curated worlds • any genre</span>
         </div>
       </div>
 
-      <nav class="nav" aria-label="Primary">
-        <a class="chip" href="#artists">Artists</a>
-        <a class="chip" href="#releases">Releases</a>
-        <a class="chip" href="#contact">Contact</a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#artists" data-scroll>Artists</a>
+        <a href="#philosophy" data-scroll>Philosophy</a>
+        <a href="#contact" data-scroll>Contact</a>
       </nav>
-    </div>
+    </header>
 
-    <section class="hero">
-      <div class="heroGrid">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <div class="heroInner">
         <div>
-          <div class="kicker">Independent • Cinematic • Clean</div>
-          <h2 class="title">A label home for music that feels like a place.</h2>
-          <p class="sub">
-            Soul Sand Records is built for releases that live beyond trends — from ambient sleep worlds to
-            singer-songwriter records, jazz, folk, pop, country, hip-hop, and everything in between.
+          <div class="kicker">Soul • Space • Sound</div>
+          <h1 class="headline">SoulSand is a home for music that feels like a place.</h1>
+          <p class="lead">
+            A premium label built for immersion — from sleep worlds and drones to pop, country, jazz,
+            folk, hip-hop, and everything in between. Curated releases. Calm design. Long-term taste.
           </p>
 
           <div class="ctaRow">
-            <a class="btn btnPrimary" href="#artists">Explore artists</a>
-            <a class="btn btnGhost" href="#contact">Get in touch</a>
+            <a class="btn btnPrimary" href="#artists" data-scroll>Explore roster</a>
+            <a class="btn btnGhost" href="#contact" data-scroll>Contact / press</a>
           </div>
         </div>
 
-        <div class="pillGrid" aria-label="Highlights">
-          <div class="miniCard">
-            <div class="miniTop">
-              <strong>Vision</strong>
-              <span>Premium</span>
+        <aside class="side" aria-label="Highlights">
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Curated</strong>
+              <span class="badge">Premium</span>
             </div>
-            <p>Minimal design. Maximum presence. A clean home for serious releases.</p>
+            <p>Clean rollouts and a consistent aesthetic across every artist world.</p>
           </div>
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Genre</strong>
+              <span class="badge">All welcome</span>
+            </div>
+            <p>Utility and art can live together: sleep, focus, songs, and beyond.</p>
+          </div>
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Build</strong>
+              <span class="badge">Slow burn</span>
+            </div>
+            <p>Long-term catalog thinking — releases designed to age well.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-          <div class="miniCard">
-            <div class="miniTop">
-              <strong>Genres</strong>
-              <span>All welcome</span>
-            </div>
-            <p>Utility + art. Sleep + songs. Anything honest and well-curated.</p>
-          </div>
+    <!-- Artists -->
+    <section id="artists" class="section" aria-label="Artists">
+      <div class="sectionHead">
+        <h2>Artist roster</h2>
+        <p>Three worlds to start. More will follow.</p>
+      </div>
 
-          <div class="miniCard">
-            <div class="miniTop">
-              <strong>Rollout</strong>
-              <span>Simple</span>
-            </div>
-            <p>Artist pages, release pages, and links to stores — clean and direct.</p>
+      <div class="roster" role="list">
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Deep Night Static</h3>
+            <div class="label">Sleep</div>
           </div>
+          <p>Long-form nighttime environments designed for rest, stillness, and deep calm.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/deep-night-static.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+          </div>
+        </article>
+
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Still Room Signals</h3>
+            <div class="label">Focus</div>
+          </div>
+          <p>Minimal, reflective sound built for slow attention, clarity, and quiet momentum.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/still-room-signals.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+          </div>
+        </article>
+
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Night Room Drones</h3>
+            <div class="label">Immersive</div>
+          </div>
+          <p>Spatial drones and low-frequency rooms for deep listening and cinematic presence.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/night-room-drones.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+          </div>
+        </article>
+      </div>
+
+      <div id="philosophy" class="band" aria-label="Philosophy">
+        <div class="bandInner">
+          <div>
+            <h4>Philosophy</h4>
+            <p>
+              SoulSand is built like a gallery: each artist is a room with its own sound, but the label
+              stays consistent — clean, calm, and premium. Every genre is welcome if the curation is real.
+            </p>
+          </div>
+          <blockquote class="quote">
+            “Make something that feels like a place — and let people return to it.”
+            <span>— Soul Sand Records</span>
+          </blockquote>
         </div>
       </div>
     </section>
 
-    <!-- ARTISTS -->
-    <section id="artists" class="section">
+    <!-- Contact -->
+    <section id="contact" class="section" aria-label="Contact">
       <div class="sectionHead">
+        <h2>Contact / press</h2>
+        <p>Simple for now. We can wire a real email system later.</p>
+      </div>
+
+      <div class="contact">
         <div>
-          <h2>Artist roster</h2>
-          <p>Three worlds to start. More will follow.</p>
-        </div>
-        <div class="mutedNote">Tip: click “Enter” to open the artist page.</div>
-      </div>
-
-      <div class="grid" role="list">
-        <article class="card" role="listitem">
-          <div class="cardTop">
-            <h3 class="name">Deep Night Static</h3>
-            <div class="tag">Sleep</div>
-          </div>
-          <p class="desc">Long-form nighttime environments designed for rest, stillness, and deep calm.</p>
-          <div class="row">
-            <a class="smallBtn primary" href="artists/deep-night-static.html">Enter</a>
-            <a class="smallBtn" href="#releases" data-scroll>Releases</a>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <div class="cardTop">
-            <h3 class="name">Still Room Signals</h3>
-            <div class="tag">Focus</div>
-          </div>
-          <p class="desc">Minimal, reflective sound built for slow attention, clarity, and quiet momentum.</p>
-          <div class="row">
-            <a class="smallBtn primary" href="artists/still-room-signals.html">Enter</a>
-            <a class="smallBtn" href="#releases" data-scroll>Releases</a>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <div class="cardTop">
-            <h3 class="name">Night Room Drones</h3>
-            <div class="tag">Immersive</div>
-          </div>
-          <p class="desc">Spatial drones and low-frequency rooms for deep listening and cinematic presence.</p>
-          <div class="row">
-            <a class="smallBtn primary" href="artists/night-room-drones.html">Enter</a>
-            <a class="smallBtn" href="#releases" data-scroll>Releases</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- RELEASES -->
-    <section id="releases" class="section">
-      <div class="sectionHead">
-        <div>
-          <h2>Latest releases</h2>
-          <p>We’ll link these to stores as each release is approved.</p>
-        </div>
-        <div class="mutedNote" id="deployNote"></div>
-      </div>
-
-      <div class="grid" style="grid-template-columns: 1fr;">
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="name">Coming soon</h3>
-            <div class="tag">Updates</div>
-          </div>
-          <p class="desc" style="min-height:auto">
-            When you have your first public links (Spotify, Apple, Bandcamp, etc.), we’ll add a clean “Listen / Buy”
-            row here and on each artist page.
-          </p>
-          <div class="row">
-            <a class="smallBtn" href="#contact" data-scroll>Notify me</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT / SIGNUP -->
-    <section id="contact" class="section">
-      <div class="sectionHead">
-        <div>
-          <h2>Stay close</h2>
-          <p>Early releases, special drops, and new artist worlds.</p>
-        </div>
-        <div class="mutedNote">No spam. Just signal.</div>
-      </div>
-
-      <div class="signup">
-        <div>
-          <h3>Email list (optional)</h3>
+          <strong>Get in touch</strong>
           <p>
-            This button can either open your mail app or copy your email address.
-            When you’re ready, we can wire this to a real email service.
+            For press, playlisting, collaborations, licensing, or roster inquiries, use the button below.
+            (You can change the email address in the code anytime.)
           </p>
         </div>
-        <div class="form">
-          <input id="emailInput" type="email" placeholder="your@email.com" inputmode="email" autocomplete="email" />
-          <button class="btn btnPrimary" id="joinBtn" type="button">Join</button>
-          <button class="btn btnGhost" id="copyBtn" type="button">Copy contact</button>
+
+        <div class="right">
+          <input class="input" id="fromEmail" type="email" placeholder="your@email.com" inputmode="email" autocomplete="email" />
+          <button class="btn btnPrimary" id="emailBtn" type="button">Email SoulSand</button>
+          <button class="btn btnGhost" id="copyBtn" type="button">Copy email</button>
         </div>
       </div>
     </section>
 
     <footer>
       <div>© <span id="year"></span> Soul Sand Records</div>
-      <div class="links">
+      <div class="footLinks">
         <a href="#artists" data-scroll>Artists</a>
-        <a href="#releases" data-scroll>Releases</a>
+        <a href="#philosophy" data-scroll>Philosophy</a>
         <a href="#contact" data-scroll>Contact</a>
       </div>
     </footer>
   </div>
 
   <script>
-    // Smooth scroll for internal links with data-scroll
-    document.querySelectorAll('[data-scroll]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const href = a.getAttribute('href');
+    // Smooth scrolling for internal anchors
+    document.querySelectorAll('[data-scroll]').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        const href = el.getAttribute('href');
         if(!href || !href.startsWith('#')) return;
-        const el = document.querySelector(href);
-        if(!el) return;
+        const target = document.querySelector(href);
+        if(!target) return;
         e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
+        target.scrollIntoView({behavior:'smooth', block:'start'});
       });
     });
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Deploy note (tiny, helpful)
-    const note = document.getElementById('deployNote');
-    note.textContent = "Tip: If you just edited files, GitHub Pages may take 30–90 seconds to refresh.";
+    // Contact email (edit this later if you want)
+    const LABEL_EMAIL = "soulsandrecords@gmail.com"; // change whenever you want
 
-    // Join: opens mail client to a placeholder address (change later)
-    const joinBtn = document.getElementById('joinBtn');
-    joinBtn.addEventListener('click', ()=>{
-      const v = (document.getElementById('emailInput').value || "").trim();
-      // Change this to your real email later:
-      const to = "soulsandrecords@gmail.com";
-      const subject = encodeURIComponent("Soul Sand Records — Email list");
+    // Email button
+    document.getElementById('emailBtn').addEventListener('click', ()=>{
+      const from = (document.getElementById('fromEmail').value || "").trim();
+      const subject = encodeURIComponent("Soul Sand Records — inquiry");
       const body = encodeURIComponent(
-        "Please add me to the Soul Sand Records list.\n\nMy email: " + (v || "[enter email]") + "\n"
+        "Hello Soul Sand Records,\n\n" +
+        "I'd like to reach out about:\n\n" +
+        "- \n\n" +
+        "From: " + (from || "[your email]") + "\n"
       );
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${LABEL_EMAIL}?subject=${subject}&body=${body}`;
     });
 
-    // Copy contact (change this to your preferred address later)
-    const copyBtn = document.getElementById('copyBtn');
-    copyBtn.addEventListener('click', async ()=>{
-      const contact = "soulsandrecords@gmail.com";
+    // Copy email
+    document.getElementById('copyBtn').addEventListener('click', async ()=>{
       try{
-        await navigator.clipboard.writeText(contact);
-        copyBtn.textContent = "Copied ✓";
-        setTimeout(()=>copyBtn.textContent="Copy contact", 1200);
+        await navigator.clipboard.writeText(LABEL_EMAIL);
+        const btn = document.getElementById('copyBtn');
+        const old = btn.textContent;
+        btn.textContent = "Copied ✓";
+        setTimeout(()=>btn.textContent = old, 1200);
       }catch(e){
-        alert("Copy failed. Email: " + contact);
+        alert("Copy failed. Email: " + LABEL_EMAIL);
       }
     });
   </script>
