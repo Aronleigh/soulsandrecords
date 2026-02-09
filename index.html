@@ -6,23 +6,20 @@
   <meta name="description" content="Soul Sand Records is an independent label for music that feels like a place." />
   <title>Soul Sand Records</title>
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Soul Sand Records" />
   <meta property="og:description" content="Ultra-premium independent label — cinematic night mode, Swiss-modern design." />
   <meta property="og:type" content="website" />
-
   <meta name="theme-color" content="#050814" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='.95'/%3E%3Cstop offset='1' stop-color='%232e64ff' stop-opacity='.95'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect rx='22' width='96' height='96' fill='url(%23g)'/%3E%3Cpath d='M22 58c12 10 40 10 52 0' fill='none' stroke='%23ffffff' stroke-opacity='.92' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
 
-  <!-- Type -->
+  <!-- Premium typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,350;9..144,450;9..144,600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* YOUR original palette */
       --bg0:#050814;
       --bg1:#070b1c;
       --bg2:#0a1026;
@@ -51,8 +48,10 @@
 
       --max: 1160px;
 
+      /* Font system (expensive) */
+      --display: "Fraunces", ui-serif, Georgia, serif;
+      --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
     *{ box-sizing:border-box; }
@@ -61,6 +60,7 @@
       margin:0;
       color:var(--ink);
       font-family:var(--sans);
+      font-weight: 300;
       background:
         radial-gradient(900px 600px at 12% 8%, rgba(46,100,255,.22), transparent 62%),
         radial-gradient(900px 600px at 92% 16%, rgba(51,208,255,.16), transparent 62%),
@@ -69,9 +69,9 @@
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
     }
 
-    /* Keep your premium layers, but calmer */
     .grain{
       position:fixed; inset:-20%;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
@@ -81,7 +81,6 @@
       z-index:-3;
       transform: translateZ(0);
     }
-
     .aurora{
       position:fixed;
       inset:-30vh -30vw auto -30vw;
@@ -96,7 +95,6 @@
       z-index:-4;
       transform: translateZ(0);
     }
-
     .vignette{
       position:fixed; inset:0;
       background: radial-gradient(circle at 50% 40%, transparent 44%, rgba(0,0,0,.42) 100%);
@@ -116,7 +114,7 @@
       z-index:1;
     }
 
-    /* ===== NAV (fast, premium, minimal) ===== */
+    /* NAV */
     header{
       position:sticky; top:0; z-index:50;
       background: linear-gradient(180deg, rgba(5,8,20,.78), rgba(5,8,20,.46));
@@ -164,8 +162,9 @@
 
     .brandText{ display:flex; flex-direction:column; gap:2px; line-height:1.1; min-width:0; }
     .brandName{
-      font-weight:600;
-      font-size:12px;
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size:11px;
       letter-spacing:.22em;
       text-transform:uppercase;
       color: rgba(242,247,255,.92);
@@ -175,8 +174,8 @@
     }
     .brandSub{
       font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.14em;
+      font-size:10.5px;
+      letter-spacing:.16em;
       text-transform:uppercase;
       color: rgba(127,147,187,.92);
       white-space:nowrap;
@@ -188,9 +187,10 @@
     .navLink{
       text-decoration:none;
       color: rgba(242,247,255,.90);
-      font-weight:600;
-      font-size: 12px;
-      letter-spacing:.14em;
+      font-family: var(--mono);
+      font-weight:500;
+      font-size: 11px;
+      letter-spacing:.16em;
       text-transform: uppercase;
       padding: 10px 12px;
       border-radius: 999px;
@@ -213,8 +213,10 @@
       background: linear-gradient(135deg, rgba(51,208,255,.14), rgba(46,100,255,.10));
       box-shadow: var(--shadowMD);
       color: rgba(242,247,255,.94);
-      font-size: 12px;
-      letter-spacing:.12em;
+      font-family: var(--mono);
+      font-weight:500;
+      font-size: 11px;
+      letter-spacing:.16em;
       text-transform: uppercase;
       transition: transform .18s ease, border-color .18s ease;
       white-space:nowrap;
@@ -230,7 +232,7 @@
       .navCta{ display:none; }
     }
 
-    /* ===== HERO (one premium surface + one side card) ===== */
+    /* HERO */
     .hero{
       padding: clamp(56px, 8vw, 86px) 0 34px;
     }
@@ -245,10 +247,10 @@
     .kicker{
       display:flex; align-items:center; gap:12px;
       font-family:var(--mono);
-      font-size:12px;
+      font-size:11px;
       letter-spacing:.16em;
       text-transform:uppercase;
-      color: rgba(242,247,255,.76);
+      color: rgba(242,247,255,.72);
       margin-bottom: 16px;
     }
     .kLine{
@@ -258,10 +260,11 @@
 
     h1{
       margin:0;
-      font-size: clamp(54px, 6vw, 92px);
-      font-weight:600;
-      letter-spacing:-0.04em;
-      line-height:1.02;
+      font-family: var(--display);
+      font-weight: 450;
+      font-size: clamp(56px, 6vw, 96px);
+      letter-spacing:-0.02em;
+      line-height:1.00;
     }
     .headlineAccent{
       background: linear-gradient(135deg, rgba(242,247,255,.98), rgba(51,208,255,.78));
@@ -274,12 +277,13 @@
       margin: 18px 0 0;
       max-width: 66ch;
       color: rgba(169,183,214,.96);
-      font-size: 16.5px;
-      line-height:1.78;
+      font-size: 17px;
+      line-height:1.85;
+      font-weight: 300;
     }
 
     .ctaRow{
-      margin-top: 22px;
+      margin-top: 24px;
       display:flex;
       flex-wrap:wrap;
       gap: 12px;
@@ -296,8 +300,10 @@
       box-shadow: var(--shadowMD);
       text-decoration:none;
       color: rgba(242,247,255,.94);
-      font-size:12px;
-      letter-spacing:.14em;
+      font-family:var(--mono);
+      font-weight:500;
+      font-size:11px;
+      letter-spacing:.16em;
       text-transform:uppercase;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
       white-space:nowrap;
@@ -366,12 +372,14 @@
       letter-spacing:.16em;
       text-transform:uppercase;
       color: rgba(127,147,187,.92);
+      font-weight:500;
     }
     .metaText{
       margin: 10px 0 0;
       color: rgba(169,183,214,.96);
-      line-height: 1.75;
+      line-height: 1.85;
       font-size: 14.5px;
+      font-weight:300;
     }
 
     .pillRow{
@@ -394,6 +402,7 @@
       text-decoration:none;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
       white-space:nowrap;
+      font-weight:500;
     }
     .pill:hover{
       transform: translateY(-1px);
@@ -401,7 +410,7 @@
       background: rgba(255,255,255,.07);
     }
 
-    /* ===== Sections (tight, fewer) ===== */
+    /* Sections */
     section{
       padding: 34px 0;
       border-top: 1px solid rgba(255,255,255,.08);
@@ -415,11 +424,12 @@
     }
     .sectionTitle{
       margin:0;
-      font-size:12px;
-      font-weight:600;
+      font-family:var(--mono);
+      font-size:11px;
+      font-weight:500;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color: rgba(242,247,255,.90);
+      color: rgba(242,247,255,.88);
     }
     .sectionNote{
       margin:0;
@@ -427,6 +437,7 @@
       color: rgba(127,147,187,.92);
       font-size: 13.5px;
       line-height: 1.6;
+      font-weight:300;
     }
 
     /* Roster cards */
@@ -481,11 +492,13 @@
       color: rgba(51,208,255,.95);
       width: fit-content;
       white-space:nowrap;
+      font-weight:500;
     }
     .cardTitle{
       margin:0;
+      font-family: var(--sans);
       font-size: 20px;
-      font-weight:600;
+      font-weight:500;
       letter-spacing:-0.01em;
       line-height:1.2;
     }
@@ -494,6 +507,7 @@
       color: rgba(169,183,214,.96);
       font-size: 14px;
       line-height: 1.7;
+      font-weight:300;
     }
     .cardFoot{
       margin-top:auto;
@@ -505,6 +519,7 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       color: rgba(242,247,255,.92);
+      font-weight:500;
     }
     .openIcon{
       width: 22px; height: 22px;
@@ -522,7 +537,7 @@
       .sectionHead{ flex-direction:column; align-items:flex-start; }
     }
 
-    /* Philosophy band (directly under roster) */
+    /* Philosophy band */
     .band{
       margin-top: 14px;
       border-radius: var(--rXL);
@@ -555,8 +570,9 @@
     }
     .bandInner h3{
       margin:0 0 8px;
-      font-size:12px;
-      font-weight:600;
+      font-family:var(--mono);
+      font-size:11px;
+      font-weight:500;
       letter-spacing:.18em;
       text-transform:uppercase;
       color: rgba(242,247,255,.86);
@@ -564,29 +580,32 @@
     .bandInner p{
       margin:0;
       color: rgba(169,183,214,.96);
-      line-height:1.8;
+      line-height:1.85;
       font-size: 14px;
+      font-weight:300;
     }
     .quote{
       margin:0;
       color: rgba(242,247,255,.92);
       font-size: 15.5px;
       line-height: 1.85;
-      font-weight:600;
+      font-weight:500;
       letter-spacing:-0.01em;
+      font-family: var(--display);
     }
     .quote span{
       color: rgba(127,147,187,.92);
-      font-weight:500;
+      font-weight:300;
       font-size: 13px;
       display:block;
       margin-top: 10px;
+      font-family: var(--sans);
     }
     @media (max-width: 980px){
       .bandInner{ grid-template-columns: 1fr; }
     }
 
-    /* Contact bar (no input fields for luxury) */
+    /* Contact bar */
     .contact{
       display:flex;
       gap:14px;
@@ -614,6 +633,7 @@
       line-height:1.75;
       font-size: 14px;
       max-width: 74ch;
+      font-weight:300;
     }
     .contactRight{
       display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
@@ -625,6 +645,7 @@
       color: rgba(127,147,187,.92);
       font-size: 13px;
       border-top: 1px solid rgba(255,255,255,.08);
+      font-weight:300;
     }
     .foot{
       display:flex; align-items:center; justify-content:space-between;
@@ -636,6 +657,7 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       color: rgba(127,147,187,.92);
+      font-weight:500;
     }
 
     :focus-visible{
@@ -677,7 +699,6 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
     <section class="hero" aria-label="Hero">
       <div class="container">
         <div class="heroGrid">
@@ -726,7 +747,6 @@
       </div>
     </section>
 
-    <!-- ROSTER -->
     <section id="roster" aria-label="Roster">
       <div class="container">
         <div class="sectionHead">
@@ -781,7 +801,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" aria-label="Contact">
       <div class="container">
         <div class="sectionHead">
@@ -817,7 +836,7 @@
   </main>
 
   <script>
-    // Smooth scroll with sticky header offset (feels “pro”)
+    // Smooth scroll with sticky header offset
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function scrollToId(id){
       const el = document.getElementById(id);
@@ -826,7 +845,6 @@
       const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
       window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
     }
-
     document.addEventListener("click", (ev) => {
       const a = ev.target.closest('a[href^="#"]');
       if (!a) return;
@@ -838,10 +856,8 @@
       scrollToId(id);
     });
 
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Copy email
     const EMAIL = "soulsandrecords@gmail.com";
     document.getElementById('copyBtn').addEventListener('click', async ()=>{
       try{
