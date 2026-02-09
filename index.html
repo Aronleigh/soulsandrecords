@@ -3,1001 +3,849 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Soul Sand Records — an ultra-premium independent label for immersive music across every genre." />
   <title>Soul Sand Records</title>
-  <meta name="description" content="Soul Sand Records — Swiss modern clarity with a cinematic, luxury night finish. Artist-forward label landing page." />
-  <meta name="theme-color" content="#0B1630" />
 
-  <!-- Type (clean, premium, readable) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Soul Sand Records" />
+  <meta property="og:description" content="Ultra-premium independent label — cinematic night mode, Swiss-modern design." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='.95'/%3E%3Cstop offset='1' stop-color='%232e64ff' stop-opacity='.95'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect rx='22' width='96' height='96' fill='url(%23g)'/%3E%3Cpath d='M22 58c12 10 40 10 52 0' fill='none' stroke='%23ffffff' stroke-opacity='.92' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
 
   <style>
-    /* =========================================================
-       SOUL SAND RECORDS — PREMIUM INDEX (BRIGHT NIGHT / LUX)
-       Goals:
-       - NOT too dark: navy/lux night, lifted background
-       - Premium finishes: hairlines, sheen, top-light, micro-texture
-       - Performance: no backdrop-filter blur, no giant animated blur layers
-       - Structure: direct links to /artists/*.html
-       ========================================================= */
-
     :root{
-      /* Bright night base (not black) */
-      --bg0:#0B1630;  /* lifted navy */
-      --bg1:#0C1B3A;
-      --bg2:#0E2146;
+      --bg0:#050814;
+      --bg1:#070b1c;
+      --bg2:#0a1026;
 
-      --ink:#F4F8FF;
-      --muted:#C9D7F2;
-      --faint:#95ACD6;
+      --ink:#f2f7ff;
+      --muted:#a9b7d6;
+      --muted2:#7f93bb;
 
-      /* Light, premium blues */
-      --blue1:#84B9FF;
-      --blue2:#BFE7FF;
-      --blue3:#E6FAFF;
+      --line: rgba(255,255,255,.11);
+      --line2: rgba(255,255,255,.07);
 
-      --line: rgba(244,248,255,.14);
-      --line2: rgba(244,248,255,.10);
-      --line3: rgba(244,248,255,.07);
+      --blue:#2e64ff;
+      --cyan:#33d0ff;
+      --violet:#7b5cff;
 
-      /* Glass surfaces (brighter than previous) */
-      --glassA: rgba(255,255,255,.08);
-      --glassB: rgba(255,255,255,.05);
-      --glassC: rgba(0,0,0,.10);
+      --glass: rgba(255,255,255,.07);
+      --glass2: rgba(255,255,255,.05);
 
-      --shadowXL: 0 26px 70px rgba(0,0,0,.35);
-      --shadowLG: 0 16px 42px rgba(0,0,0,.28);
-      --shadowMD: 0 10px 26px rgba(0,0,0,.22);
+      --shadow: 0 40px 140px rgba(0,0,0,.55);
+      --shadow2: 0 22px 80px rgba(0,0,0,.45);
 
-      --rXL: 28px;
-      --rLG: 22px;
-      --rMD: 16px;
-      --rSM: 12px;
-
-      --max: 1160px;
-
-      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --r1: 30px;
+      --r2: 18px;
+      --max: 1180px;
     }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
-    }
-
-    html{ scroll-behavior:smooth; }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family:var(--sans);
       color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(900px 600px at 12% 8%, rgba(46,100,255,.22), transparent 62%),
+        radial-gradient(900px 600px at 92% 16%, rgba(51,208,255,.16), transparent 62%),
+        radial-gradient(900px 600px at 55% 120%, rgba(123,92,255,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 45%, var(--bg2));
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      /* Lifted “cinematic night” background (not too dark) */
-      background:
-        radial-gradient(1100px 760px at 12% -12%, rgba(132,185,255,.32) 0%, rgba(132,185,255,0) 62%),
-        radial-gradient(980px 720px at 92% 10%, rgba(191,231,255,.22) 0%, rgba(191,231,255,0) 60%),
-        radial-gradient(900px 720px at 50% 118%, rgba(230,250,255,.10) 0%, rgba(230,250,255,0) 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
     }
 
-    /* Premium micro-texture (static + lightweight) */
-    body::before{
-      content:"";
+    /* Cinematic layers (subtle, premium) */
+    .grid{
       position:fixed; inset:0;
+      background:
+        linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 120px 120px,
+        linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 120px 120px;
+      mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,.85), transparent 72%);
+      opacity:.14;
       pointer-events:none;
-      opacity:.16;
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,.10) 1px, transparent 0);
-      background-size: 30px 30px;
+      z-index:-5;
+      transform: translateZ(0);
+    }
+
+    .aurora{
+      position:fixed;
+      inset:-30vh -30vw auto -30vw;
+      height:75vh;
+      background:
+        radial-gradient(circle at 18% 55%, rgba(51,208,255,.18), transparent 62%),
+        radial-gradient(circle at 72% 35%, rgba(46,100,255,.16), transparent 62%),
+        radial-gradient(circle at 50% 80%, rgba(123,92,255,.10), transparent 62%);
+      filter: blur(26px);
+      opacity:.9;
+      animation: drift 14s ease-in-out infinite alternate;
+      pointer-events:none;
+      z-index:-4;
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-1.2%, -1.2%, 0) scale(1); }
+      to{ transform: translate3d(1.2%, 1.2%, 0) scale(1.05); }
+    }
+
+    .grain{
+      position:fixed; inset:-20%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+      opacity:.10;
       mix-blend-mode: overlay;
-    }
-
-    .container{
-      width:min(var(--max), calc(100% - 48px));
-      margin:0 auto;
-      position:relative;
-      z-index:1;
-    }
-
-    /* =========================================================
-       NAV (fast: no backdrop-filter blur)
-       ========================================================= */
-    header{
-      position:sticky; top:0; z-index:50;
-      background: rgba(11,22,48,.78);
-      border-bottom: 1px solid var(--line3);
-    }
-    header::after{
-      /* top “light line” that reads premium */
-      content:"";
-      position:absolute; left:0; right:0; bottom:-1px; height:1px;
-      background: linear-gradient(90deg, transparent, rgba(191,231,255,.34), transparent);
-      opacity:.7;
       pointer-events:none;
+      z-index:-3;
+      transform: translateZ(0);
     }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      padding: 14px 0;
+    .vignette{
+      position:fixed; inset:0;
+      background: radial-gradient(circle at 50% 40%, transparent 38%, rgba(0,0,0,.46) 100%);
+      pointer-events:none;
+      z-index:-2;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .aurora{ animation:none; }
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 18px 18px 96px;
+    }
+
+    /* Sticky nav (quiet luxury) */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      margin: 10px 0 18px;
+      padding: 10px 6px;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(5,8,20,.72), rgba(5,8,20,.42));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbarInner{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 0 12px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
     }
 
     .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      color:var(--ink);
-      min-width: 300px;
+      display:flex; align-items:center; gap:14px; min-width:0;
+      text-decoration:none; color:inherit;
     }
     .mark{
-      width:10px; height:10px; border-radius:999px;
-      background: radial-gradient(circle at 35% 35%, var(--blue3), var(--blue1));
-      box-shadow: 0 0 0 7px rgba(132,185,255,.16);
+      width:46px; height:46px; border-radius:16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.92), rgba(255,255,255,.12)),
+        linear-gradient(135deg, rgba(46,100,255,.95), rgba(51,208,255,.70));
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 28px 90px rgba(46,100,255,.22);
+      position:relative;
       flex:0 0 auto;
     }
-    .brandText{ display:flex; flex-direction:column; gap:2px; line-height:1.08; }
-    .brandName{
-      font-weight:600;
-      font-size:13px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      opacity:.96;
-      white-space:nowrap;
-    }
-    .brandSub{
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(201,215,242,.80);
-      white-space:nowrap;
-    }
-
-    nav{
-      display:flex;
-      gap: 8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-    }
-    .navLink{
-      text-decoration:none;
-      color: rgba(201,215,242,.92);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-    }
-    .navLink:hover{
-      color: var(--ink);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.10);
-      transform: translateY(-1px);
-    }
-
-    .navCta{
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius:999px;
-      border: 1px solid rgba(191,231,255,.28);
-      background: linear-gradient(180deg, rgba(132,185,255,.16), rgba(230,250,255,.06));
-      box-shadow: var(--shadowMD);
-      color: var(--ink);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      transition: transform .18s ease, border-color .18s ease;
-      white-space:nowrap;
-    }
-    .navCta:hover{
-      transform: translateY(-1px);
-      border-color: rgba(191,231,255,.42);
-    }
-    .navCtaDot{
-      width:8px; height:8px; border-radius:999px;
-      background: radial-gradient(circle at 35% 35%, var(--blue3), var(--blue2));
-      box-shadow: 0 0 0 6px rgba(191,231,255,.12);
-    }
-
-    @media (max-width: 980px){
-      .brand{ min-width:auto; }
-      .navCta{ display:none; }
-    }
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-    .hero{
-      padding: clamp(58px, 8vw, 98px) 0 30px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: clamp(18px, 3vw, 44px);
-      align-items:end;
-    }
-    @media (max-width: 980px){ .heroGrid{ grid-template-columns: 1fr; } }
-
-    .kicker{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: rgba(191,231,255,.96);
-      margin-bottom: 16px;
-    }
-    .kLine{
-      height:1px; width:54px;
-      background: linear-gradient(90deg, rgba(191,231,255,.84), transparent);
-    }
-
-    h1{
-      margin:0;
-      font-size: clamp(48px, 6.2vw, 82px);
-      font-weight:600;
-      letter-spacing:-0.02em;
-      line-height:1.02;
-    }
-    .lead{
-      margin: 18px 0 0;
-      max-width: 66ch;
-      color: rgba(201,215,242,.94);
-      font-size: clamp(15px, 1.55vw, 17px);
-      line-height:1.72;
-    }
-
-    .ctaRow{
-      margin-top: 22px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      align-items:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      box-shadow: var(--shadowMD);
-      text-decoration:none;
-      color: var(--ink);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(191,231,255,.36);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-    }
-
-    .btnPrimary{
-      border-color: rgba(191,231,255,.44);
-      background: linear-gradient(135deg, rgba(132,185,255,.30), rgba(230,250,255,.12));
-      box-shadow: var(--shadowLG);
-    }
-
-    .ico{
-      width: 22px; height: 22px;
-      border-radius:999px;
-      display:grid; place-items:center;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      font-family:var(--mono);
-      font-size:12px;
-      color: rgba(244,248,255,.94);
-      flex:0 0 auto;
-    }
-
-    /* Premium hero “glass” card */
-    .heroCard{
-      position:relative;
-      border-radius: var(--rXL);
-      border: 1px solid rgba(255,255,255,.16);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
-      box-shadow: var(--shadowXL);
-      overflow:hidden;
-    }
-
-    /* Edge sheen + top-light (premium finish) */
-    .heroCard::before{
+    .mark::after{
       content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(720px 320px at 18% 0%, rgba(132,185,255,.34), transparent 60%),
-        radial-gradient(560px 300px at 88% 12%, rgba(191,231,255,.22), transparent 64%),
-        linear-gradient(180deg, rgba(255,255,255,.10), transparent 42%);
-      opacity:.95;
-      pointer-events:none;
-    }
-    .heroCard::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.10), transparent 22%, transparent 78%, rgba(255,255,255,.06));
-      opacity:.28;
-      pointer-events:none;
-    }
-
-    .heroCardInner{ position:relative; padding: 20px; }
-
-    .specTop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 14px; margin-bottom: 14px;
-    }
-    .specTitle{
-      margin:0;
-      font-weight:600;
-      font-size: 13px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      opacity:.94;
-    }
-    .stamp{
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(201,215,242,.80);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.10);
-      padding: 8px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-
-    .specGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .spec{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.10);
-      padding: 12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .spec::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), transparent 55%);
+      position:absolute; inset:-10px;
+      border-radius: 22px;
+      background: radial-gradient(circle at 40% 40%, rgba(51,208,255,.35), transparent 70%);
+      filter: blur(10px);
       opacity:.35;
       pointer-events:none;
     }
-    .spec > *{ position:relative; }
 
-    .specLabel{
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(201,215,242,.82);
+    .brandTitle{
+      min-width:0;
+      display:flex; flex-direction:column;
+      line-height:1.15;
     }
-    .specValue{
-      margin-top: 8px;
-      font-size: 16px;
-      font-weight:500;
-      color: rgba(244,248,255,.96);
-      letter-spacing:.01em;
+    .brandTitle strong{
+      font-size: 12px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: rgba(242,247,255,.92);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      font-weight: 950;
+    }
+    .brandTitle span{
+      font-size: 12.5px;
+      color: var(--muted2);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
-    .quickLinks{
-      margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
     }
-    .chip{
+    .nav a{
+      text-decoration:none;
+      color: rgba(242,247,255,.92);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .02em;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 16px 60px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 22px 80px rgba(0,0,0,.32);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      border-radius: calc(var(--r1) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-120px -120px auto -120px;
+      height: 320px;
+      background:
+        radial-gradient(circle at 18% 55%, rgba(51,208,255,.22), transparent 64%),
+        radial-gradient(circle at 72% 35%, rgba(46,100,255,.18), transparent 62%);
+      filter: blur(18px);
+      opacity:.9;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, rgba(255,255,255,.06), transparent 35%, transparent 60%, rgba(255,255,255,.05));
+      opacity:.55;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .heroInner{
+      padding: 56px 44px 40px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 26px;
+      align-items:start;
+    }
+
+    .overline{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing: .30em;
+      text-transform: uppercase;
+      color: rgba(242,247,255,.78);
+      font-size: 12px;
+      font-weight: 950;
+    }
+    .overline .dot{
+      width:7px; height:7px; border-radius:999px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 0 4px rgba(51,208,255,.12);
+    }
+
+    .labelName{
+      margin: 14px 0 10px;
+      font-size: clamp(56px, 6.4vw, 106px);
+      letter-spacing: -0.065em;
+      line-height: .93;
+    }
+    .labelName .accent{
+      background: linear-gradient(135deg, rgba(242,247,255,.98), rgba(51,208,255,.85));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead{
+      margin:0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.78;
+      max-width: 66ch;
+    }
+
+    .ctaRow{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 20px;
+      align-items:center;
+    }
+    .btn{
+      border:0;
+      cursor:pointer;
       text-decoration:none;
       display:inline-flex;
       align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: rgba(244,248,255,.92);
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      justify-content:center;
+      gap:10px;
+      font-weight: 950;
+      padding: 12px 14px;
+      border-radius: 999px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      user-select:none;
+      font-size: 14px;
       white-space:nowrap;
     }
-    .chip:hover{
+    .btnPrimary{
+      color: #06142a;
+      background: linear-gradient(135deg, rgba(51,208,255,1), rgba(46,100,255,1));
+      box-shadow: 0 28px 110px rgba(46,100,255,.25);
+    }
+    .btnPrimary:hover{ transform: translateY(-1px); box-shadow: 0 36px 140px rgba(46,100,255,.32); }
+    .btnGhost{
+      color: rgba(242,247,255,.94);
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 70px rgba(0,0,0,.25);
+    }
+    .btnGhost:hover{
       transform: translateY(-1px);
-      border-color: rgba(191,231,255,.34);
-      background: rgba(255,255,255,.08);
+      border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 24px 90px rgba(0,0,0,.32);
     }
 
-    /* =========================================================
-       SECTIONS
-       ========================================================= */
-    section{
-      padding: 48px 0;
-      border-top: 1px solid var(--line3);
+    .side{
+      display:grid;
+      gap:12px;
+      margin-top: 2px;
     }
-
-    .sectionHead{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 16px;
-      margin-bottom: 18px;
+    .tile{
+      border-radius: 22px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      padding: 16px 16px;
+      position:relative;
+      overflow:hidden;
     }
-    .sectionTitle{
+    .tile::before{
+      content:"";
+      position:absolute; inset:-50px -50px auto -50px;
+      height:160px;
+      background:
+        radial-gradient(circle at 22% 55%, rgba(51,208,255,.16), transparent 62%),
+        radial-gradient(circle at 75% 35%, rgba(46,100,255,.12), transparent 60%);
+      filter: blur(16px);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .tileTop{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 6px;
+    }
+    .tileTop strong{
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(242,247,255,.86);
+      font-weight: 950;
+    }
+    .badge{
+      position:relative;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 6px 10px;
+      border-radius:999px;
+      background: rgba(51,208,255,.10);
+      border: 1px solid rgba(51,208,255,.20);
+      color: rgba(51,208,255,.95);
+      font-weight: 950;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .tile p{
+      position:relative;
       margin:0;
-      font-size:13px;
-      font-weight:600;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color: rgba(244,248,255,.94);
-    }
-    .sectionNote{
-      margin:0;
-      max-width: 68ch;
-      color: rgba(201,215,242,.84);
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.6;
     }
 
-    /* =========================================================
-       ARTISTS — Swiss layout + premium cards (brighter)
-       ========================================================= */
-    .cards{
+    /* Sections */
+    .section{ margin-top: 26px; }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px;
+      margin: 22px 6px 12px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: rgba(242,247,255,.86);
+      font-weight: 950;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted2);
+      font-size: 13.5px;
+    }
+
+    /* Roster */
+    .roster{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
-      margin-top: 16px;
     }
-
-    /* Swiss asymmetric composition (feels designed) */
-    .wide{ grid-column: span 6; }
-    .narrow{ grid-column: span 3; }
-
-    @media (max-width: 1060px){
-      .wide, .narrow{ grid-column: span 12; }
-    }
-
-    .card{
+    .artist{
+      grid-column: span 4;
+      border-radius: var(--r1);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+      box-shadow: var(--shadow2);
+      padding: 18px;
       position:relative;
-      border-radius: var(--rXL);
-      border: 1px solid rgba(255,255,255,.16);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      box-shadow: var(--shadowLG);
       overflow:hidden;
-      text-decoration:none;
-      color: var(--ink);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 196px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 220px;
+      isolation:isolate;
     }
-
-    /* Card top-light + edge sheen */
-    .card::before{
+    .artist:hover{
+      transform: translateY(-2px);
+      border-color: rgba(51,208,255,.20);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      box-shadow: 0 28px 110px rgba(0,0,0,.45);
+    }
+    .artist::before{
       content:"";
-      position:absolute; inset:-1px;
+      position:absolute; inset:-60px -60px auto -60px;
+      height:170px;
       background:
-        radial-gradient(720px 300px at 16% 20%, rgba(132,185,255,.30), transparent 62%),
-        radial-gradient(520px 300px at 88% 36%, rgba(230,250,255,.16), transparent 64%),
-        linear-gradient(180deg, rgba(255,255,255,.12), transparent 52%);
-      opacity:.92;
+        radial-gradient(circle at 22% 55%, rgba(51,208,255,.18), transparent 62%),
+        radial-gradient(circle at 75% 35%, rgba(46,100,255,.14), transparent 60%);
+      filter: blur(18px);
+      opacity:.75;
       pointer-events:none;
+      z-index:-1;
     }
-    .card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(255,255,255,.10), transparent 24%, transparent 76%, rgba(255,255,255,.06));
-      opacity:.22;
-      pointer-events:none;
+    .artistTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
     }
-
-    .card:hover{
-      transform: translateY(-4px);
-      border-color: rgba(191,231,255,.40);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.07));
+    .artist h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
     }
-
-    .cardInner{
-      position:relative;
-      padding: 18px 18px 16px;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-    }
-
-    .cardTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .badge{
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      padding: 8px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.10);
-      color: rgba(201,215,242,.88);
+    .tag{
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(51,208,255,.95);
+      background: rgba(51,208,255,.10);
+      border: 1px solid rgba(51,208,255,.20);
+      padding: 6px 10px;
+      border-radius: 999px;
       white-space:nowrap;
     }
-    .badgeAccent{
-      border-color: rgba(191,231,255,.28);
-      background: rgba(132,185,255,.12);
-      color: rgba(230,250,255,.96);
-    }
-
-    .cardTitle{
-      margin:0;
-      font-size: 22px;
-      font-weight:600;
-      letter-spacing:-0.01em;
-      line-height:1.16;
-    }
-    .cardDesc{
-      margin:0;
-      color: rgba(201,215,242,.92);
+    .artist p{
+      margin: 10px 0 14px;
+      color: var(--muted);
       font-size: 14px;
-      line-height: 1.68;
-      max-width: 62ch;
+      line-height: 1.7;
     }
-
-    .cardFoot{
-      margin-top:auto;
-      padding-top: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      border-top: 1px solid rgba(255,255,255,.10);
+    .artistActions{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
     }
-    .open{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-family:var(--mono);
-      font-size: 12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(244,248,255,.92);
-      white-space:nowrap;
-    }
-    .openIcon{
-      width: 22px; height: 22px;
+    .miniBtn{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 12px;
       border-radius:999px;
-      border: 1px solid rgba(255,255,255,.14);
+      font-weight: 950;
+      font-size: 13px;
+      letter-spacing: .01em;
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
-      display:grid; place-items:center;
-      font-family:var(--mono);
-      font-size: 12px;
-      color: rgba(244,248,255,.92);
-    }
-    .path{
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(201,215,242,.72);
+      color: rgba(242,247,255,.92);
+      box-shadow: 0 16px 70px rgba(0,0,0,.24);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
       white-space:nowrap;
     }
+    .miniBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 22px 90px rgba(0,0,0,.30);
+    }
+    .miniBtn.primary{
+      color:#06142a;
+      border: 0;
+      background: linear-gradient(135deg, rgba(51,208,255,1), rgba(46,100,255,1));
+      box-shadow: 0 26px 110px rgba(46,100,255,.22);
+    }
+    .miniBtn.primary:hover{ box-shadow: 0 34px 140px rgba(46,100,255,.30); }
 
-    /* =========================================================
-       ABOUT / CONTACT PANELS
-       ========================================================= */
-    .twoCol{
+    /* Philosophy band */
+    .band{
+      margin-top: 14px;
+      border-radius: calc(var(--r1) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      isolation:isolate;
+    }
+    .band::before{
+      content:"";
+      position:absolute; inset:-80px -80px auto -80px;
+      height:260px;
+      background:
+        radial-gradient(circle at 26% 55%, rgba(51,208,255,.16), transparent 64%),
+        radial-gradient(circle at 74% 35%, rgba(46,100,255,.12), transparent 62%);
+      filter: blur(20px);
+      opacity:.85;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .bandInner{
+      padding: 26px 24px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 16px;
+      gap: 18px;
+      align-items:start;
     }
-    @media (max-width: 920px){
-      .twoCol{ grid-template-columns: 1fr; }
+    .bandInner h4{
+      margin:0 0 8px;
+      font-size: 15px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(242,247,255,.86);
+      font-weight: 950;
     }
-
-    .panel{
-      position:relative;
-      border-radius: var(--rXL);
-      border: 1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      box-shadow: var(--shadowMD);
-      padding: 18px;
-      overflow:hidden;
-    }
-    .panel::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(720px 260px at 14% 0%, rgba(132,185,255,.24), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.10), transparent 55%);
-      opacity:.90;
-      pointer-events:none;
-    }
-    .panel > *{ position:relative; }
-
-    .panel h3{
-      margin:0 0 10px;
-      font-size:16px;
-      font-weight:600;
-      letter-spacing:.01em;
-    }
-    .panel p{
+    .bandInner p{
       margin:0;
-      color: rgba(201,215,242,.90);
-      font-size:14px;
-      line-height:1.72;
+      color: var(--muted);
+      line-height:1.8;
+      font-size: 14px;
     }
-
-    .row{
-      margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      align-items:center;
+    .quote{
+      margin:0;
+      color: rgba(242,247,255,.92);
+      font-size: 16px;
+      line-height: 1.85;
+      font-weight: 850;
+      letter-spacing: -.01em;
     }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer{
-      border-top: 1px solid var(--line3);
-      padding: 22px 0 40px;
-      color: rgba(201,215,242,.76);
+    .quote span{
+      color: var(--muted2);
+      font-weight: 750;
       font-size: 13px;
+      display:block;
+      margin-top: 8px;
+      letter-spacing:.02em;
     }
-    .foot{
+
+    /* Contact */
+    .contact{
       display:flex;
+      gap:14px;
       align-items:center;
       justify-content:space-between;
-      gap: 12px;
       flex-wrap:wrap;
+      padding: 20px 18px;
+      border-radius: calc(var(--r1) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
     }
-    .mono{
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
+    .contact strong{
+      display:block;
+      letter-spacing:.30em;
       text-transform:uppercase;
-      color: rgba(201,215,242,.72);
+      font-size: 12px;
+      color: rgba(242,247,255,.86);
+      font-weight: 950;
+    }
+    .contact p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height:1.75;
+      font-size: 14px;
+      max-width: 72ch;
+    }
+    .contact .right{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+      align-items:center;
+    }
+    .input{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(242,247,255,.92);
+      border-radius: 999px;
+      padding: 12px 12px;
+      font-size: 14px;
+      min-width: 240px;
+      outline:none;
+    }
+    .input::placeholder{ color: rgba(169,183,214,.65); }
+    .input:focus{
+      border-color: rgba(51,208,255,.28);
+      box-shadow: 0 0 0 4px rgba(51,208,255,.12);
     }
 
-    /* =========================================================
-       REVEAL (subtle, transform-only)
-       ========================================================= */
-    .reveal{
-      opacity:0;
-      transform: translateY(10px);
-      transition: opacity .48s ease, transform .48s ease;
-      will-change: opacity, transform;
+    footer{
+      margin-top: 44px;
+      padding: 18px 6px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color: var(--muted2);
+      font-size: 13px;
     }
-    .reveal.in{ opacity:1; transform: translateY(0); }
+    .footLinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+    }
+    .footLinks a{
+      color: var(--muted2);
+      text-decoration:none;
+      font-weight: 900;
+    }
+    .footLinks a:hover{ color: rgba(242,247,255,.92); }
 
-    :focus-visible{
-      outline: 2px solid rgba(191,231,255,.72);
+    @media (max-width: 980px){
+      .heroInner{ grid-template-columns: 1fr; padding: 44px 22px 34px; }
+      .roster{ grid-template-columns: 1fr; }
+      .artist{ grid-column: 1 / -1; }
+      .bandInner{ grid-template-columns: 1fr; }
+      .input{ min-width: 0; flex: 1; }
+      .labelName{ font-size: clamp(44px, 10vw, 74px); }
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible{
+      outline: 3px solid rgba(51,208,255,.35);
       outline-offset: 3px;
-      border-radius: 12px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Soul Sand Records home">
-          <span class="mark" aria-hidden="true"></span>
-          <span class="brandText">
-            <span class="brandName">Soul Sand Records</span>
-            <span class="brandSub">Swiss Modern • Cinematic Night • Light Blue</span>
-          </span>
-        </a>
+  <div class="grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-        <nav aria-label="Primary navigation">
-          <a class="navLink" href="#artists">Artists</a>
-          <a class="navLink" href="#about">About</a>
-          <a class="navLink" href="#contact">Contact</a>
-        </nav>
+  <!-- Sticky topbar -->
+  <header class="topbar">
+    <div class="topbarInner">
+      <a class="brand" href="#top" data-scroll aria-label="Soul Sand Records home">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <strong>Soul Sand Records</strong>
+          <span>Ultra-premium label • curated worlds • any genre</span>
+        </div>
+      </a>
 
-        <a class="navCta" href="#contact" aria-label="Contact Soul Sand Records">
-          <span class="navCtaDot" aria-hidden="true"></span>
-          <span>Inquiries</span>
-        </a>
-      </div>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#artists" data-scroll>Artists</a>
+        <a href="#philosophy" data-scroll>Philosophy</a>
+        <a href="#contact" data-scroll>Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <div class="container">
-        <div class="heroGrid">
-          <div class="reveal">
-            <div class="kicker"><span class="kLine" aria-hidden="true"></span> Label</div>
-            <h1>Soul Sand Records</h1>
-            <p class="lead">
-              Swiss-modern clarity with a cinematic night finish — calm, luxury, and artist-forward.
-              Clean structure, premium typography, and subtle finishes that feel expensive without feeling busy.
-            </p>
+  <main id="top" class="wrap">
+    <!-- Hero -->
+    <section class="hero" aria-label="Soul Sand Records hero">
+      <div class="heroInner">
+        <div>
+          <div class="overline"><span class="dot" aria-hidden="true"></span> Soul Sand Records</div>
 
-            <div class="ctaRow">
-              <a class="btn btnPrimary" href="#artists">
-                <span class="ico" aria-hidden="true">↘</span>
-                Explore Artists
-              </a>
-              <a class="btn" href="#contact">
-                <span class="ico" aria-hidden="true">✦</span>
-                Contact
-              </a>
-              <a class="btn" href="artists/deep-night-static.html">
-                <span class="ico" aria-hidden="true">↗</span>
-                Featured Artist
-              </a>
+          <h1 class="labelName">
+            <span class="accent">Soul Sand Records</span>
+          </h1>
+
+          <p class="lead">
+            Swiss-modern and cinematic by design. Soul Sand Records is a home for music that feels like a place —
+            from sleep worlds and drones to pop, country, jazz, folk, hip-hop, and anything you choose next.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#artists" data-scroll>Explore the Soul Sand Records roster</a>
+            <a class="btn btnGhost" href="#contact" data-scroll>Contact Soul Sand Records</a>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Soul Sand Records highlights">
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Soul Sand Records</strong>
+              <span class="badge">Identity</span>
             </div>
+            <p>One consistent aesthetic — calm, clean, unmistakably premium.</p>
           </div>
 
-          <aside class="heroCard reveal" aria-label="Label overview">
-            <div class="heroCardInner">
-              <div class="specTop">
-                <h2 class="specTitle">Overview</h2>
-                <div class="stamp">Landing Site</div>
-              </div>
-
-              <div class="specGrid" role="list">
-                <div class="spec" role="listitem">
-                  <div class="specLabel">Aesthetic</div>
-                  <div class="specValue">Swiss / Cinematic</div>
-                </div>
-                <div class="spec" role="listitem">
-                  <div class="specLabel">Palette</div>
-                  <div class="specValue">Light Blue / Night</div>
-                </div>
-                <div class="spec" role="listitem">
-                  <div class="specLabel">Structure</div>
-                  <div class="specValue">Artist Pages</div>
-                </div>
-                <div class="spec" role="listitem">
-                  <div class="specLabel">Paths</div>
-                  <div class="specValue">/artists/*.html</div>
-                </div>
-              </div>
-
-              <div class="quickLinks" aria-label="Quick artist links">
-                <a class="chip" href="artists/deep-night-static.html">Deep Night Static</a>
-                <a class="chip" href="artists/still-room-signals.html">Still Room Signals</a>
-                <a class="chip" href="artists/night-room-drones.html">Night Room Drones</a>
-              </div>
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Soul Sand Records</strong>
+              <span class="badge">All genres</span>
             </div>
-          </aside>
+            <p>Utility and art live together under one coherent label home.</p>
+          </div>
+
+          <div class="tile">
+            <div class="tileTop">
+              <strong>Soul Sand Records</strong>
+              <span class="badge">Long-term</span>
+            </div>
+            <p>Catalog thinking — releases designed for return listens.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Artists -->
+    <section id="artists" class="section" aria-label="Soul Sand Records artists">
+      <div class="sectionHead">
+        <h2>Soul Sand Records roster</h2>
+        <p>Three worlds to start. Soul Sand Records grows from here.</p>
+      </div>
+
+      <div class="roster" role="list">
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Deep Night Static</h3>
+            <div class="tag">Sleep</div>
+          </div>
+          <p>Long-form nighttime environments designed for rest, stillness, and deep calm.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/deep-night-static.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>View the Soul Sand Records philosophy</a>
+          </div>
+        </article>
+
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Still Room Signals</h3>
+            <div class="tag">Focus</div>
+          </div>
+          <p>Minimal, reflective sound built for slow attention, clarity, and quiet momentum.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/still-room-signals.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>View the Soul Sand Records philosophy</a>
+          </div>
+        </article>
+
+        <article class="artist" role="listitem">
+          <div class="artistTop">
+            <h3>Night Room Drones</h3>
+            <div class="tag">Immersive</div>
+          </div>
+          <p>Spatial drones and low-frequency rooms for deep listening and cinematic presence.</p>
+          <div class="artistActions">
+            <a class="miniBtn primary" href="artists/night-room-drones.html">Enter</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>View the Soul Sand Records philosophy</a>
+          </div>
+        </article>
+      </div>
+
+      <div id="philosophy" class="band" aria-label="Soul Sand Records philosophy">
+        <div class="bandInner">
+          <div>
+            <h4>Soul Sand Records philosophy</h4>
+            <p>
+              Soul Sand Records is built like a gallery: each artist is a room with its own sound, while the label stays consistent —
+              cinematic, clean, and premium. Every genre is welcome when the curation is real.
+            </p>
+          </div>
+          <blockquote class="quote">
+            “Make something that feels like a place — then let people return.”
+            <span>— Soul Sand Records</span>
+          </blockquote>
         </div>
       </div>
     </section>
 
-    <!-- ARTISTS -->
-    <section id="artists" aria-label="Artists">
-      <div class="container">
-        <div class="sectionHead reveal">
-          <h2 class="sectionTitle">Artists</h2>
-          <p class="sectionNote">
-            Each artist is a separate HTML page inside <span class="mono">/artists/</span>. No nested folders.
-            Links below point directly to your paths.
-          </p>
-        </div>
-
-        <div class="cards" aria-label="Artist cards">
-          <a class="card wide reveal" href="artists/deep-night-static.html">
-            <div class="cardInner">
-              <div class="cardTop">
-                <span class="badge">Artist</span>
-                <span class="badge badgeAccent">Featured • Long-form</span>
-              </div>
-              <h3 class="cardTitle">Deep Night Static</h3>
-              <p class="cardDesc">
-                Dense nocturnal ambience with a gentle edge — slow-motion detail, calm energy,
-                and a premium immersive atmosphere designed for deep focus.
-              </p>
-              <div class="cardFoot">
-                <div class="open"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
-                <div class="path">/artists/deep-night-static.html</div>
-              </div>
-            </div>
-          </a>
-
-          <a class="card narrow reveal" href="artists/still-room-signals.html">
-            <div class="cardInner">
-              <div class="cardTop">
-                <span class="badge">Artist</span>
-                <span class="badge badgeAccent">Minimal</span>
-              </div>
-              <h3 class="cardTitle">Still Room Signals</h3>
-              <p class="cardDesc">
-                Quiet-room clarity — sparse textures, clean harmonics, and signal-like tones that stay refined.
-              </p>
-              <div class="cardFoot">
-                <div class="open"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
-                <div class="path">/artists/still-room-signals.html</div>
-              </div>
-            </div>
-          </a>
-
-          <a class="card narrow reveal" href="artists/night-room-drones.html">
-            <div class="cardInner">
-              <div class="cardTop">
-                <span class="badge">Artist</span>
-                <span class="badge badgeAccent">Drone</span>
-              </div>
-              <h3 class="cardTitle">Night Room Drones</h3>
-              <p class="cardDesc">
-                Slow-pressure drones and deep atmosphere — steady, immersive, elegantly restrained for long listening.
-              </p>
-              <div class="cardFoot">
-                <div class="open"><span class="openIcon" aria-hidden="true">↗</span> Open Page</div>
-                <div class="path">/artists/night-room-drones.html</div>
-              </div>
-            </div>
-          </a>
-        </div>
+    <!-- Contact -->
+    <section id="contact" class="section" aria-label="Soul Sand Records contact">
+      <div class="sectionHead">
+        <h2>Contact Soul Sand Records</h2>
+        <p>Simple now. We can wire email capture later.</p>
       </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section id="about" aria-label="About Soul Sand Records">
-      <div class="container">
-        <div class="sectionHead reveal">
-          <h2 class="sectionTitle">About Soul Sand Records</h2>
-          <p class="sectionNote">
-            Premium restraint: clear hierarchy, Swiss spacing, and a lifted night palette with light-blue highlights.
+      <div class="contact">
+        <div>
+          <strong>Soul Sand Records</strong>
+          <p>
+            For press, playlisting, collaborations, licensing, or roster inquiries, contact Soul Sand Records below.
+            (You can change the email address in this file anytime.)
           </p>
         </div>
 
-        <div class="twoCol">
-          <div class="panel reveal">
-            <h3>Design Principles</h3>
-            <p>
-              Calm surfaces, strong typography, and intentional negative space — built to feel luxury without feeling busy.
-              Finishes are achieved with hairline highlights, subtle sheen, and precise spacing (no heavy blur effects).
-            </p>
-          </div>
-
-          <div class="panel reveal">
-            <h3>Site Map</h3>
-            <p>
-              <span class="mono">/index.html</span> → links to:
-              <span class="mono">/artists/deep-night-static.html</span>,
-              <span class="mono">/artists/still-room-signals.html</span>,
-              <span class="mono">/artists/night-room-drones.html</span>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" aria-label="Contact">
-      <div class="container">
-        <div class="sectionHead reveal">
-          <h2 class="sectionTitle">Contact</h2>
-          <p class="sectionNote">
-            Simple and clean. Replace the email with your preferred address when ready.
-          </p>
-        </div>
-
-        <div class="twoCol">
-          <div class="panel reveal">
-            <h3>Inquiries</h3>
-            <p>
-              Releases, licensing, collaborations, press — send a short message and include links if relevant.
-            </p>
-            <div class="row">
-              <a class="btn btnPrimary" href="mailto:contact@soulsandrecords.com?subject=Soul%20Sand%20Records%20Inquiry">
-                <span class="ico" aria-hidden="true">✉</span>
-                Email Soul Sand Records
-              </a>
-              <a class="btn" href="#top">
-                <span class="ico" aria-hidden="true">↑</span>
-                Back to Top
-              </a>
-            </div>
-          </div>
-
-          <div class="panel reveal">
-            <h3>Artist Pages</h3>
-            <p>Quick access:</p>
-            <div class="row">
-              <a class="btn" href="artists/deep-night-static.html"><span class="ico" aria-hidden="true">→</span> Deep Night Static</a>
-              <a class="btn" href="artists/still-room-signals.html"><span class="ico" aria-hidden="true">→</span> Still Room Signals</a>
-              <a class="btn" href="artists/night-room-drones.html"><span class="ico" aria-hidden="true">→</span> Night Room Drones</a>
-            </div>
-          </div>
+        <div class="right">
+          <input class="input" id="fromEmail" type="email" placeholder="your@email.com" inputmode="email" autocomplete="email" />
+          <button class="btn btnPrimary" id="emailBtn" type="button">Email Soul Sand Records</button>
+          <button class="btn btnGhost" id="copyBtn" type="button">Copy Soul Sand Records email</button>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="container">
-        <div class="foot">
-          <div>
-            <div style="font-weight:600; letter-spacing:.16em; text-transform:uppercase;">Soul Sand Records</div>
-            <div class="mono" style="margin-top:8px;">© <span id="y"></span> • All rights reserved</div>
-          </div>
-          <div class="mono">Swiss Modern • Cinematic Night • Lifted Blue</div>
-        </div>
+      <div>© <span id="year"></span> Soul Sand Records</div>
+      <div class="footLinks">
+        <a href="#artists" data-scroll>Soul Sand Records roster</a>
+        <a href="#philosophy" data-scroll>Soul Sand Records philosophy</a>
+        <a href="#contact" data-scroll>Contact Soul Sand Records</a>
       </div>
     </footer>
   </main>
 
   <script>
-    // Year
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // Reveal on scroll (transform/opacity only = smooth)
-    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const els = Array.from(document.querySelectorAll(".reveal"));
-
-    if (reduce) {
-      els.forEach(el => el.classList.add("in"));
-    } else {
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries){
-          if (e.isIntersecting){
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        }
-      }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
-      els.forEach(el => io.observe(el));
-    }
-
-    // Sticky header offset for anchors
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if (!el) return;
-      const headerOffset = 78;
-      const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
-    }
-
-    document.addEventListener("click", (ev) => {
-      const a = ev.target.closest('a[href^="#"]');
-      if (!a) return;
-      const hash = a.getAttribute("href");
-      if (!hash || hash.length <= 1) return;
-      ev.preventDefault();
-      const id = hash.slice(1);
-      history.pushState(null, "", hash);
-      scrollToId(id);
+    // Smooth scrolling
+    document.querySelectorAll('[data-scroll]').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        const href = el.getAttribute('href');
+        if(!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
     });
 
-    window.addEventListener("hashchange", () => {
-      const id = location.hash.replace("#","");
-      if (id) scrollToId(id);
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Change this whenever you want:
+    const SOUL_SAND_RECORDS_EMAIL = "soulsandrecords@gmail.com";
+
+    document.getElementById('emailBtn').addEventListener('click', ()=>{
+      const from = (document.getElementById('fromEmail').value || "").trim();
+      const subject = encodeURIComponent("Soul Sand Records — inquiry");
+      const body = encodeURIComponent(
+        "Hello Soul Sand Records,\n\n" +
+        "I'd like to reach out about:\n\n" +
+        "- \n\n" +
+        "From: " + (from || "[your email]") + "\n"
+      );
+      window.location.href = `mailto:${SOUL_SAND_RECORDS_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(SOUL_SAND_RECORDS_EMAIL);
+        const btn = document.getElementById('copyBtn');
+        const old = btn.textContent;
+        btn.textContent = "Copied ✓";
+        setTimeout(()=>btn.textContent = old, 1200);
+      }catch(e){
+        alert("Copy failed. Soul Sand Records email: " + SOUL_SAND_RECORDS_EMAIL);
+      }
     });
   </script>
 </body>
