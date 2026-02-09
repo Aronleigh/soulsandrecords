@@ -35,20 +35,13 @@
       --cyan:#33d0ff;
       --violet:#7b5cff;
 
-      --glass: rgba(255,255,255,.07);
-      --glass2: rgba(255,255,255,.05);
-
       --shadowXL: 0 40px 140px rgba(0,0,0,.55);
       --shadowLG: 0 22px 80px rgba(0,0,0,.45);
       --shadowMD: 0 16px 60px rgba(0,0,0,.30);
 
       --rXL: 30px;
-      --rLG: 22px;
-      --rMD: 16px;
-
       --max: 1160px;
 
-      /* Font system (expensive) */
       --display: "Fraunces", ui-serif, Georgia, serif;
       --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
@@ -234,37 +227,23 @@
 
     /* HERO */
     .hero{
-      padding: clamp(56px, 8vw, 86px) 0 34px;
+      padding: clamp(56px, 8vw, 86px) 0 28px;
     }
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.20fr .80fr;
+      grid-template-columns: 1.22fr .78fr;
       gap: clamp(16px, 3vw, 36px);
-      align-items:end;
+      align-items:start;
     }
     @media (max-width: 980px){ .heroGrid{ grid-template-columns: 1fr; } }
-
-    .kicker{
-      display:flex; align-items:center; gap:12px;
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: rgba(242,247,255,.72);
-      margin-bottom: 16px;
-    }
-    .kLine{
-      height:1px; width:54px;
-      background: linear-gradient(90deg, rgba(51,208,255,.68), transparent);
-    }
 
     h1{
       margin:0;
       font-family: var(--display);
       font-weight: 450;
-      font-size: clamp(56px, 6vw, 96px);
+      font-size: clamp(60px, 6.3vw, 100px);
       letter-spacing:-0.02em;
-      line-height:1.00;
+      line-height:0.98;
     }
     .headlineAccent{
       background: linear-gradient(135deg, rgba(242,247,255,.98), rgba(51,208,255,.78));
@@ -273,17 +252,38 @@
       color:transparent;
     }
 
-    .lead{
-      margin: 18px 0 0;
-      max-width: 66ch;
+    /* your requested single line under the title */
+    .tagline{
+      margin: 14px 0 0;
+      max-width: 60ch;
       color: rgba(169,183,214,.96);
-      font-size: 17px;
-      line-height:1.85;
+      font-size: 18px;
+      line-height: 1.7;
       font-weight: 300;
     }
 
+    /* tiny premium whisper line (optional but classy) */
+    .whisper{
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(127,147,187,.92);
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .whisper::before{
+      content:"";
+      width: 54px;
+      height:1px;
+      background: linear-gradient(90deg, rgba(51,208,255,.55), transparent);
+      opacity:.9;
+    }
+
     .ctaRow{
-      margin-top: 24px;
+      margin-top: 22px;
       display:flex;
       flex-wrap:wrap;
       gap: 12px;
@@ -333,6 +333,7 @@
       flex:0 0 auto;
     }
 
+    /* Right panel — now “editorial”, with the same luxury title treatment */
     .heroCard{
       position:relative;
       border-radius: var(--rXL);
@@ -363,51 +364,49 @@
       pointer-events:none;
       z-index:-1;
     }
-    .heroCardInner{ position:relative; padding: 18px; }
+    .heroCardInner{ position:relative; padding: 22px 20px; }
 
-    .metaTitle{
-      margin:0;
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
+    .panelTitle{
+      margin: 0 0 10px;
+      font-family: var(--display);
+      font-weight: 450;
+      font-size: 26px;
+      letter-spacing:-0.01em;
+      line-height:1.15;
+    }
+    .panelTitle .accent{
+      background: linear-gradient(135deg, rgba(242,247,255,.98), rgba(51,208,255,.78));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .panelKicker{
+      margin:0 0 10px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
       color: rgba(127,147,187,.92);
-      font-weight:500;
+      display:flex;
+      align-items:center;
+      gap: 10px;
     }
-    .metaText{
-      margin: 10px 0 0;
-      color: rgba(169,183,214,.96);
-      line-height: 1.85;
-      font-size: 14.5px;
-      font-weight:300;
+    .panelKicker::after{
+      content:"";
+      height:1px;
+      flex:1;
+      background: linear-gradient(90deg, rgba(255,255,255,.10), transparent);
+      opacity:.9;
     }
 
-    .pillRow{
-      margin-top: 14px;
-      display:flex; flex-wrap:wrap; gap:10px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      color: rgba(242,247,255,.92);
-      font-family:var(--mono);
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      text-decoration:none;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      white-space:nowrap;
-      font-weight:500;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(51,208,255,.22);
-      background: rgba(255,255,255,.07);
+    .panelText{
+      margin:0;
+      color: rgba(169,183,214,.96);
+      line-height: 1.95;
+      font-size: 15px;
+      font-weight:300;
+      max-width: 62ch;
     }
 
     /* Sections */
@@ -457,7 +456,7 @@
       text-decoration:none;
       color: rgba(242,247,255,.94);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 206px;
+      min-height: 196px;
       isolation:isolate;
     }
     .card::before{
@@ -703,44 +702,26 @@
       <div class="container">
         <div class="heroGrid">
           <div>
-            <div class="kicker"><span class="kLine" aria-hidden="true"></span> Independent label</div>
-
             <h1><span class="headlineAccent">Soul Sand Records</span></h1>
 
-            <p class="lead">
-              Swiss-modern and cinematic by design, Soul Sand Records is a home for music that feels like a place —
-              from sleep worlds and drones to pop, country, jazz, folk, hip-hop, and anything you choose next.
-            </p>
+            <p class="tagline">Soul Sand Records is an independent label for music that feels like a place.</p>
+            <div class="whisper">Curated worlds across every genre</div>
 
             <div class="ctaRow">
               <a class="btn btnPrimary" href="#roster">Explore roster</a>
               <a class="btn" href="#contact"><span class="ico" aria-hidden="true">✉</span> Contact</a>
-              <a class="btn" href="artists/deep-night-static.html"><span class="ico" aria-hidden="true">↗</span> Featured artist</a>
             </div>
           </div>
 
           <aside class="heroCard" aria-label="What Soul Sand Records is">
             <div class="heroCardInner">
-              <p class="metaTitle">What Soul Sand Records is</p>
-              <p class="metaText">
+              <div class="panelKicker">Statement</div>
+              <div class="panelTitle"><span class="accent">Soul Sand Records</span> is designed for clarity.</div>
+              <p class="panelText">
                 Soul Sand Records is an independent label designed for clarity: clean presentation, consistent identity,
                 and music-first curation. The catalog can be utility or art, minimal or maximal — any genre is welcome
                 when the world is real and the listening experience is intentional.
               </p>
-
-              <p class="metaTitle" style="margin-top:14px;">Highlights</p>
-              <div class="pillRow" aria-label="Highlights">
-                <span class="pill" role="text">Calm, clean identity</span>
-                <span class="pill" role="text">All genres welcome</span>
-                <span class="pill" role="text">Long-term catalog</span>
-              </div>
-
-              <p class="metaTitle" style="margin-top:14px;">Quick access</p>
-              <div class="pillRow" aria-label="Quick access">
-                <a class="pill" href="artists/deep-night-static.html">Deep Night Static</a>
-                <a class="pill" href="artists/still-room-signals.html">Still Room Signals</a>
-                <a class="pill" href="artists/night-room-drones.html">Night Room Drones</a>
-              </div>
             </div>
           </aside>
         </div>
@@ -836,7 +817,6 @@
   </main>
 
   <script>
-    // Smooth scroll with sticky header offset
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function scrollToId(id){
       const el = document.getElementById(id);
