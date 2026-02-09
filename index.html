@@ -8,16 +8,19 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Soul Sand Records" />
-  <meta property="og:description" content="Ultra-luxury, Swiss-modern, cinematic label landing page." />
+  <meta property="og:description" content="Ultra-luxury, Swiss-modern, cinematic night mode label landing page." />
   <meta property="og:type" content="website" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='.95'/%3E%3Cstop offset='1' stop-color='%230b3cff' stop-opacity='.9'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect rx='22' width='96' height='96' fill='url(%23g)'/%3E%3Cpath d='M24 58c12 10 36 10 48 0' fill='none' stroke='%23ffffff' stroke-opacity='.9' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
 
   <style>
-    /* ==========
-       Soul Sand Records — Ultra-Luxury Swiss Modern + Cinematic Night
+    /* =========================================================
+       Soul Sand Records — Ultra-Luxury Swiss Modern (Night Mode)
        Single-file, GitHub Pages friendly
-       ========== */
+       - Cleaner hierarchy
+       - More "complex" finish: grid, micro-interactions, depth,
+         cinematic lighting, but layout stays simple.
+       ========================================================= */
 
     :root{
       --bg0:#050814;
@@ -28,8 +31,8 @@
       --muted:#a9b7d6;
       --muted2:#7f93bb;
 
-      --line: rgba(255,255,255,.10);
-      --line2: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.11);
+      --line2: rgba(255,255,255,.07);
 
       --blue:#2e64ff;
       --cyan:#33d0ff;
@@ -60,25 +63,18 @@
       overflow-x:hidden;
     }
 
-    /* Premium grain + vignette */
-    .grain{
-      position:fixed; inset:-20%;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-      opacity:.10;
-      mix-blend-mode: overlay;
-      pointer-events:none;
-      z-index:-1;
-      transform: translateZ(0);
-    }
-    .vignette{
+    /* Background layers */
+    .grid{
       position:fixed; inset:0;
       background:
-        radial-gradient(circle at 50% 40%, transparent 38%, rgba(0,0,0,.45) 100%);
+        linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 120px 120px,
+        linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 120px 120px;
+      mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,.8), transparent 70%);
+      opacity:.14;
       pointer-events:none;
-      z-index:-2;
+      z-index:-4;
+      transform: translateZ(0);
     }
-
-    /* Cinematic moving light bands (subtle, not busy) */
     .aurora{
       position:fixed;
       inset:-30vh -30vw auto -30vw;
@@ -99,7 +95,23 @@
     }
     @media (prefers-reduced-motion: reduce){ .aurora{ animation:none; } }
 
-    /* Swiss grid baseline */
+    .grain{
+      position:fixed; inset:-20%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+      opacity:.10;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      z-index:-2;
+      transform: translateZ(0);
+    }
+    .vignette{
+      position:fixed; inset:0;
+      background: radial-gradient(circle at 50% 40%, transparent 38%, rgba(0,0,0,.46) 100%);
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    /* Layout */
     .wrap{
       max-width: var(--max);
       margin:0 auto;
@@ -108,14 +120,27 @@
 
     /* Topbar */
     .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      margin: 10px 0 18px;
+      padding: 10px 6px;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(5,8,20,.72), rgba(5,8,20,.40));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbarInner{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px;
-      padding: 10px 6px;
-      margin: 6px 0 18px;
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 0 12px;
     }
 
     .brand{
       display:flex; align-items:center; gap:14px; min-width:0;
+      text-decoration:none;
+      color:inherit;
     }
     .mark{
       width:46px; height:46px; border-radius:16px;
@@ -125,6 +150,7 @@
       border: 1px solid rgba(255,255,255,.22);
       box-shadow: 0 28px 90px rgba(46,100,255,.22);
       position:relative;
+      flex:0 0 auto;
     }
     .mark::after{
       content:"";
@@ -135,10 +161,10 @@
       opacity:.35;
       pointer-events:none;
     }
-
     .brandTitle{
       min-width:0;
       display:flex; flex-direction:column;
+      line-height:1.15;
     }
     .brandTitle strong{
       font-size: 12px;
@@ -146,6 +172,7 @@
       text-transform: uppercase;
       color: rgba(242,247,255,.92);
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      font-weight: 950;
     }
     .brandTitle span{
       font-size: 12.5px;
@@ -159,23 +186,24 @@
     .nav a{
       text-decoration:none;
       color: rgba(242,247,255,.92);
-      font-weight: 850;
+      font-weight: 900;
       font-size: 13px;
       letter-spacing: .02em;
       padding: 10px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.055);
       border: 1px solid rgba(255,255,255,.10);
       box-shadow: 0 16px 60px rgba(0,0,0,.25);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
     }
     .nav a:hover{
       transform: translateY(-1px);
       border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
       box-shadow: 0 22px 80px rgba(0,0,0,.32);
     }
 
-    /* HERO — Make label name HUGE + premium */
+    /* HERO */
     .hero{
       position:relative;
       border-radius: calc(var(--r1) + 10px);
@@ -183,8 +211,8 @@
       background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
       box-shadow: var(--shadow);
       overflow:hidden;
+      isolation:isolate;
     }
-
     .hero::before{
       content:"";
       position:absolute; inset:-120px -120px auto -120px;
@@ -195,6 +223,16 @@
       filter: blur(18px);
       opacity:.9;
       pointer-events:none;
+      z-index:-1;
+    }
+    .hero::after{
+      /* subtle “film” sheen */
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, rgba(255,255,255,.06), transparent 35%, transparent 60%, rgba(255,255,255,.05));
+      opacity:.55;
+      pointer-events:none;
+      z-index:-1;
     }
 
     .heroInner{
@@ -206,7 +244,6 @@
       align-items:start;
     }
 
-    /* Swiss “overline” */
     .overline{
       display:flex; align-items:center; gap:10px;
       letter-spacing: .30em;
@@ -221,12 +258,11 @@
       box-shadow: 0 0 0 4px rgba(51,208,255,.12);
     }
 
-    /* BIG label name */
     .labelName{
       margin: 14px 0 10px;
-      font-size: clamp(52px, 6vw, 98px);
-      letter-spacing: -0.06em;
-      line-height: .95;
+      font-size: clamp(54px, 6.2vw, 102px);
+      letter-spacing: -0.065em;
+      line-height: .93;
     }
     .labelName .accent{
       background: linear-gradient(135deg, rgba(242,247,255,.98), rgba(51,208,255,.85));
@@ -259,7 +295,7 @@
       font-weight: 950;
       padding: 12px 14px;
       border-radius: 999px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
       user-select:none;
       font-size: 14px;
       white-space:nowrap;
@@ -272,17 +308,18 @@
     .btnPrimary:hover{ transform: translateY(-1px); box-shadow: 0 36px 140px rgba(46,100,255,.32); }
     .btnGhost{
       color: rgba(242,247,255,.94);
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.055);
       border: 1px solid rgba(255,255,255,.12);
       box-shadow: 0 18px 70px rgba(0,0,0,.25);
     }
     .btnGhost:hover{
       transform: translateY(-1px);
       border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
       box-shadow: 0 24px 90px rgba(0,0,0,.32);
     }
 
-    /* Right-side “Swiss cards” */
+    /* Right-side refined tiles */
     .side{
       display:grid;
       gap:12px;
@@ -290,7 +327,7 @@
     }
     .tile{
       border-radius: 22px;
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.055);
       border: 1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow2);
       padding: 16px 16px;
@@ -319,6 +356,7 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       color: rgba(242,247,255,.86);
+      font-weight: 950;
     }
     .badge{
       position:relative;
@@ -338,13 +376,6 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
-    }
-
-    /* Swiss divider line */
-    .divider{
-      margin: 18px 0 0;
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
     }
 
     /* Sections */
@@ -368,7 +399,7 @@
       font-size: 13.5px;
     }
 
-    /* Artist roster: swiss grid, cinematic cards */
+    /* Roster */
     .roster{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -384,7 +415,8 @@
       position:relative;
       overflow:hidden;
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      min-height: 210px;
+      min-height: 220px;
+      isolation:isolate;
     }
     .artist:hover{
       transform: translateY(-2px);
@@ -401,8 +433,8 @@
       filter: blur(18px);
       opacity:.75;
       pointer-events:none;
+      z-index:-1;
     }
-
     .artistTop{
       position:relative;
       display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
@@ -431,7 +463,6 @@
       font-size: 14px;
       line-height: 1.7;
     }
-
     .artistActions{
       position:relative;
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
@@ -448,12 +479,13 @@
       background: rgba(255,255,255,.06);
       color: rgba(242,247,255,.92);
       box-shadow: 0 16px 70px rgba(0,0,0,.24);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
       white-space:nowrap;
     }
     .miniBtn:hover{
       transform: translateY(-1px);
       border-color: rgba(51,208,255,.22);
+      background: rgba(255,255,255,.07);
       box-shadow: 0 22px 90px rgba(0,0,0,.30);
     }
     .miniBtn.primary{
@@ -464,7 +496,7 @@
     }
     .miniBtn.primary:hover{ box-shadow: 0 34px 140px rgba(46,100,255,.30); }
 
-    /* Manifesto band */
+    /* Philosophy band */
     .band{
       margin-top: 14px;
       border-radius: calc(var(--r1) + 10px);
@@ -473,6 +505,7 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
       position:relative;
+      isolation:isolate;
     }
     .band::before{
       content:"";
@@ -484,6 +517,7 @@
       filter: blur(20px);
       opacity:.85;
       pointer-events:none;
+      z-index:-1;
     }
     .bandInner{
       position:relative;
@@ -499,6 +533,7 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       color: rgba(242,247,255,.86);
+      font-weight: 950;
     }
     .bandInner p{
       margin:0;
@@ -511,7 +546,7 @@
       color: rgba(242,247,255,.92);
       font-size: 16px;
       line-height: 1.85;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: -.01em;
     }
     .quote span{
@@ -601,7 +636,8 @@
       .artist{ grid-column: 1 / -1; }
       .bandInner{ grid-template-columns: 1fr; }
       .input{ min-width: 0; flex: 1; }
-      .labelName{ font-size: clamp(44px, 10vw, 70px); }
+      .labelName{ font-size: clamp(44px, 10vw, 74px); }
+      .topbar{ position:sticky; }
     }
 
     /* Accessible focus */
@@ -613,67 +649,73 @@
 </head>
 
 <body>
+  <div class="grid" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <!-- Topbar -->
-    <header class="topbar">
-      <div class="brand" aria-label="Soul Sand Records">
+  <!-- Sticky topbar -->
+  <header class="topbar">
+    <div class="topbarInner">
+      <a class="brand" href="#top" data-scroll aria-label="Soul Sand Records home">
         <div class="mark" aria-hidden="true"></div>
         <div class="brandTitle">
           <strong>Soul Sand Records</strong>
           <span>Ultra-premium label • curated worlds • any genre</span>
         </div>
-      </div>
+      </a>
 
       <nav class="nav" aria-label="Navigation">
         <a href="#artists" data-scroll>Artists</a>
         <a href="#philosophy" data-scroll>Philosophy</a>
         <a href="#contact" data-scroll>Contact</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
+  <main id="top" class="wrap">
     <!-- Hero -->
-    <section class="hero" aria-label="Hero">
+    <section class="hero" aria-label="Soul Sand Records hero">
       <div class="heroInner">
         <div>
-          <div class="overline"><span class="dot" aria-hidden="true"></span> Independent Label</div>
+          <div class="overline"><span class="dot" aria-hidden="true"></span> Soul Sand Records</div>
+
           <h1 class="labelName">
-            <span class="accent">Soul Sand</span><br/>Records
+            <span class="accent">Soul Sand Records</span>
           </h1>
+
           <p class="lead">
-            Cinematic, Swiss-modern, and intentionally minimal. Soul Sand Records is a home for music that feels like a place —
+            Swiss-modern. Cinematic night mode. A single home for music that feels like a place —
             from sleep worlds and drones to pop, country, jazz, folk, hip-hop, and anything you choose next.
+            Soul Sand Records stays consistent, while the roster expands.
           </p>
 
           <div class="ctaRow">
-            <a class="btn btnPrimary" href="#artists" data-scroll>Explore roster</a>
-            <a class="btn btnGhost" href="#contact" data-scroll>Press / contact</a>
+            <a class="btn btnPrimary" href="#artists" data-scroll>Explore Soul Sand Records roster</a>
+            <a class="btn btnGhost" href="#contact" data-scroll>Contact Soul Sand Records</a>
           </div>
-
-          <div class="divider" aria-hidden="true"></div>
         </div>
 
-        <aside class="side" aria-label="Highlights">
+        <aside class="side" aria-label="Soul Sand Records highlights">
           <div class="tile">
             <div class="tileTop">
-              <strong>Identity</strong>
-              <span class="badge">SoulSand</span>
+              <strong>Soul Sand Records</strong>
+              <span class="badge">Identity</span>
             </div>
             <p>One label aesthetic — clean, calm, unmistakably premium.</p>
           </div>
+
           <div class="tile">
             <div class="tileTop">
-              <strong>Genres</strong>
-              <span class="badge">All welcome</span>
+              <strong>Soul Sand Records</strong>
+              <span class="badge">All genres</span>
             </div>
-            <p>Utility and art can live together, under one coherent home.</p>
+            <p>Utility and art can live together under one coherent home.</p>
           </div>
+
           <div class="tile">
             <div class="tileTop">
-              <strong>Catalog</strong>
+              <strong>Soul Sand Records</strong>
               <span class="badge">Long-term</span>
             </div>
             <p>Designed to age well — releases built for return listens.</p>
@@ -683,10 +725,10 @@
     </section>
 
     <!-- Artists -->
-    <section id="artists" class="section" aria-label="Artists">
+    <section id="artists" class="section" aria-label="Soul Sand Records artists">
       <div class="sectionHead">
-        <h2>Artist roster</h2>
-        <p>Three worlds to start. A label to expand.</p>
+        <h2>Soul Sand Records roster</h2>
+        <p>Three worlds to start. Soul Sand Records grows from here.</p>
       </div>
 
       <div class="roster" role="list">
@@ -698,7 +740,7 @@
           <p>Long-form nighttime environments designed for rest, stillness, and deep calm.</p>
           <div class="artistActions">
             <a class="miniBtn primary" href="artists/deep-night-static.html">Enter</a>
-            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Soul Sand Records philosophy</a>
           </div>
         </article>
 
@@ -710,7 +752,7 @@
           <p>Minimal, reflective sound built for slow attention, clarity, and quiet momentum.</p>
           <div class="artistActions">
             <a class="miniBtn primary" href="artists/still-room-signals.html">Enter</a>
-            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Soul Sand Records philosophy</a>
           </div>
         </article>
 
@@ -722,19 +764,19 @@
           <p>Spatial drones and low-frequency rooms for deep listening and cinematic presence.</p>
           <div class="artistActions">
             <a class="miniBtn primary" href="artists/night-room-drones.html">Enter</a>
-            <a class="miniBtn" href="#philosophy" data-scroll>Philosophy</a>
+            <a class="miniBtn" href="#philosophy" data-scroll>Soul Sand Records philosophy</a>
           </div>
         </article>
       </div>
 
-      <div id="philosophy" class="band" aria-label="Philosophy">
+      <div id="philosophy" class="band" aria-label="Soul Sand Records philosophy">
         <div class="bandInner">
           <div>
-            <h4>Philosophy</h4>
+            <h4>Soul Sand Records philosophy</h4>
             <p>
               Soul Sand Records is built like a gallery: each artist is a room with its own sound,
-              while the label stays consistent — cinematic, clean, and premium. Every genre is welcome
-              when the curation is real.
+              while Soul Sand Records stays consistent — cinematic, clean, and premium.
+              Every genre is welcome when the curation is real.
             </p>
           </div>
           <blockquote class="quote">
@@ -746,25 +788,25 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section" aria-label="Contact">
+    <section id="contact" class="section" aria-label="Soul Sand Records contact">
       <div class="sectionHead">
-        <h2>Contact / press</h2>
-        <p>Simple now. We can wire a list + backend later.</p>
+        <h2>Contact Soul Sand Records</h2>
+        <p>Simple now. We can wire email capture + backend later.</p>
       </div>
 
       <div class="contact">
         <div>
-          <strong>Get in touch</strong>
+          <strong>Soul Sand Records</strong>
           <p>
-            For press, playlisting, collaborations, licensing, or roster inquiries, use the button below.
-            (Change the email address in the code whenever you want.)
+            For press, playlisting, collaborations, licensing, or roster inquiries, contact Soul Sand Records below.
+            (You can change the email address in this file anytime.)
           </p>
         </div>
 
         <div class="right">
           <input class="input" id="fromEmail" type="email" placeholder="your@email.com" inputmode="email" autocomplete="email" />
-          <button class="btn btnPrimary" id="emailBtn" type="button">Email SoulSand</button>
-          <button class="btn btnGhost" id="copyBtn" type="button">Copy email</button>
+          <button class="btn btnPrimary" id="emailBtn" type="button">Email Soul Sand Records</button>
+          <button class="btn btnGhost" id="copyBtn" type="button">Copy Soul Sand Records email</button>
         </div>
       </div>
     </section>
@@ -772,12 +814,12 @@
     <footer>
       <div>© <span id="year"></span> Soul Sand Records</div>
       <div class="footLinks">
-        <a href="#artists" data-scroll>Artists</a>
-        <a href="#philosophy" data-scroll>Philosophy</a>
-        <a href="#contact" data-scroll>Contact</a>
+        <a href="#artists" data-scroll>Soul Sand Records roster</a>
+        <a href="#philosophy" data-scroll>Soul Sand Records philosophy</a>
+        <a href="#contact" data-scroll>Contact Soul Sand Records</a>
       </div>
     </footer>
-  </div>
+  </main>
 
   <script>
     // Smooth scrolling for internal anchors
@@ -796,7 +838,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Contact email (edit this later if you want)
-    const LABEL_EMAIL = "soulsandrecords@gmail.com"; // <- change to your preferred address
+    const SOUL_SAND_RECORDS_EMAIL = "soulsandrecords@gmail.com"; // <- change this
 
     // Email button
     document.getElementById('emailBtn').addEventListener('click', ()=>{
@@ -808,19 +850,19 @@
         "- \n\n" +
         "From: " + (from || "[your email]") + "\n"
       );
-      window.location.href = `mailto:${LABEL_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${SOUL_SAND_RECORDS_EMAIL}?subject=${subject}&body=${body}`;
     });
 
     // Copy email
     document.getElementById('copyBtn').addEventListener('click', async ()=>{
       try{
-        await navigator.clipboard.writeText(LABEL_EMAIL);
+        await navigator.clipboard.writeText(SOUL_SAND_RECORDS_EMAIL);
         const btn = document.getElementById('copyBtn');
         const old = btn.textContent;
         btn.textContent = "Copied ✓";
         setTimeout(()=>btn.textContent = old, 1200);
       }catch(e){
-        alert("Copy failed. Email: " + LABEL_EMAIL);
+        alert("Copy failed. Soul Sand Records email: " + SOUL_SAND_RECORDS_EMAIL);
       }
     });
   </script>
